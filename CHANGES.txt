@@ -1,3 +1,20 @@
+1.1.0b5 (2005/01/28)
+
+  ZPT
+  - More robust support for the "i18n" namespace, check the domain object is
+  a message catalog.
+
+  User Interface
+  - New LocalPropertyManager/LocalContent interface, by Cornel Nitu.
+
+  Translations
+  - Updated the portuguese translation, by Rodrigo Senra.
+
+  Plone
+  - Remove conflict with PlacelessTranslationService, Plone and Localizer
+  work again together.
+
+
 1.1.0b4 (2005/01/09)
 
   ZPT
