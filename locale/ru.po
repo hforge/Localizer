@@ -1,0 +1,242 @@
+# russian po file for Localizer.
+# Copyright (C) 2003 Free Software Foundation, Inc.
+# Alexey Lubimov <avl@altlinux.ru>, 2003.
+                                       
+msgid ""
+msgstr "Project-Id-Version: User messages\n"
+"POT-Creation-Date: 2003-07-31 09:07+MSK\n"
+"PO-Revision-Date: 2003-07-31 09:07+MSK\n"
+"Last-Translator: Lubimov Alexey <avl@altlinux.ru>\n"
+"Language-Team: ru <RU@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+msgid "A Local Content object provides an storage for multilingual (and non multilingual) properties. It also helps to keep your content separated from the logic and the presentation."
+msgstr "Local Content объект предоставляет хранилище для многоязычных (и не многоязычных) свойств. Он также помогает хранить данные (content) отдельно от логики (logic) и представления (presentation)."
+
+msgid "A Localizer object lets to customize the language negotiation policy. It lets to use cookies, the path or any other criteria to select the user prefered language."
+msgstr "Объект Localizer позволяет адаптировать политику выбора языка. Он позволяет использовать куки (cookies), путь и любые другие критерии для выбора предпочитаемого пользователем языка."
+
+msgid "A local folder is a generic solution to manage any kind of multingual objects, files, images, scripts, etc.."
+msgstr "Локальная папка, это универсальный способ управления любыми аспектами мультиязыковых объектов, файлов, изображений, скриптов и т.д...\r\n  "
+
+msgid "A message catalog stores messages and its translations to different languages. It provides the <tt>gettext</tt> method to get the right translation for a given message. Message catalogs are useful to translate the application interfaces (labels, buttons, etc..)."
+msgstr "Каталог сообщений хранит сообщения и их переводы на разные языки  Он предоставляет <tt>gettext</tt> метод для доступа к правильному переводу требуемого сообщения. Каталог сообщений используется для перевода интерфейса приложений (метки, кнопки, итд..)."
+
+msgid "Add"
+msgstr "Добавить"
+
+msgid "Add Local Content"
+msgstr "Добавить локальное содержимое"
+
+msgid "Add Local Folder"
+msgstr "Добавить локальную папку"
+
+msgid "Add Localizer"
+msgstr "Добавить Localizer"
+
+msgid "Add Message Catalog"
+msgstr "Добавить каталог сообщений"
+
+msgid "Attributes"
+msgstr "Атрибуты"
+
+msgid "Basque"
+msgstr "Язык басков"
+
+msgid "Besides the title the header of a PO file stores more information, the name and the email address of the last translator, the email adress of the translation team and the charset. The forms below let to modify this information for each language."
+msgstr "Кроме заглавия, заголовок PO файла содержит дополнительную информацию, имя и e-mail последнего переводчика, e-mail команды переводчиков и кодировку. Форму внизу позволяет изменить эту информацию для каждого языка."
+
+msgid "Catalan"
+msgstr "Каталонское наречие"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "Charset"
+msgstr "Кодировка"
+
+msgid "Contents"
+msgstr "Содержимое"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Export"
+msgstr "Экспорт"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "File / Language"
+msgstr "Файл / язык"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Find"
+msgstr "Поиск"
+
+msgid "French"
+msgstr "Французский"
+
+msgid "German"
+msgstr "Немецкий"
+
+msgid "Hide this language"
+msgstr "Скрыть этот язык"
+
+msgid "Hungarian"
+msgstr "Венгерский"
+
+msgid "Id"
+msgstr "Id"
+
+msgid "Import"
+msgstr "Импорт"
+
+msgid "Import/Export"
+msgstr "Импорт/Экспорт"
+
+msgid "Japanese"
+msgstr "Японский"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "Languages"
+msgstr "Языки"
+
+msgid "Local properties"
+msgstr "Локальные свойства"
+
+msgid "Locale folders are useful to store special multilingual objects like images and specific logic. If used the <tt>Localizer</tt> object will transparently add the right locale folder to the url. If you want to use locale folders check the checkbox, otherwise uncheck it, then click the <tt>Change</tt> button."
+msgstr "Папки локалей используются для хранения многоязычных объектов, таких как изображения и специфичной логики. При использовании объект- <tt>Localizer</tt> прозрачно добавит папку локалей в url. При желании использовать папки локалей, необходимо отметить чекбокс или в ином случае снять с него отметку и щелкнуть кнопку <tt>Изменить</tt>." 
+
+msgid "Messages"
+msgstr "Сообщения"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Only untranslated messages"
+msgstr "Только непереведнные сообщения"
+
+msgid "Ownership"
+msgstr "Владелец"
+
+msgid "Properties"
+msgstr "Свойства"
+
+msgid "Results %d-%d of %d"
+msgstr "Результаты  %d-%d из %d"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+msgid "Saved changes."
+msgstr "Изменения сохранены."
+
+msgid "Security"
+msgstr "Безопасность"
+
+msgid "Show this language"
+msgstr "Показать этот язык"
+
+msgid "Spanish"
+msgstr "Испанский"
+
+msgid "TMX"
+msgstr "TMX"
+
+msgid "Team e-mail address"
+msgstr "Групповой e-mail адрес"
+
+msgid "The message catalog also supports importing TMX files. You can add new messages and translations importing a TMX file in TMX level 1. Enter the filename and click the <tt>Import</tt> button."
+msgstr "Каталог сообщений также поддерживает импорт TMX файлов. Вы можете добавить новый сообщения и переводы, импортируя TMX файл в TMX уровень 1. Введите имя файла и щелкните по кнопке <tt>Импорт</tt> "
+
+msgid "There aren't attributes"
+msgstr "Атрибутов нет"
+
+msgid "There aren't languages"
+msgstr "Языки не доступны"
+
+msgid "There aren't messages."
+msgstr "Сообщений нет"
+
+msgid "There aren't properties."
+msgstr "Свойств нет"
+
+msgid "This <tt>%s</tt> object needs to be upgraded"
+msgstr "Этот <tt>%s</tt> объект требует обновления"
+
+msgid "This <tt>Localizer</tt> object don't needs to be upgraded."
+msgstr "Этот объект <tt>Localizer</tt> не требует обновления"
+
+msgid "This <tt>Localizer</tt> object needs to be upgraded."
+msgstr "Этот объект <tt>Localizer</tt> требует обновления"
+
+msgid "This object don't needs to be upgraded."
+msgstr "Этот объект не требует обновления"
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "To add a language select it and click the <tt>Add</tt> button."
+msgstr "Чтобы добавить язык, его надо выбрать и щелкнуть по кнопке <tt>Добавить</tt>"
+
+msgid "To add a new property enter its name, select its type and click the <tt>Add</tt> button."
+msgstr "Для добавки нового свойства, надо ввести его имя и щелкнуть по кнопке  <tt>Добавить</tt>."
+
+msgid "To add an attribute introduce its id and click the <tt>Add</tt> button."
+msgstr "Чтобы добавить атрибуты, надо ввести их id и щелкнуть по кнопке <tt>Добавить</tt>"
+
+msgid "To delete a language check it and click the <tt>Delete</tt> button. To change the default language select it and click the <tt>Change</tt> button."
+msgstr "Для удаления языка, его надо отметить и щелкнуть <tt>Удалить</tt>. Для установки языка по умолчанию, его надо выбрать и щелкнуть кнопку <tt>Изменить</tt>"
+
+msgid "To delete an attribute check it and click the <tt>Delete</tt> button."
+msgstr "Чтобы удалить атрибут, надо отметить его и щелкнуть кнопку <tt>Удалить</tt>"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Undo"
+msgstr "Отмена"
+
+msgid "Upgrade"
+msgstr "Обновление"
+
+msgid "Use locale folders"
+msgstr "Использовать локальные папки"
+
+msgid "View"
+msgstr "Вид"
+
+msgid "With this form you can change the title of the message catalog. The title also is used as the value of the <tt>Project-Id-Version</tt> field in the header of the PO files, which are generated when the message catalog is exported."
+msgstr "В этой форме можно изменить заголовок каталога сообщений. Заголовок также используется, как значение <tt>Project-Id-Version</tt> в шапке PO файлов, которые генерируются при экспорте этого каталога сообщений."
+
+msgid "You can add new messages and translations importing a PO file. Enter the filename, select the language of the translations and click the <tt>Import</tt> button."
+msgstr "Можно добавить новые сообщения и переводы импортируя PO файл. Для этого введите имя файла, выберите язык переводов и щелкните по кнопке <tt>Импорт</tt>"
+
+msgid "You can export the messages and their translations to PO files. Check <tt>locale.pot</tt> to get only the messages, without their translations. Check any other option to get a PO file with the messages and their translations to the selected language. Then click the <tt>Export</tt> button."
+msgstr "Можно экспортировать сообщения и их переводы в PO файлы. Опция <tt>locale.pot</tt> позволяет получить только сообщения, без их перевода.  Для получения  PO файла с сообщениями и их переводами, необходимо ототметить нужные опции и атем щелкнуть по кнопке <tt>Экспорт</tt>"
+
+msgid "You can export the messages and their translations to TMX level 1 files. To do that just click the <tt>Export</tt> button."
+msgstr "Можно экспортировать сообщения и их перевод в TMX уровень 1 файлы. Для этого просто щелкните по кнопке <tt>Экспорт</tt>"
+
+msgid "Your e-mail address"
+msgstr "Ваш e-mail адрес"
+
+msgid "Your name"
+msgstr "Ваше имя"
+
+msgid "label"
+msgstr "Метка"

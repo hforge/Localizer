@@ -1,0 +1,110 @@
+# -*- coding: ISO-8859-1 -*-
+# Localizer, Zope product that provides internationalization services
+# Copyright (C) 2000-2002  Juan David Ibáñez Palomar <j-david@noos.fr>
+
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+"""
+Localizer
+
+Adds a new DTML tag:
+
+<dtml-gettext [lang=<language>|lang_expr=<expression>] [verbatim] [catalog=<id>] [data=<expression>]>
+    ...
+</dtml-gettext>
+"""
+
+
+from types import StringType
+
+from DocumentTemplate.DT_Util import Eval, ParseError, parse_params, \
+     InstanceDict, namespace, render_blocks
+
+
+
+# Auxiliar functions
+def name_or_expr(mapping, name_attr, expr_attr, default):
+    name = mapping.get(name_attr, None)
+    expr = mapping.get(expr_attr, None)
+
+    if name is None:
+        if expr is None:
+            return default
+        return Eval(expr)
+    if expr is None:
+        return name
+    raise ParseError, ('%s and %s given' % (name_attr, expr_attr), 'calendar')
+
+
+def get_value(x, md):
+    if x is None or type(x) is StringType:
+        return x
+    else:
+        return x.eval(md)
+
+
+class GettextTag:
+    """ """
+
+    name = 'gettext'
+    blockContinuations = ()
+
+    def __init__(self, blocks):
+        tname, args, section = blocks[0]
+        self.section = section.blocks
+
+        args = parse_params(args, lang=None, lang_expr=None, verbatim=1,
+                            catalog=None, data=None)
+
+        self.lang = name_or_expr(args, 'lang', 'lang_expr', None)
+
+        self.verbatim = args.get('', None) == 'verbatim' \
+                        or args.get('verbatim', None)
+
+        self.catalog = args.get('catalog', None)
+
+        self.data = args.get('data', None)
+        if self.data is not None:
+            self.data = Eval(self.data)
+
+
+    def __call__(self, md):
+        # In which language, if any? 
+        lang = get_value(self.lang, md)
+
+        # Get the message!!
+        ns = namespace(md)[0]
+        md._push(InstanceDict(ns, md))
+        message = render_blocks(self.section, md)
+        md._pop(1)
+
+        # Interpret the message as verbatim or not
+        if not self.verbatim:
+            message = ' '.join([ x.strip() for x in message.split() ])
+
+        # Search in a specific catalog
+        if self.catalog is None:
+            gettext = md.getitem('gettext', 0)
+        else:
+            gettext = md.getitem(self.catalog, 0).gettext
+
+        translation = gettext(message, lang)
+
+        # Variable substitution
+        if self.data is not None:
+            data = self.data.eval(md)
+            translation = translation % data
+
+        return translation

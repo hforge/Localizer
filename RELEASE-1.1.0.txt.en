@@ -1,0 +1,37 @@
+
+Localizer 1.1.0 released!
+
+Localizer is a Zope product that provides a set of facilities
+to develop multilingual web applications. It offers solutions to
+internationalize the user interfaces and to manage multilingual
+content.
+
+The changes of this release are:
+
+ - Added TMX support, by Roberto Quero and Eduardo Corrales, improved
+   import method by Søren Roug
+
+ - Added XLIFF support, by Søren Roug
+
+ - User interface improvements, by Søren Roug
+
+ - Refactored code, now Localizer depends on iHotfix and itools
+
+ - Closed SourceForge bugs #751282 and #761572
+
+ - Added russian translation, by Alexey Lubimov
+
+ - New request form accept method, by Rodrigo Senra
+
+
+Resources
+---------
+
+Home page
+http://www.localizer.org
+
+Download
+http://sourceforge.net/projects/lleu
+
+Mailing list
+http://in-girum.net/mailman/listinfo/localizer

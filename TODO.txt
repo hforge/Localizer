@@ -1,0 +1,154 @@
+
+ROADMAP 1.1
+-----------
+
+Localizer 1.1 will include few bug fixes and a new feature, the TMX support.
+The packaging also will change, the non-Zope code will go to itools and the
+Zope patchs will go to iHotfix.
+
+
+
+Open bugs
+---------
+
+ * Use the library libgettextpo introduced in gettext 0.12 to parse the
+   PO files, see the docs: "Writing your own programs that process PO files".
+
+ * Develop an API to get messages and translations from the message catalog,
+   see email from Pierre-Yves Delens.
+
+ * MessageCatalog, sometimes export fails because there is not charset.
+
+ * Andy McKay (on Localizer dependencies with itools and iHotfix):
+
+   "You might want to stick a dependency check in __init__.py, Localizer
+    fails in confusing manner to users in Zope. It's not broken in the
+    Control_Panel, but is if an object exists in the ZMI and its not in the
+    drop down list for add products. No error message is generated either."
+
+
+ * Bo M. Maryniuck:
+
+   "I can't reproduce the error anymore though I can't send you traceback,
+    but I just found, that Localizer crashes Medusa threads if someone else
+    object uses "register before traverse". In my case there is an product,
+    which is always modifies the request. So if I put there also Localizer,
+    you'll never enter the site.
+
+
+ * Localizer can't be refreshed since Zope 2.4.1b1.
+
+
+ * (Zope bug) See if something feasible can be done to remove the hardcoded
+   use of Latin-1 encoding from Zope and Localizer.
+
+   If not, explain which the problems are and what the developer can
+   do (add this as a task for the documentation).
+
+
+ * When importing a message catalog, should be done something with
+   the header? When managing the message catalog through FTP, should
+   the header also be editable?
+
+
+ * François Meehan:
+
+   "Also found that using the import/export function in Localizer/zope
+    can bring corruption to the po file, a problem with the accents it
+    seems."
+
+
+ * Document the path where Localizer.changeLanguage sets the cookie,
+   which is the path from where it is called, not its physical path.
+   See the mails exchanged with Claus Rosenberger. Maybe a FAQ?
+
+
+User interface (ZMI)
+--------------------
+
+ * Complete the help screens.
+
+ * Be sure the framed messages appear in all the management screens every
+   time an action is performed, i.e. "Content changed (2002-02-08 15:26)".
+
+ * The "import/export" management screen should allow to import and
+   export any language, not only the ones already available in the
+   message catalog.
+
+ * Show the languages ordered in the LPM interface (Gari).
+
+ * Add PrincipiaSearchSource
+
+
+API
+---
+
+ * When importing modules from Localizer, either the sort or the long
+   way should always be used. Update the documentation to reflect it
+   (Rainer Thaden).
+
+   Where the sort form is:
+
+     from Products.Localizer import LocalPropertyManager
+
+   and the long form is:
+
+     from Products.Localizer.LocalPropertyManager import LocalPropertyManager
+
+   See if this can be addressed without compromising backwards compatibility,
+   if not document exactly which is the current situation.
+
+
+Documentation
+-------------
+
+ * Add a section "Localizer application anatomy" to the tutorial:
+
+    "One thing you may want to consider is an overview of how a site
+     using all the products should be laid out. The examples and guide
+     you are providing are very very good and explain all the techcinal
+     components of the variouse packages quite well. What seems to be
+     missing is a higher level view that ties it all together in terms
+     of layout for a demo site.
+
+     An example of a 2-3 language basic site that uses the variouse
+     components  would be very attractive for new programs and users
+     (moi) and help the adoption of this most excellent product."
+
+  * Re-do the chapter "For Python programmers".
+
+  * Comment about "management_page_charset" to switch the ZMI to utf-8,
+    or maybe patch Zope so they're in utf-8 by default.
+
+New features
+------------
+
+ * Work on locale information: dates, money, etc..
+
+ * Integrate the File System Message Catalog from CMFLocalizer.
+
+ * Provide support for the i18n namespace of PageTemtamplates.
+
+ * Add the ability to manage localized versions of standard files
+   in a product: the on-line help system, README.txt, etc..
+
+ * Let to implement ZClasses that inherite from 'MessageCatalog'
+
+ * Set the 'Vary' header.
+
+   The problem is: which value should it have?
+
+   This could allow to remove the patch to Zope for images, if UA
+   take care of the 'Vary' header.
+
+ * Implement the whole mapping interface in the Accept classes (Bjorn).
+
+ * Rework 'changeLanguageForm' to support browsers without javascript.
+
+ * Build user management interfaces similar to the ZMI
+   (standard_html_header/footer instead of manage_page_header/footer
+   and manage_tabs).
+
+ * Improve zgettext to support ZPT, see:
+
+   http://savannah.nongnu.org/cgi-bin/viewcvs/opental/opental/OpenPTi18n/i18n_xgettext.py?rev=1.8&content-type=text/vnd.viewcvs-markup

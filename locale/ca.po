@@ -1,0 +1,376 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.2.1\n"
+"POT-Creation-Date: 2002-09-10 14:09+CET\n"
+"PO-Revision-Date: 2001-06-03 18:06+CET\n"
+"Last-Translator: jdavid\n"
+"Language-Team: ??\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+msgid "Add"
+msgstr "Afegir"
+
+#, fuzzy
+msgid "Default"
+msgstr "Esborrar"
+
+msgid "Delete"
+msgstr "Esborrar"
+
+msgid "Change"
+msgstr ""
+
+msgid "To add a language select it and click the <tt>Add</tt> button."
+msgstr ""
+
+msgid ""
+"To delete a language check it and click the <tt>Delete</tt> button. To "
+"change the default language select it and click the <tt>Change</tt> button."
+msgstr ""
+
+#, fuzzy
+msgid "There aren't languages"
+msgstr "Idiomes pendents"
+
+msgid "Name"
+msgstr ""
+
+msgid "Type"
+msgstr "Tipus"
+
+#, fuzzy
+msgid "Hide this language"
+msgstr "Nou llenguatge"
+
+#, fuzzy
+msgid "Show this language"
+msgstr "Idiomes pendents"
+
+msgid "Save changes"
+msgstr "Guardar canvis"
+
+msgid ""
+"To add a new property enter its name, select its type and click the <tt>Add</"
+"tt> button."
+msgstr ""
+
+msgid "There aren't properties."
+msgstr ""
+
+msgid "This <tt>%s</tt> object needs to be upgraded"
+msgstr ""
+
+#: LocalPropertyManager.py:82
+msgid "Upgrade"
+msgstr ""
+
+msgid "This object don't needs to be upgraded."
+msgstr ""
+
+#, fuzzy
+msgid "Add Local Content"
+msgstr "Contingut localitzat"
+
+msgid "Id"
+msgstr "Id"
+
+#: LanguageManager.py:45
+#, fuzzy
+msgid "Languages"
+msgstr "Nou llenguatge"
+
+msgid ""
+"A Local Content object provides an storage for multilingual (and non "
+"multilingual) properties. It also helps to keep your content separated from "
+"the logic and the presentation."
+msgstr ""
+
+#, fuzzy
+msgid "Add Local Folder"
+msgstr "Nou Localizer"
+
+msgid "Title"
+msgstr "Títol"
+
+msgid ""
+"A local folder is a generic solution to manage any kind of multingual "
+"objects, files, images, scripts, etc.."
+msgstr ""
+
+msgid "To delete an attribute check it and click the <tt>Delete</tt> button."
+msgstr ""
+
+#, fuzzy
+msgid "There aren't attributes"
+msgstr "Idiomes pendents"
+
+msgid "To add an attribute introduce its id and click the <tt>Add</tt> button."
+msgstr ""
+
+#, fuzzy
+msgid "Add Localizer"
+msgstr "Nou Localizer"
+
+msgid ""
+"A Localizer object lets to customize the language negotiation policy. It "
+"lets to use cookies, the path or any other criteria to select the user "
+"prefered language."
+msgstr ""
+
+msgid "Use locale folders"
+msgstr ""
+
+msgid ""
+"Locale folders are useful to store special multilingual objects like images "
+"and specific logic. If used the <tt>Localizer</tt> object will transparently "
+"add the right locale folder to the url. If you want to use locale folders "
+"check the checkbox, otherwise uncheck it, then click the <tt>Change</tt> "
+"button."
+msgstr ""
+
+msgid "This <tt>Localizer</tt> object needs to be upgraded."
+msgstr ""
+
+msgid "This <tt>Localizer</tt> object don't needs to be upgraded."
+msgstr ""
+
+msgid "Add Message Catalog"
+msgstr ""
+
+msgid ""
+"A message catalog stores messages and its translations to different "
+"languages. It provides the <tt>gettext</tt> method to get the right "
+"translation for a given message. Message catalogs are useful to translate "
+"the application interfaces (labels, buttons, etc..)."
+msgstr ""
+
+#, fuzzy
+msgid "File / Language"
+msgstr "Nou llenguatge"
+
+msgid "Export"
+msgstr ""
+
+#, fuzzy
+msgid "File"
+msgstr "Filtrar"
+
+#, fuzzy
+msgid "Language"
+msgstr "Nou llenguatge"
+
+msgid "Import"
+msgstr ""
+
+msgid ""
+"You can export the messages and their translations to PO files. Check "
+"<tt>locale.pot</tt> to get only the messages, without their translations. "
+"Check any other option to get a PO file with the messages and their "
+"translations to the selected language. Then click the <tt>Export</tt> button."
+msgstr ""
+
+msgid ""
+"You can add new messages and translations importing a PO file. Enter the "
+"filename, select the language of the translations and click the <tt>Import</"
+"tt> button."
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Only untranslated messages"
+msgstr ""
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "Results %d-%d of %d"
+msgstr ""
+
+#, fuzzy
+msgid "There aren't messages."
+msgstr "Idiomes pendents"
+
+msgid "Your name"
+msgstr ""
+
+msgid "Your e-mail address"
+msgstr ""
+
+msgid "Team e-mail address"
+msgstr ""
+
+msgid "Charset"
+msgstr ""
+
+msgid ""
+"With this form you can change the title of the message catalog. The title "
+"also is used as the value of the <tt>Project-Id-Version</tt> field in the "
+"header of the PO files, which are generated when the message catalog is "
+"exported."
+msgstr ""
+
+msgid ""
+"Besides the title the header of a PO file stores more information, the name "
+"and the email address of the last translator, the email adress of the "
+"translation team and the charset. The forms below let to modify this "
+"information for each language."
+msgstr ""
+
+msgid ""
+"You can export the messages and their translations to TMX level 1 files. To "
+"do that just click the <tt>Export</tt> button."
+msgstr ""
+
+msgid ""
+"The message catalog also supports importing TMX files. You can add new "
+"messages and translations importing a TMX file in TMX level 1. Enter the "
+"filename and click the <tt>Import</tt> button."
+msgstr ""
+
+#: LocalContent.py:78 LocalFolder.py:85 Localizer.py:94 MessageCatalog.py:223
+msgid "label"
+msgstr ""
+
+#: LocalFolder.py:77
+msgid "Attributes"
+msgstr ""
+
+#: LocalPropertyManager.py:88
+#, fuzzy
+msgid "Local properties"
+msgstr "Propietats"
+
+#: LocalPropertyManager.py:209 LocalPropertyManager.py:225
+#: LocalPropertyManager.py:245 MessageCatalog.py:351 MessageCatalog.py:365
+#, fuzzy
+msgid "Saved changes."
+msgstr "Guardar canvis"
+
+#: MessageCatalog.py:211
+msgid "Messages"
+msgstr ""
+
+#: MessageCatalog.py:213 Utils.py:65
+msgid "Properties"
+msgstr "Propietats"
+
+#: MessageCatalog.py:214
+msgid "Import/Export"
+msgstr ""
+
+#: MessageCatalog.py:216
+msgid "TMX"
+msgstr ""
+
+#: Utils.py:63
+msgid "Contents"
+msgstr "Contingut"
+
+#: Utils.py:64
+msgid "View"
+msgstr "Veure"
+
+#: Utils.py:66
+msgid "Security"
+msgstr "Seguritat"
+
+#: Utils.py:67
+msgid "Undo"
+msgstr "Desfer"
+
+#: Utils.py:68
+msgid "Ownership"
+msgstr "Propietat"
+
+#: Utils.py:69
+msgid "Find"
+msgstr "Cercar"
+
+#: Utils.py:70
+msgid "Catalan"
+msgstr "Català"
+
+#: Utils.py:71
+msgid "German"
+msgstr ""
+
+#: Utils.py:72
+msgid "Spanish"
+msgstr ""
+
+#: Utils.py:73
+msgid "Basque"
+msgstr ""
+
+#: Utils.py:74
+msgid "French"
+msgstr ""
+
+#: Utils.py:75
+msgid "Hungarian"
+msgstr ""
+
+#: Utils.py:76
+msgid "Japanese"
+msgstr ""
+
+#~ msgid "Next"
+#~ msgstr "Següent"
+
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+
+#~ msgid "All"
+#~ msgstr "Tots"
+
+#~ msgid "Available translations"
+#~ msgstr "Traduccions disponibles"
+
+#~ msgid "Batch size"
+#~ msgstr "Grandària del lot"
+
+#~ msgid "Default language"
+#~ msgstr "Idioma per defecte"
+
+#~ msgid "Full"
+#~ msgstr "Total"
+
+#~ msgid "Localized Content"
+#~ msgstr "Contingut localitzat"
+
+#~ msgid "Localized Strings"
+#~ msgstr "Cadenes localitzades"
+
+#, fuzzy
+#~ msgid "New Local Content"
+#~ msgstr "Contingut localitzat"
+
+#~ msgid "New Localizer"
+#~ msgstr "Nou Localizer"
+
+#~ msgid "Only valid"
+#~ msgstr "Sols els vàlids"
+
+#~ msgid "Partial"
+#~ msgstr "Parcial"
+
+#~ msgid "Pending languages"
+#~ msgstr "Idiomes pendents"
+
+#~ msgid "Regular expression"
+#~ msgstr "Expressió regular"
+
+#~ msgid "Results"
+#~ msgstr "Resultats"
+
+#~ msgid "Status"
+#~ msgstr "Estat"
+
+#~ msgid "Text"
+#~ msgstr "Texte"
+
+#~ msgid "of"
+#~ msgstr "de"

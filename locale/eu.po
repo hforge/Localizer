@@ -1,0 +1,389 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.3.0\n"
+"POT-Creation-Date: 2002-09-10 14:09+CET\n"
+"PO-Revision-Date: 2001-07-08 17:07+CET\n"
+"Last-Translator: code&syntax\n"
+"Language-Team: ??\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+msgid "Add"
+msgstr "Gehitu"
+
+#, fuzzy
+msgid "Default"
+msgstr "Ezabatu"
+
+msgid "Delete"
+msgstr "Ezabatu"
+
+msgid "Change"
+msgstr ""
+
+msgid "To add a language select it and click the <tt>Add</tt> button."
+msgstr ""
+
+msgid ""
+"To delete a language check it and click the <tt>Delete</tt> button. To "
+"change the default language select it and click the <tt>Change</tt> button."
+msgstr ""
+
+#, fuzzy
+msgid "There aren't languages"
+msgstr "Ez dago sarrerarik"
+
+msgid "Name"
+msgstr ""
+
+msgid "Type"
+msgstr "Mota"
+
+#, fuzzy
+msgid "Hide this language"
+msgstr "Hizkuntza berria"
+
+#, fuzzy
+msgid "Show this language"
+msgstr "Ez dago sarrerarik"
+
+msgid "Save changes"
+msgstr "Aldaketak gorde"
+
+msgid ""
+"To add a new property enter its name, select its type and click the <tt>Add</"
+"tt> button."
+msgstr ""
+
+#, fuzzy
+msgid "There aren't properties."
+msgstr "Ez dago ezaugarri-orririk"
+
+msgid "This <tt>%s</tt> object needs to be upgraded"
+msgstr ""
+
+#: LocalPropertyManager.py:82
+msgid "Upgrade"
+msgstr ""
+
+msgid "This object don't needs to be upgraded."
+msgstr ""
+
+#, fuzzy
+msgid "Add Local Content"
+msgstr "Itzulitako edukia"
+
+msgid "Id"
+msgstr "Id"
+
+#: LanguageManager.py:45
+#, fuzzy
+msgid "Languages"
+msgstr "Hizkuntza berria"
+
+msgid ""
+"A Local Content object provides an storage for multilingual (and non "
+"multilingual) properties. It also helps to keep your content separated from "
+"the logic and the presentation."
+msgstr ""
+
+msgid "Add Local Folder"
+msgstr "Localizer berria"
+
+msgid "Title"
+msgstr "Izenburua"
+
+msgid ""
+"A local folder is a generic solution to manage any kind of multingual "
+"objects, files, images, scripts, etc.."
+msgstr ""
+
+msgid "To delete an attribute check it and click the <tt>Delete</tt> button."
+msgstr ""
+
+#, fuzzy
+msgid "There aren't attributes"
+msgstr "Ez dago sarrerarik"
+
+msgid "To add an attribute introduce its id and click the <tt>Add</tt> button."
+msgstr ""
+
+#, fuzzy
+msgid "Add Localizer"
+msgstr "Localizer berria"
+
+msgid ""
+"A Localizer object lets to customize the language negotiation policy. It "
+"lets to use cookies, the path or any other criteria to select the user "
+"prefered language."
+msgstr ""
+
+msgid "Use locale folders"
+msgstr ""
+
+msgid ""
+"Locale folders are useful to store special multilingual objects like images "
+"and specific logic. If used the <tt>Localizer</tt> object will transparently "
+"add the right locale folder to the url. If you want to use locale folders "
+"check the checkbox, otherwise uncheck it, then click the <tt>Change</tt> "
+"button."
+msgstr ""
+
+msgid "This <tt>Localizer</tt> object needs to be upgraded."
+msgstr ""
+
+msgid "This <tt>Localizer</tt> object don't needs to be upgraded."
+msgstr ""
+
+msgid "Add Message Catalog"
+msgstr ""
+
+msgid ""
+"A message catalog stores messages and its translations to different "
+"languages. It provides the <tt>gettext</tt> method to get the right "
+"translation for a given message. Message catalogs are useful to translate "
+"the application interfaces (labels, buttons, etc..)."
+msgstr ""
+
+#, fuzzy
+msgid "File / Language"
+msgstr "Hizkuntza berria"
+
+msgid "Export"
+msgstr "Esportatu"
+
+#, fuzzy
+msgid "File"
+msgstr "Galbahetu"
+
+#, fuzzy
+msgid "Language"
+msgstr "Hizkuntza berria"
+
+msgid "Import"
+msgstr "Inportatu"
+
+msgid ""
+"You can export the messages and their translations to PO files. Check "
+"<tt>locale.pot</tt> to get only the messages, without their translations. "
+"Check any other option to get a PO file with the messages and their "
+"translations to the selected language. Then click the <tt>Export</tt> button."
+msgstr ""
+
+msgid ""
+"You can add new messages and translations importing a PO file. Enter the "
+"filename, select the language of the translations and click the <tt>Import</"
+"tt> button."
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Only untranslated messages"
+msgstr ""
+
+msgid "Filter"
+msgstr "Galbahetu"
+
+msgid "Results %d-%d of %d"
+msgstr ""
+
+#, fuzzy
+msgid "There aren't messages."
+msgstr "Ez dago sarrerarik"
+
+msgid "Your name"
+msgstr ""
+
+msgid "Your e-mail address"
+msgstr ""
+
+msgid "Team e-mail address"
+msgstr ""
+
+msgid "Charset"
+msgstr ""
+
+msgid ""
+"With this form you can change the title of the message catalog. The title "
+"also is used as the value of the <tt>Project-Id-Version</tt> field in the "
+"header of the PO files, which are generated when the message catalog is "
+"exported."
+msgstr ""
+
+msgid ""
+"Besides the title the header of a PO file stores more information, the name "
+"and the email address of the last translator, the email adress of the "
+"translation team and the charset. The forms below let to modify this "
+"information for each language."
+msgstr ""
+
+msgid ""
+"You can export the messages and their translations to TMX level 1 files. To "
+"do that just click the <tt>Export</tt> button."
+msgstr ""
+
+msgid ""
+"The message catalog also supports importing TMX files. You can add new "
+"messages and translations importing a TMX file in TMX level 1. Enter the "
+"filename and click the <tt>Import</tt> button."
+msgstr ""
+
+#: LocalContent.py:78 LocalFolder.py:85 Localizer.py:94 MessageCatalog.py:223
+msgid "label"
+msgstr ""
+
+#: LocalFolder.py:77
+msgid "Attributes"
+msgstr ""
+
+#: LocalPropertyManager.py:88
+#, fuzzy
+msgid "Local properties"
+msgstr "Ezaugarriak"
+
+#: LocalPropertyManager.py:209 LocalPropertyManager.py:225
+#: LocalPropertyManager.py:245 MessageCatalog.py:351 MessageCatalog.py:365
+#, fuzzy
+msgid "Saved changes."
+msgstr "Aldaketak gorde"
+
+#: MessageCatalog.py:211
+msgid "Messages"
+msgstr ""
+
+#: MessageCatalog.py:213 Utils.py:65
+msgid "Properties"
+msgstr "Ezaugarriak"
+
+#: MessageCatalog.py:214
+#, fuzzy
+msgid "Import/Export"
+msgstr "Inportatu"
+
+#: MessageCatalog.py:216
+msgid "TMX"
+msgstr ""
+
+#: Utils.py:63
+msgid "Contents"
+msgstr "Edukia"
+
+#: Utils.py:64
+msgid "View"
+msgstr "Ikusi"
+
+#: Utils.py:66
+msgid "Security"
+msgstr "Segurtasuna"
+
+#: Utils.py:67
+msgid "Undo"
+msgstr "Desegin"
+
+#: Utils.py:68
+msgid "Ownership"
+msgstr "Jabetza"
+
+#: Utils.py:69
+msgid "Find"
+msgstr "Bilatu"
+
+#: Utils.py:70
+msgid "Catalan"
+msgstr ""
+
+#: Utils.py:71
+msgid "German"
+msgstr ""
+
+#: Utils.py:72
+msgid "Spanish"
+msgstr "Gaztelania"
+
+#: Utils.py:73
+msgid "Basque"
+msgstr ""
+
+#: Utils.py:74
+msgid "French"
+msgstr ""
+
+#: Utils.py:75
+msgid "Hungarian"
+msgstr ""
+
+#: Utils.py:76
+msgid "Japanese"
+msgstr ""
+
+#~ msgid "Next"
+#~ msgstr "Hurrengoa"
+
+#~ msgid "Previous"
+#~ msgstr "Aurrekoa"
+
+#~ msgid "Text to translate:"
+#~ msgstr "Itzuli beharreko testua:"
+
+#~ msgid "All"
+#~ msgstr "Denak"
+
+#~ msgid "Available translations"
+#~ msgstr "Itzulitakoak"
+
+#~ msgid "Batch size"
+#~ msgstr "Zenbat erakutsi"
+
+#~ msgid "Default language"
+#~ msgstr "Hobetsitako hizkuntza"
+
+#~ msgid "Full"
+#~ msgstr "Osoa"
+
+#~ msgid "Localized Content"
+#~ msgstr "Itzulitako edukia"
+
+#~ msgid "Localized Strings"
+#~ msgstr "Itzulitako mezuak"
+
+#, fuzzy
+#~ msgid "New Local Content"
+#~ msgstr "Itzulitako edukia"
+
+#~ msgid "New Localizer"
+#~ msgstr "Localizer berria"
+
+#~ msgid "Only valid"
+#~ msgstr "Balekoak bakarrik"
+
+#~ msgid "Partial"
+#~ msgstr "Partziala"
+
+#~ msgid "Pending languages"
+#~ msgstr "Egiteke dauden hizkuntzak"
+
+#~ msgid "Regular expression"
+#~ msgstr "Espresio erregularra"
+
+#~ msgid "Results"
+#~ msgstr "Emaitzak"
+
+#~ msgid "Status"
+#~ msgstr "Egoera"
+
+#~ msgid "Text"
+#~ msgstr "Testua"
+
+#~ msgid "There are no entries."
+#~ msgstr "Ez dago sarrerarik"
+
+#~ msgid "There are not property sheets."
+#~ msgstr "Ez dago ezaugarri-orririk"
+
+#~ msgid "This property sheet is empty."
+#~ msgstr "Ezaugarri-orri hau hutsik dago"
+
+#~ msgid "of"
+#~ msgstr "Guztira:"
