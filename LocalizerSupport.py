@@ -1,4 +1,5 @@
-# Copyright (C) 2002  Juan David Ibáñez Palomar <j-david@noos.fr>
+# -*- coding: ISO-8859-1 -*-
+# Copyright (C) 2002  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License

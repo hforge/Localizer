@@ -2,6 +2,21 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2004-10-31 20:38:57 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-4
+
+    Summary:
+      get ready to release the first beta of Localizer 1.1
+    Revision:
+      Localizer--main--1.1--patch-4
+
+    Get ready to release the first beta of Localizer 1.1
+
+    modified files:
+     Changelog GettextTag.py LocalAttributes.py LocalFolder.py
+     LocalObjects.py Locale.py LocalizerSupport.py
+     RELEASE-1.1.0.txt.en version.txt zgettext.py
+
+
 2004-10-31 20:29:19 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-3
 
     Summary:

@@ -2,7 +2,7 @@
 # -*- coding: ISO-8859-1 -*-
 # Localizer, Zope product that provides internationalization services
 # Copyright (C) 2001 Andrés Marzal Varo
-#               2001-2002 J. David Ibáñez <j-david@noos.fr>
+#               2001-2002 J. David Ibáñez <jdavid@itaapy.com>
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -32,9 +32,8 @@ Future (XXX):
 Anyway, the trend is to levereage the gettext tools as much as posible.
 """
 
-__version__ = "$Revision: 1.23 $"
 
-
+# Import from the Standard Library
 import os
 import re
 import sys
@@ -45,7 +44,6 @@ import time
 
 # Exceptions
 class UnknownStatus(Exception): pass
-
 
 
 

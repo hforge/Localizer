@@ -13,7 +13,7 @@ The changes of this release are:
 
  - Added XLIFF support, by Søren Roug
 
- - User interface improvements, by Søren Roug
+ - User interface improvements, by Søren Roug and Rodrigo Senra
 
  - Refactored code, now Localizer depends on iHotfix and itools
 
@@ -22,6 +22,8 @@ The changes of this release are:
  - Added russian translation, by Alexey Lubimov
 
  - New request form accept method, by Rodrigo Senra
+
+ - Add support for Zope Page Templates
 
 
 Resources
