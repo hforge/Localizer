@@ -2,6 +2,23 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-01-21 16:04:46 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-14
+
+    Summary:
+      new LocalContent user interface (by Cornel Nitu)
+    Revision:
+      Localizer--main--1.1--patch-14
+
+
+    new files:
+     img/.arch-ids/obsolete.gif.id img/obsolete.gif
+     ui/.arch-ids/LPM_translations.dtml.id ui/LPM_translations.dtml
+
+    modified files:
+     Changelog LocalPropertyManager.py RELEASE-1.1.0.txt.en
+     TODO.txt __init__.py ui/LPM_properties.dtml
+
+
 2005-01-21 11:11:53 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-13
 
     Summary:

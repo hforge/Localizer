@@ -29,12 +29,11 @@ from LocalFiles import LocalDTMLFile, LocalPageTemplateFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty
 from GettextTag import GettextTag
 
-
 misc_ = {'arrow_left': ImageFile('img/arrow_left.gif', globals()),
          'arrow_right': ImageFile('img/arrow_right.gif', globals()),
          'eye_opened': ImageFile('img/eye_opened.gif', globals()),
-         'eye_closed': ImageFile('img/eye_closed.gif', globals())}
-
+         'eye_closed': ImageFile('img/eye_closed.gif', globals()),
+         'obsolete': ImageFile('img/obsolete.gif', globals())}
 
 
 class GlobalTranslationService:
@@ -59,6 +58,13 @@ class GlobalTranslationService:
 
 
 def initialize(context):
+    # XXX This code has been written by Cornel Nitu, it may be a solution to
+    # upgrade instances.
+##    root = context._ProductContext__app
+##    for item in root.PrincipiaFind(root, obj_metatypes=['LocalContent'],
+##                                   search_sub=1):
+##        item[1].manage_upgrade()
+
     # Register the Localizer
     context.registerClass(Localizer.Localizer,
                           constructors = (Localizer.manage_addLocalizerForm,

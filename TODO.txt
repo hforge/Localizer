@@ -21,8 +21,6 @@ It would be nice to do for 1.1.0
  * Integrate the new LPM interface, being developed by Cornel Nitu and
    Søren Roug.
 
- * Look at the problems Marco Bizarri has found (see email).
-
 
 
 Things thay may be done sometime in the future (it is a bit of a mess)

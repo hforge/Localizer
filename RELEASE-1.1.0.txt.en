@@ -29,6 +29,16 @@ The changes of this release are:
 
  - Add support for Zope Page Templates
 
+ - Change the LocalContent interface to be more like in MessageCatalog.
+   On the top the source text. Under it a clickable list of languages. 
+   When you click on a language, the text to translate appears under the 
+   source text. On the right side, you have the names of properties in a 
+   column; "title", "body" etc. On this screen the source text is readonly.
+
+ - When a property in LocalContent is modified, all translations for the 
+   property are flagged "obsolete". Once the translation was updated, that
+   property for that language is no longer obsolete.
+
 
 Resources
 ---------
