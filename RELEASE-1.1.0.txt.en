@@ -21,6 +21,8 @@ The changes of this release are:
 
  - Added russian translation, by Alexey Lubimov
 
+ - Added portugues translation, by Mario Olimpio de Menezes
+
  - New request form accept method, by Rodrigo Senra
 
  - Add support for Zope Page Templates

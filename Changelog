@@ -2,6 +2,19 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2004-11-18 16:47:39 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-5
+
+    Summary:
+      fix release notes (add Mario Olimpio de Menezes)
+    Revision:
+      Localizer--main--1.1--patch-5
+
+    Fix release notes (add Mario Olimpio de Menezes).
+
+    modified files:
+     Changelog RELEASE-1.1.0.txt.en
+
+
 2004-10-31 20:38:57 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-4
 
     Summary:
