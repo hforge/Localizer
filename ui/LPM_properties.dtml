@@ -39,9 +39,9 @@ If you want to remove a property select it and click "Delete".
             </td>
             <td align="left" valign="top">
                 <dtml-if "type == 'string'">
-                    <input type="text" name="<dtml-var id>:utf8:ustring" size="35" value="<dtml-var "getLocalProperty(id, default_lang)">" />
+                    <input type="text" name="<dtml-var id>:utf8:ustring" size="65" value="<dtml-var "getLocalProperty(id, default_lang)">" />
                 <dtml-elif "type == 'text'">
-                    <textarea name="<dtml-var id>:utf8:ustring" rows="6" cols="35"><dtml-var "getLocalProperty(id, default_lang)"></textarea>
+                    <textarea name="<dtml-var id>:utf8:ustring" rows="10" cols="65"><dtml-var "getLocalProperty(id, default_lang)"></textarea>
                 </dtml-if>
             </td>
             <td align="left" valign="top">

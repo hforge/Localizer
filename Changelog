@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-01-30 10:45:26 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-21
+
+    Summary:
+      edit local properties, now with a bigger text area
+    Revision:
+      Localizer--main--1.1--patch-21
+
+
+    modified files:
+     Changelog ui/LPM_properties.dtml
+
+
 2005-01-30 10:35:24 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-20
 
     Summary:
