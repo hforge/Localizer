@@ -39,13 +39,16 @@ misc_ = {'arrow_left': ImageFile('img/arrow_left.gif', globals()),
 
 class GlobalTranslationService:
     def translate(self, domain, msgid, *args, **kw):
+        if domain == 'default':
+            domain = 'gettext'
+
         context = kw.get('context')
         if context is None:
             # Placeless!
             return msgid
 
         # Find it by acquisition
-        translation_service = getattr(context, 'gettext', None)
+        translation_service = getattr(context, domain, None)
         if translation_service is None:
             return msgid
         return translation_service.translate(domain, msgid, *args, **kw)
