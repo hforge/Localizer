@@ -1,6 +1,6 @@
 
 po:
-	./zgettext.py *.py ui/*.dtml -l ca de es eu fr hu ja pt
+	./zgettext.py *.py ui/*.dtml -l ca de es eu fr hu it ja pt ru
 
 mo:
 	./zgettext.py -m

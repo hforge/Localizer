@@ -14,30 +14,128 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3.1\n"
 
-msgid "Change"
-msgstr "Mudar"
+msgid "Export messages to XLIFF file"
+msgstr ""
+
+#, fuzzy
+msgid "Target language"
+msgstr "Não existem idiomas."
+
+msgid "Export"
+msgstr "Exportar"
+
+msgid "Import translations from XLIFF file"
+msgstr ""
+
+msgid "File"
+msgstr "Arquivo"
+
+msgid "Import"
+msgstr "Importar"
+
+#, fuzzy
+msgid ""
+"You can export the messages and their translations to XLIFF files. Check any "
+"option to get a XLIFF file with the messages and their translations to the "
+"selected language. Then click the <tt>Export</tt> button."
+msgstr ""
+"Você pode exportar as mensagens e suas traduções para arquivos PO. Selecione "
+"<tt>locale.pot</tt> para pegar somentes as mensagens, sem suas traduções. "
+"Selecione qualquer outra opção para pegar um arquivo PO com as mensagens e "
+"suas traduções para o idioma selecionado. Então clique em <tt>Exportar</tt>."
+
+msgid "Export messages to TMX file"
+msgstr ""
+
+msgid "Import translations from TMX file"
+msgstr ""
+
+msgid ""
+"TMX stands for Translation Memory eXchange. The purpose of a translation "
+"memory is to gather thousands of translations. Whenever you need a term such "
+"as <tt>Home</tt> for your website chances are it is already translated, and "
+"all you have to do is to load a TMX file to get the translations."
+msgstr ""
+
+#, fuzzy
+msgid ""
+"You can export the messages and their translations to TMX level 1 files. To "
+"do that just click the <tt>Export</tt> button."
+msgstr ""
+"Você pode adicionar novas mensagens e traduções importando um arquivo PO. "
+"Entre o nome do arquivo, selecione o idioma das traduções e clique em "
+"<tt>Importar</tt>."
+
+#, fuzzy
+msgid ""
+"The message catalog also supports importing TMX files. You can add new "
+"messages and translations importing a TMX file in TMX level 1. Enter the "
+"filename and click the <tt>Import</tt> button."
+msgstr ""
+"Você pode adicionar novas mensagens e traduções importando um arquivo PO. "
+"Entre o nome do arquivo, selecione o idioma das traduções e clique em "
+"<tt>Importar</tt>."
+
+#, fuzzy
+msgid "Add language"
+msgstr "Idioma"
 
 msgid "Add"
 msgstr "Adicionar"
 
-msgid "Default"
-msgstr "Padrão"
+#, fuzzy
+msgid "Delete languages"
+msgstr "Não existem idiomas."
 
 msgid "Delete"
 msgstr "Remover"
 
+#, fuzzy
+msgid "Default language"
+msgstr "Ocultar este idioma"
+
+msgid "Change"
+msgstr "Mudar"
+
 msgid "To add a language select it and click the <tt>Add</tt> button."
 msgstr "Para adicionar um idioma selecione-o e clique em <tt>Adicionar</tt>."
 
-msgid ""
-"To delete a language check it and click the <tt>Delete</tt> button. To "
-"change the default language select it and click the <tt>Change</tt> button."
-msgstr ""
-"Para remover um idioma selecione-o e clique <tt>Remover</tt>. Para mudar o "
-"idioma padrão selecione-o e clique <tt>Mudar</tt>."
+#, fuzzy
+msgid "To delete a language check it and click the <tt>Delete</tt> button."
+msgstr "Para remover um atributo, selecione-o e clique <tt>Remover</tt>."
 
-msgid "There aren't languages"
+#, fuzzy
+msgid "There are no languages"
 msgstr "Não existem idiomas."
+
+#, fuzzy
+msgid ""
+"To change the default language select it and click the <tt>Change</tt> "
+"button."
+msgstr "Para adicionar um idioma selecione-o e clique em <tt>Adicionar</tt>."
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Value"
+msgstr ""
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Save changes"
+msgstr "Salvar mudanças"
+
+msgid "This <tt>%s</tt> object needs to be upgraded"
+msgstr "Este objeto <tt>%s</tt> precisa ser atualizado"
+
+#: LocalPropertyManager.py:77
+msgid "Upgrade"
+msgstr "Atualizar"
+
+#, fuzzy
+msgid "This object doesn't need to be upgraded."
+msgstr "Este objeto não precisa ser atualizado."
 
 msgid "Add Local Content"
 msgstr "Adicionar Conteúdo Local"
@@ -45,13 +143,18 @@ msgstr "Adicionar Conteúdo Local"
 msgid "Id"
 msgstr "Id"
 
-#: LanguageManager.py:41
-msgid "Languages"
-msgstr "Idiomas"
+#, fuzzy
+msgid "Original language"
+msgstr "Ocultar este idioma"
 
+#, fuzzy
+msgid "Target languages"
+msgstr "Não existem idiomas."
+
+#, fuzzy
 msgid ""
-"A Local Content object provides an storage for multilingual (and non "
-"multilingual) properties. It also helps to keep your content separated from "
+"A Local Content object provides a storage for multilingual (and non "
+"multilingual) properties. It also helps you keep your content separated from "
 "the logic and the presentation."
 msgstr ""
 "Um objeto de Conteúdo Local provê um armazenamento para propriedades "
@@ -64,6 +167,10 @@ msgstr "Adicionar Pasta Local"
 msgid "Title"
 msgstr "Título"
 
+#: LanguageManager.py:43
+msgid "Languages"
+msgstr "Idiomas"
+
 msgid ""
 "A local folder is a generic solution to manage any kind of multingual "
 "objects, files, images, scripts, etc.."
@@ -74,7 +181,8 @@ msgstr ""
 msgid "To delete an attribute check it and click the <tt>Delete</tt> button."
 msgstr "Para remover um atributo, selecione-o e clique <tt>Remover</tt>."
 
-msgid "There aren't attributes"
+#, fuzzy
+msgid "There are no attributes"
 msgstr "Não existem atributos"
 
 msgid "To add an attribute introduce its id and click the <tt>Add</tt> button."
@@ -85,16 +193,10 @@ msgid "Add Localizer"
 msgstr "Adicionar Localizador"
 
 msgid ""
-"A Localizer object provides <em>locale folders</em>, each one associated "
-"with a language. It transparently adds a locale folder to the path so "
-"objects for that language will be used. It's useful to localize special "
-"objects like images, or specific logic (to format dates for example)."
+"A Localizer object lets you customize the language negotiation policy. It "
+"lets you use cookies, the path or any other criteria to select the user "
+"preferred language."
 msgstr ""
-"Um objeto Localizador provê <em>pastas de locale</em>, cada uma associada "
-"com um idioma. Ele transparentemente adicionar uma pasta locale ao caminho, "
-"de modo que objetos para aquele idioma serão utilizados. Ele é útil para "
-"localizar objetos especiais como imagens, ou uma lógica específica. (para "
-"formatar datas, por exemplo)."
 
 msgid "Use locale folders"
 msgstr "Usar pastas locale"
@@ -112,46 +214,12 @@ msgstr ""
 "utilizar pastas locale, marque na caixa; caso contrário, desmarque-a, então "
 "clique o botão <tt>Mudar</tt>."
 
-#: LocalPropertyManager.py:82
-msgid "Upgrade"
-msgstr "Atualizar"
-
 msgid "This <tt>Localizer</tt> object needs to be upgraded."
 msgstr "Este objeto <tt>Localizador</tt> precisa ser atualizado."
 
-msgid "This <tt>Localizer</tt> object don't needs to be upgraded."
+#, fuzzy
+msgid "This <tt>Localizer</tt> object doesn't need to be upgraded."
 msgstr "Este objeto <tt>Localizador</tt> não precisa ser atualizado."
-
-msgid "Name"
-msgstr "Nome"
-
-msgid "Type"
-msgstr "Tipo"
-
-msgid "Hide this language"
-msgstr "Ocultar este idioma"
-
-msgid "Show this language"
-msgstr "Mostrar este idioma"
-
-msgid "Save changes"
-msgstr "Salvar mudanças"
-
-msgid ""
-"To add a new property enter its name, select its type and click the <tt>Add</"
-"tt> button."
-msgstr ""
-"Para adicionar uma nova propriedade entre o seu nome, selecione o seu tipo e "
-"clique em <tt>Adicionar </tt>."
-
-msgid "There aren't properties."
-msgstr "Não existem propriedades."
-
-msgid "This <tt>%s</tt> object needs to be upgraded"
-msgstr "Este objeto <tt>%s</tt> precisa ser atualizado"
-
-msgid "This object don't needs to be upgraded."
-msgstr "Este objeto não precisa ser atualizado."
 
 msgid "Add Message Catalog"
 msgstr "Adicionar um Catálogo de Mensagens."
@@ -167,20 +235,17 @@ msgstr ""
 "para uma dada mensagem. Catálogos de Mensagens são úteis para traduzir as "
 "interfaces da aplicação (rótulos, botões, etc...)."
 
+msgid "Export messages to PO file"
+msgstr ""
+
 msgid "File / Language"
 msgstr "Arquivo / Idioma"
 
-msgid "Export"
-msgstr "Exportar"
-
-msgid "File"
-msgstr "Arquivo"
+msgid "Import translations from PO file"
+msgstr ""
 
 msgid "Language"
 msgstr "Idioma"
-
-msgid "Import"
-msgstr "Importar"
 
 msgid ""
 "You can export the messages and their translations to PO files. Check "
@@ -202,6 +267,9 @@ msgstr ""
 "Entre o nome do arquivo, selecione o idioma das traduções e clique em "
 "<tt>Importar</tt>."
 
+msgid "Note"
+msgstr ""
+
 msgid "Save"
 msgstr "Salvar"
 
@@ -214,8 +282,14 @@ msgstr "Filtrar"
 msgid "Results %d-%d of %d"
 msgstr "Resulta %d-%d de %d"
 
-msgid "There aren't messages."
+#, fuzzy
+msgid "There are no messages."
 msgstr "Não existem mensagens."
+
+msgid ""
+"<em>No languages available, please add them using the <a "
+"href='manage_languages'>Languages</a> tab</em>"
+msgstr ""
 
 msgid "Your name"
 msgstr "Seu nome"
@@ -240,10 +314,11 @@ msgstr ""
 "nos cabeçalhos dos arquivos PO, que são gerados quando o catálogo de "
 "mensagens é exportado."
 
+#, fuzzy
 msgid ""
-"Besides the title the header of a PO file stores more information, the name "
-"and the email address of the last translator, the email adress of the "
-"translation team and the charset. The forms below let to modify this "
+"Besides the title the header of a PO file stores more information; the name "
+"and the email address of the last translator, the email address of the "
+"translation team and the charset. The forms below let you modify this "
 "information for each language."
 msgstr ""
 "Além do título, o cabeçalho de um arquivo PO armazena mais informação, o "
@@ -251,83 +326,788 @@ msgstr ""
 "de tradução e o conjunto de caracteres. O formulário abaixo permite "
 "modificar esta informação para cada idioma."
 
-#: LocalContent.py:76 LocalFolder.py:85 Localizer.py:98 MessageCatalog.py:200
-msgid "label"
-msgstr "Rótulo"
+msgid "How much"
+msgstr ""
 
-#: LocalFolder.py:77
-msgid "Attributes"
-msgstr "Atributos"
+msgid "Import only translations for messages that exist already"
+msgstr ""
 
-#: LocalPropertyManager.py:88
-msgid "Local properties"
-msgstr "Propriedades Locais"
+msgid "Import all messages"
+msgstr ""
 
-#: LocalPropertyManager.py:215 LocalPropertyManager.py:231
-#: LocalPropertyManager.py:252 MessageCatalog.py:328 MessageCatalog.py:342
-msgid "Saved changes."
-msgstr "Mudanças salvas"
+msgid "Clear catalog and import all messages"
+msgstr ""
 
-#: MessageCatalog.py:189
-msgid "Messages"
-msgstr "Mensagens"
-
-#: MessageCatalog.py:191 Utils.py:72
-msgid "Properties"
-msgstr "Propriedades"
-
-#: MessageCatalog.py:192
+#: LocalContent.py:79 MessageCatalog.py:245
 msgid "Import/Export"
 msgstr "Importar/Exportar"
 
-#: Utils.py:70
+#: LocalContent.py:81 MessageCatalog.py:247
+msgid "TMX"
+msgstr ""
+
+#: LocalContent.py:88 LocalFolder.py:82 Localizer.py:94 MessageCatalog.py:254
+msgid "label"
+msgstr "Rótulo"
+
+#: LocalContent.py:415 MessageCatalog.py:795 MessageCatalog.py:950
+#, fuzzy
+msgid "Messages imported"
+msgstr "Mensagens"
+
+#: LocalContent.py:416 MessageCatalog.py:951
+#, python-format
+msgid "Imported %d messages and %d notes to %s"
+msgstr ""
+
+#: LocalFolder.py:74
+msgid "Attributes"
+msgstr "Atributos"
+
+#: LocalPropertyManager.py:83
+msgid "Local properties"
+msgstr "Propriedades Locais"
+
+#: LocalPropertyManager.py:86
+#, fuzzy
+msgid "Translate properties"
+msgstr "Não existem propriedades."
+
+#: MessageCatalog.py:242
+msgid "Messages"
+msgstr "Mensagens"
+
+#: MessageCatalog.py:244 Utils.py:58
+msgid "Properties"
+msgstr "Propriedades"
+
+#: MessageCatalog.py:377 MessageCatalog.py:391
+msgid "Saved changes."
+msgstr "Mudanças salvas"
+
+#: MessageCatalog.py:796
+#, python-format
+msgid "Imported %d messages and %d notes"
+msgstr ""
+
+#: Utils.py:56
 msgid "Contents"
 msgstr "Conteúdo"
 
-#: Utils.py:71
+#: Utils.py:57
 msgid "View"
 msgstr "Visualizar"
 
-#: Utils.py:73
+#: Utils.py:59
 msgid "Security"
 msgstr "Segurança"
 
-#: Utils.py:74
+#: Utils.py:60
 msgid "Undo"
 msgstr "Desfazer"
 
-#: Utils.py:75
+#: Utils.py:61
 msgid "Ownership"
 msgstr "Propriedade"
 
-#: Utils.py:76
+#: Utils.py:62
 msgid "Find"
 msgstr "Encontrar"
 
-#: Utils.py:77
-msgid "Catalan"
-msgstr "Catalão"
+#: Utils.py:64
+msgid "Abkhazian"
+msgstr ""
 
-#: Utils.py:78
-msgid "German"
-msgstr "Alemão"
+#: Utils.py:65
+msgid "Afar"
+msgstr ""
 
-#: Utils.py:79
-msgid "Spanish"
-msgstr "Espanhol"
+#: Utils.py:66
+msgid "Afrikaans"
+msgstr ""
 
-#: Utils.py:80
+#: Utils.py:67
+msgid "Albanian"
+msgstr ""
+
+#: Utils.py:68
+msgid "Amharic"
+msgstr ""
+
+#: Utils.py:69
+msgid "Arabic"
+msgstr ""
+
+#: Utils.py:70
+msgid "Armenian"
+msgstr ""
+
+#: Utils.py:71
+#, fuzzy
+msgid "Assamese"
+msgstr "Mensagens"
+
+#: Utils.py:72
+msgid "Aymara"
+msgstr ""
+
+#: Utils.py:73
+msgid "Azerbaijani"
+msgstr ""
+
+#: Utils.py:74
+msgid "Bashkir"
+msgstr ""
+
+#: Utils.py:75
 msgid "Basque"
 msgstr "Basco"
 
+#: Utils.py:76
+msgid "Bengali"
+msgstr ""
+
+#: Utils.py:77
+msgid "Bhutani"
+msgstr ""
+
+#: Utils.py:78
+msgid "Bihari"
+msgstr ""
+
+#: Utils.py:79
+msgid "Bislama"
+msgstr ""
+
+#: Utils.py:80
+msgid "Bosnian"
+msgstr ""
+
 #: Utils.py:81
-msgid "French"
-msgstr "Francês"
+msgid "Breton"
+msgstr ""
 
 #: Utils.py:82
-msgid "Hungarian"
+#, fuzzy
+msgid "Bulgarian"
 msgstr "Húngaro"
 
 #: Utils.py:83
+msgid "Burmese"
+msgstr ""
+
+#: Utils.py:84
+msgid "Belarusian"
+msgstr ""
+
+#: Utils.py:85
+msgid "Cambodian"
+msgstr ""
+
+#: Utils.py:86
+msgid "Catalan"
+msgstr "Catalão"
+
+#: Utils.py:87
+#, fuzzy
+msgid "Chinese"
+msgstr "Mudar"
+
+#: Utils.py:88
+msgid "Chinese/China"
+msgstr ""
+
+#: Utils.py:89
+msgid "Chinese/Taiwan"
+msgstr ""
+
+#: Utils.py:90
+msgid "Cornish"
+msgstr ""
+
+#: Utils.py:91
+msgid "Corsican"
+msgstr ""
+
+#: Utils.py:92
+#, fuzzy
+msgid "Croatian"
+msgstr "Catalão"
+
+#: Utils.py:93
+msgid "Czech"
+msgstr ""
+
+#: Utils.py:94
+#, fuzzy
+msgid "Danish"
+msgstr "Espanhol"
+
+#: Utils.py:95
+msgid "Dutch"
+msgstr ""
+
+#: Utils.py:96
+msgid "Dutch/Belgium"
+msgstr ""
+
+#: Utils.py:97
+msgid "English"
+msgstr ""
+
+#: Utils.py:98
+msgid "English/United Kingdom"
+msgstr ""
+
+#: Utils.py:99
+msgid "English/United States"
+msgstr ""
+
+#: Utils.py:100
+msgid "Esperanto"
+msgstr ""
+
+#: Utils.py:101
+msgid "Estonian"
+msgstr ""
+
+#: Utils.py:102
+msgid "Faroese"
+msgstr ""
+
+#: Utils.py:103
+msgid "Fiji"
+msgstr ""
+
+#: Utils.py:104
+msgid "Finnish"
+msgstr ""
+
+#: Utils.py:105
+msgid "French"
+msgstr "Francês"
+
+#: Utils.py:106
+#, fuzzy
+msgid "French/Belgium"
+msgstr "Francês"
+
+#: Utils.py:107
+#, fuzzy
+msgid "French/Canada"
+msgstr "Francês"
+
+#: Utils.py:108
+#, fuzzy
+msgid "French/France"
+msgstr "Francês"
+
+#: Utils.py:109
+msgid "French/Switzerland"
+msgstr ""
+
+#: Utils.py:110
+msgid "Frisian"
+msgstr ""
+
+#: Utils.py:111
+msgid "Galician"
+msgstr ""
+
+#: Utils.py:112
+#, fuzzy
+msgid "Georgian"
+msgstr "Alemão"
+
+#: Utils.py:113
+msgid "German"
+msgstr "Alemão"
+
+#: Utils.py:114
+#, fuzzy
+msgid "German/Austria"
+msgstr "Alemão"
+
+#: Utils.py:115
+#, fuzzy
+msgid "German/Germany"
+msgstr "Alemão"
+
+#: Utils.py:116
+msgid "German/Switzerland"
+msgstr ""
+
+#: Utils.py:117
+msgid "Greek"
+msgstr ""
+
+#: Utils.py:118
+msgid "Greenlandic"
+msgstr ""
+
+#: Utils.py:119
+#, fuzzy
+msgid "Guarani"
+msgstr "Húngaro"
+
+#: Utils.py:120
+msgid "Gujarati"
+msgstr ""
+
+#: Utils.py:121
+msgid "Hausa"
+msgstr ""
+
+#: Utils.py:122
+msgid "Hebrew"
+msgstr ""
+
+#: Utils.py:123
+#, fuzzy
+msgid "Hindi"
+msgstr "Encontrar"
+
+#: Utils.py:124
+msgid "Hungarian"
+msgstr "Húngaro"
+
+#: Utils.py:125
+msgid "Icelandic"
+msgstr ""
+
+#: Utils.py:126
+msgid "Indonesian"
+msgstr ""
+
+#: Utils.py:127
+msgid "Interlingua"
+msgstr ""
+
+#: Utils.py:128
+msgid "Interlingue"
+msgstr ""
+
+#: Utils.py:129
+msgid "Inuktitut"
+msgstr ""
+
+#: Utils.py:130
+msgid "Inupiak"
+msgstr ""
+
+#: Utils.py:131
+msgid "Irish"
+msgstr ""
+
+#: Utils.py:132
+#, fuzzy
+msgid "Italian"
+msgstr "Catalão"
+
+#: Utils.py:133
 msgid "Japanese"
 msgstr "Japonês"
+
+#: Utils.py:134
+#, fuzzy
+msgid "Javanese"
+msgstr "Japonês"
+
+#: Utils.py:135
+msgid "Kannada"
+msgstr ""
+
+#: Utils.py:136
+msgid "Kashmiri"
+msgstr ""
+
+#: Utils.py:137
+msgid "Kazakh"
+msgstr ""
+
+#: Utils.py:138
+msgid "Kinyarwanda"
+msgstr ""
+
+#: Utils.py:139
+msgid "Kirghiz"
+msgstr ""
+
+#: Utils.py:140
+msgid "Kirundi"
+msgstr ""
+
+#: Utils.py:141
+msgid "Korean"
+msgstr ""
+
+#: Utils.py:142
+msgid "Kurdish"
+msgstr ""
+
+#: Utils.py:143
+msgid "Laothian"
+msgstr ""
+
+#: Utils.py:144
+msgid "Latin"
+msgstr ""
+
+#: Utils.py:145
+msgid "Latvian"
+msgstr ""
+
+#: Utils.py:146
+msgid "Lingala"
+msgstr ""
+
+#: Utils.py:147
+msgid "Lithuanian"
+msgstr ""
+
+#: Utils.py:148
+msgid "Luxembourgish"
+msgstr ""
+
+#: Utils.py:149
+msgid "Macedonian"
+msgstr ""
+
+#: Utils.py:150
+msgid "Malagasy"
+msgstr ""
+
+#: Utils.py:151
+msgid "Malay"
+msgstr ""
+
+#: Utils.py:152
+msgid "Malayalam"
+msgstr ""
+
+#: Utils.py:153
+msgid "Maltese"
+msgstr ""
+
+#: Utils.py:154
+msgid "Maori"
+msgstr ""
+
+#: Utils.py:155
+msgid "Marathi"
+msgstr ""
+
+#: Utils.py:156
+msgid "Moldavian"
+msgstr ""
+
+#: Utils.py:157
+msgid "Mongolian"
+msgstr ""
+
+#: Utils.py:158
+msgid "Nauru"
+msgstr ""
+
+#: Utils.py:159
+msgid "Nepali"
+msgstr ""
+
+#: Utils.py:160
+msgid "Northern Saami"
+msgstr ""
+
+#: Utils.py:161
+msgid "Norwegian"
+msgstr ""
+
+#: Utils.py:162
+msgid "Occitan"
+msgstr ""
+
+#: Utils.py:163
+msgid "Oriya"
+msgstr ""
+
+#: Utils.py:164
+msgid "Oromo"
+msgstr ""
+
+#: Utils.py:165
+msgid "Pashto"
+msgstr ""
+
+#: Utils.py:166
+#, fuzzy
+msgid "Persian"
+msgstr "Alemão"
+
+#: Utils.py:167
+msgid "Polish"
+msgstr ""
+
+#: Utils.py:168
+#, fuzzy
+msgid "Portuguese"
+msgstr "Propriedades"
+
+#: Utils.py:169
+msgid "Portuguese/Brazil"
+msgstr ""
+
+#: Utils.py:170
+msgid "Punjabi"
+msgstr ""
+
+#: Utils.py:171
+msgid "Quechua"
+msgstr ""
+
+#: Utils.py:172
+msgid "Rhaeto-Romance"
+msgstr ""
+
+#: Utils.py:173
+msgid "Romanian"
+msgstr ""
+
+#: Utils.py:174
+msgid "Russian"
+msgstr ""
+
+#: Utils.py:175
+msgid "Samoan"
+msgstr ""
+
+#: Utils.py:176
+#, fuzzy
+msgid "Sangho"
+msgstr "Espanhol"
+
+#: Utils.py:177
+msgid "Sanskrit"
+msgstr ""
+
+#: Utils.py:178
+msgid "Scots Gaelic"
+msgstr ""
+
+#: Utils.py:179
+#, fuzzy
+msgid "Serbian"
+msgstr "Alemão"
+
+#: Utils.py:180
+msgid "Serbo-Croatian"
+msgstr ""
+
+#: Utils.py:181
+msgid "Sesotho"
+msgstr ""
+
+#: Utils.py:182
+msgid "Setswana"
+msgstr ""
+
+#: Utils.py:183
+msgid "Shona"
+msgstr ""
+
+#: Utils.py:184
+#, fuzzy
+msgid "Sindhi"
+msgstr "Encontrar"
+
+#: Utils.py:185
+msgid "Sinhalese"
+msgstr ""
+
+#: Utils.py:186
+msgid "Siswati"
+msgstr ""
+
+#: Utils.py:187
+msgid "Slovak"
+msgstr ""
+
+#: Utils.py:188
+msgid "Slovenian"
+msgstr ""
+
+#: Utils.py:189
+msgid "Somali"
+msgstr ""
+
+#: Utils.py:190
+msgid "Spanish"
+msgstr "Espanhol"
+
+#: Utils.py:191
+msgid "Spanish/Argentina"
+msgstr ""
+
+#: Utils.py:192
+#, fuzzy
+msgid "Spanish/Colombia"
+msgstr "Espanhol"
+
+#: Utils.py:193
+#, fuzzy
+msgid "Spanish/Mexico"
+msgstr "Espanhol"
+
+#: Utils.py:194
+#, fuzzy
+msgid "Spanish/Spain"
+msgstr "Espanhol"
+
+#: Utils.py:195
+msgid "Sundanese"
+msgstr ""
+
+#: Utils.py:196
+msgid "Swahili"
+msgstr ""
+
+#: Utils.py:197
+msgid "Swedish"
+msgstr ""
+
+#: Utils.py:198
+msgid "Tagalog"
+msgstr ""
+
+#: Utils.py:199
+msgid "Tajik"
+msgstr ""
+
+#: Utils.py:200
+#, fuzzy
+msgid "Tamil"
+msgstr "Título"
+
+#: Utils.py:201
+msgid "Tatar"
+msgstr ""
+
+#: Utils.py:202
+msgid "Telugu"
+msgstr ""
+
+#: Utils.py:203
+msgid "Thai"
+msgstr ""
+
+#: Utils.py:204
+msgid "Tibetan"
+msgstr ""
+
+#: Utils.py:205
+msgid "Tigrinya"
+msgstr ""
+
+#: Utils.py:206
+msgid "Tonga"
+msgstr ""
+
+#: Utils.py:207
+msgid "Tsonga"
+msgstr ""
+
+#: Utils.py:208
+msgid "Turkish"
+msgstr ""
+
+#: Utils.py:209
+msgid "Turkmen"
+msgstr ""
+
+#: Utils.py:210
+msgid "Twi"
+msgstr ""
+
+#: Utils.py:211
+msgid "Uighur"
+msgstr ""
+
+#: Utils.py:212
+msgid "Ukrainian"
+msgstr ""
+
+#: Utils.py:213
+msgid "Urdu"
+msgstr ""
+
+#: Utils.py:214
+msgid "Uzbek"
+msgstr ""
+
+#: Utils.py:215
+msgid "Vietnamese"
+msgstr ""
+
+#: Utils.py:216
+msgid "Volapuk"
+msgstr ""
+
+#: Utils.py:217
+msgid "Welsh"
+msgstr ""
+
+#: Utils.py:218
+msgid "Wolof"
+msgstr ""
+
+#: Utils.py:219
+msgid "Xhosa"
+msgstr ""
+
+#: Utils.py:220
+msgid "Yiddish"
+msgstr ""
+
+#: Utils.py:221
+msgid "Yoruba"
+msgstr ""
+
+#: Utils.py:222
+#, fuzzy
+msgid "Zhuang"
+msgstr "Mudar"
+
+#: Utils.py:223
+msgid "Zulu"
+msgstr ""
+
+#~ msgid "Default"
+#~ msgstr "Padrão"
+
+#~ msgid ""
+#~ "To delete a language check it and click the <tt>Delete</tt> button. To "
+#~ "change the default language select it and click the <tt>Change</tt> "
+#~ "button."
+#~ msgstr ""
+#~ "Para remover um idioma selecione-o e clique <tt>Remover</tt>. Para mudar "
+#~ "o idioma padrão selecione-o e clique <tt>Mudar</tt>."
+
+#~ msgid ""
+#~ "A Localizer object provides <em>locale folders</em>, each one associated "
+#~ "with a language. It transparently adds a locale folder to the path so "
+#~ "objects for that language will be used. It's useful to localize special "
+#~ "objects like images, or specific logic (to format dates for example)."
+#~ msgstr ""
+#~ "Um objeto Localizador provê <em>pastas de locale</em>, cada uma associada "
+#~ "com um idioma. Ele transparentemente adicionar uma pasta locale ao "
+#~ "caminho, de modo que objetos para aquele idioma serão utilizados. Ele é "
+#~ "útil para localizar objetos especiais como imagens, ou uma lógica "
+#~ "específica. (para formatar datas, por exemplo)."
+
+#~ msgid "Show this language"
+#~ msgstr "Mostrar este idioma"
+
+#~ msgid ""
+#~ "To add a new property enter its name, select its type and click the "
+#~ "<tt>Add</tt> button."
+#~ msgstr ""
+#~ "Para adicionar uma nova propriedade entre o seu nome, selecione o seu "
+#~ "tipo e clique em <tt>Adicionar </tt>."

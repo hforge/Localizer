@@ -2,6 +2,20 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-01-21 18:04:26 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-16
+
+    Summary:
+      update translations (run "make po")
+    Revision:
+      Localizer--main--1.1--patch-16
+
+
+    modified files:
+     Changelog Makefile locale/ca.po locale/de.po locale/es.po
+     locale/eu.po locale/fr.po locale/hu.po locale/it.po
+     locale/ja.po locale/locale.pot locale/pt.po locale/ru.po
+
+
 2005-01-21 17:13:08 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-15
 
     Summary:

@@ -14,14 +14,83 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "Export messages to XLIFF file"
+msgstr ""
+
+#, fuzzy
+msgid "Target language"
+msgstr "Nincs bejegyzés."
+
+msgid "Export"
+msgstr "Exportálás"
+
+msgid "Import translations from XLIFF file"
+msgstr ""
+
+msgid "File"
+msgstr "Fájl"
+
+msgid "Import"
+msgstr "Importálás"
+
+#, fuzzy
+msgid ""
+"You can export the messages and their translations to XLIFF files. Check any "
+"option to get a XLIFF file with the messages and their translations to the "
+"selected language. Then click the <tt>Export</tt> button."
+msgstr ""
+"Új nyelvet és a forditás hozzáadásához inportáld be a PO fájlt. Írd be a \n"
+"fájlnevet, válaszd ki a fordítás nyelvét, és kattints a <tt>Import</tt>\n"
+"gombra."
+
+msgid "Export messages to TMX file"
+msgstr ""
+
+msgid "Import translations from TMX file"
+msgstr ""
+
+msgid ""
+"TMX stands for Translation Memory eXchange. The purpose of a translation "
+"memory is to gather thousands of translations. Whenever you need a term such "
+"as <tt>Home</tt> for your website chances are it is already translated, and "
+"all you have to do is to load a TMX file to get the translations."
+msgstr ""
+
+#, fuzzy
+msgid ""
+"You can export the messages and their translations to TMX level 1 files. To "
+"do that just click the <tt>Export</tt> button."
+msgstr ""
+"Új nyelvet és a forditás hozzáadásához inportáld be a PO fájlt. Írd be a \n"
+"fájlnevet, válaszd ki a fordítás nyelvét, és kattints a <tt>Import</tt>\n"
+"gombra."
+
+#, fuzzy
+msgid ""
+"The message catalog also supports importing TMX files. You can add new "
+"messages and translations importing a TMX file in TMX level 1. Enter the "
+"filename and click the <tt>Import</tt> button."
+msgstr ""
+"Új nyelvet és a forditás hozzáadásához inportáld be a PO fájlt. Írd be a \n"
+"fájlnevet, válaszd ki a fordítás nyelvét, és kattints a <tt>Import</tt>\n"
+"gombra."
+
+#, fuzzy
+msgid "Add language"
+msgstr "Nyelv"
+
 msgid "Add"
 msgstr "Hozzáadás"
 
-msgid "Default"
-msgstr "Alapértelmezett"
+#, fuzzy
+msgid "Delete languages"
+msgstr "Alapértelmezett nyelv"
 
 msgid "Delete"
 msgstr "Törlés"
+
+msgid "Default language"
+msgstr "Alapértelmezett nyelv"
 
 msgid "Change"
 msgstr "Változtat"
@@ -29,47 +98,41 @@ msgstr "Változtat"
 msgid "To add a language select it and click the <tt>Add</tt> button."
 msgstr "Nyelv hozzáadásához kattints a <tt>Hozzáadás</tt> gombra."
 
-msgid ""
-"To delete a language check it and click the <tt>Delete</tt> button. To "
-"change the default language select it and click the <tt>Change</tt> button."
-msgstr ""
+#, fuzzy
+msgid "To delete a language check it and click the <tt>Delete</tt> button."
+msgstr "Nyelv hozzáadásához kattints a <tt>Hozzáadás</tt> gombra."
 
-msgid "There aren't languages"
+#, fuzzy
+msgid "There are no languages"
 msgstr "Nincs bejegyzés."
+
+#, fuzzy
+msgid ""
+"To change the default language select it and click the <tt>Change</tt> "
+"button."
+msgstr "Nyelv hozzáadásához kattints a <tt>Hozzáadás</tt> gombra."
 
 msgid "Name"
 msgstr "Név"
 
+msgid "Value"
+msgstr ""
+
 msgid "Type"
 msgstr "Típus"
-
-#, fuzzy
-msgid "Hide this language"
-msgstr "Új nyelv"
-
-#, fuzzy
-msgid "Show this language"
-msgstr "Nincs bejegyzés."
 
 msgid "Save changes"
 msgstr "Változások mentése"
 
-msgid ""
-"To add a new property enter its name, select its type and click the <tt>Add</"
-"tt> button."
-msgstr ""
-
-msgid "There aren't properties."
-msgstr "Nincs tulajdonságokat leíró lap."
-
 msgid "This <tt>%s</tt> object needs to be upgraded"
 msgstr "Ezt a <tt>%s</tt> objektumot frissítsd!"
 
-#: LocalPropertyManager.py:82
+#: LocalPropertyManager.py:77
 msgid "Upgrade"
 msgstr "Frissítés"
 
-msgid "This object don't needs to be upgraded."
+#, fuzzy
+msgid "This object doesn't need to be upgraded."
 msgstr "Ez az objektum nem igényel frissitést."
 
 msgid "Add Local Content"
@@ -78,13 +141,17 @@ msgstr "Új nyelvi tartalom"
 msgid "Id"
 msgstr "Azonosító"
 
-#: LanguageManager.py:45
-msgid "Languages"
-msgstr "Nyelvek"
+#, fuzzy
+msgid "Original language"
+msgstr "Alapértelmezett nyelv"
+
+#, fuzzy
+msgid "Target languages"
+msgstr "Nincs bejegyzés."
 
 msgid ""
-"A Local Content object provides an storage for multilingual (and non "
-"multilingual) properties. It also helps to keep your content separated from "
+"A Local Content object provides a storage for multilingual (and non "
+"multilingual) properties. It also helps you keep your content separated from "
 "the logic and the presentation."
 msgstr ""
 
@@ -93,6 +160,10 @@ msgstr "Nyelvi mappa hozzáadása"
 
 msgid "Title"
 msgstr "Cím"
+
+#: LanguageManager.py:43
+msgid "Languages"
+msgstr "Nyelvek"
 
 msgid ""
 "A local folder is a generic solution to manage any kind of multingual "
@@ -104,7 +175,7 @@ msgid "To delete an attribute check it and click the <tt>Delete</tt> button."
 msgstr "Nyelv hozzáadásához kattints a <tt>Hozzáadás</tt> gombra."
 
 #, fuzzy
-msgid "There aren't attributes"
+msgid "There are no attributes"
 msgstr "Nincs bejegyzés."
 
 #, fuzzy
@@ -116,9 +187,9 @@ msgid "Add Localizer"
 msgstr "Új fordító"
 
 msgid ""
-"A Localizer object lets to customize the language negotiation policy. It "
-"lets to use cookies, the path or any other criteria to select the user "
-"prefered language."
+"A Localizer object lets you customize the language negotiation policy. It "
+"lets you use cookies, the path or any other criteria to select the user "
+"preferred language."
 msgstr ""
 
 msgid "Use locale folders"
@@ -135,7 +206,8 @@ msgstr ""
 msgid "This <tt>Localizer</tt> object needs to be upgraded."
 msgstr "Ezt a <tt>Localizr</tt> objektumtumot frissítsd!"
 
-msgid "This <tt>Localizer</tt> object don't needs to be upgraded."
+#, fuzzy
+msgid "This <tt>Localizer</tt> object doesn't need to be upgraded."
 msgstr "Ez a <tt>Localizer</tt> objektum nem igényel frissitést."
 
 msgid "Add Message Catalog"
@@ -148,20 +220,17 @@ msgid ""
 "the application interfaces (labels, buttons, etc..)."
 msgstr ""
 
+msgid "Export messages to PO file"
+msgstr ""
+
 msgid "File / Language"
 msgstr "Új nyelv"
 
-msgid "Export"
-msgstr "Exportálás"
-
-msgid "File"
-msgstr "Fájl"
+msgid "Import translations from PO file"
+msgstr ""
 
 msgid "Language"
 msgstr "Nyelv"
-
-msgid "Import"
-msgstr "Importálás"
 
 msgid ""
 "You can export the messages and their translations to PO files. Check "
@@ -179,6 +248,9 @@ msgstr ""
 "fájlnevet, válaszd ki a fordítás nyelvét, és kattints a <tt>Import</tt>\n"
 "gombra."
 
+msgid "Note"
+msgstr ""
+
 msgid "Save"
 msgstr ""
 
@@ -192,8 +264,14 @@ msgstr "Szűrő"
 msgid "Results %d-%d of %d"
 msgstr "Eredemények %d-%d / %d"
 
-msgid "There aren't messages."
+#, fuzzy
+msgid "There are no messages."
 msgstr "Nincs bejegyzés."
+
+msgid ""
+"<em>No languages available, please add them using the <a "
+"href='manage_languages'>Languages</a> tab</em>"
+msgstr ""
 
 msgid "Your name"
 msgstr ""
@@ -216,116 +294,759 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Besides the title the header of a PO file stores more information, the name "
-"and the email address of the last translator, the email adress of the "
-"translation team and the charset. The forms below let to modify this "
+"Besides the title the header of a PO file stores more information; the name "
+"and the email address of the last translator, the email address of the "
+"translation team and the charset. The forms below let you modify this "
 "information for each language."
 msgstr ""
 
-#, fuzzy
-msgid ""
-"You can export the messages and their translations to TMX level 1 files. To "
-"do that just click the <tt>Export</tt> button."
+msgid "How much"
 msgstr ""
-"Új nyelvet és a forditás hozzáadásához inportáld be a PO fájlt. Írd be a \n"
-"fájlnevet, válaszd ki a fordítás nyelvét, és kattints a <tt>Import</tt>\n"
-"gombra."
 
-#, fuzzy
-msgid ""
-"The message catalog also supports importing TMX files. You can add new "
-"messages and translations importing a TMX file in TMX level 1. Enter the "
-"filename and click the <tt>Import</tt> button."
+msgid "Import only translations for messages that exist already"
 msgstr ""
-"Új nyelvet és a forditás hozzáadásához inportáld be a PO fájlt. Írd be a \n"
-"fájlnevet, válaszd ki a fordítás nyelvét, és kattints a <tt>Import</tt>\n"
-"gombra."
 
-#: LocalContent.py:78 LocalFolder.py:85 Localizer.py:94 MessageCatalog.py:223
+msgid "Import all messages"
+msgstr ""
+
+msgid "Clear catalog and import all messages"
+msgstr ""
+
+#: LocalContent.py:79 MessageCatalog.py:245
+msgid "Import/Export"
+msgstr "Impotálás/Exportálás"
+
+#: LocalContent.py:81 MessageCatalog.py:247
+msgid "TMX"
+msgstr ""
+
+#: LocalContent.py:88 LocalFolder.py:82 Localizer.py:94 MessageCatalog.py:254
 msgid "label"
 msgstr ""
 
-#: LocalFolder.py:77
+#: LocalContent.py:415 MessageCatalog.py:795 MessageCatalog.py:950
+#, fuzzy
+msgid "Messages imported"
+msgstr "Üzenetek"
+
+#: LocalContent.py:416 MessageCatalog.py:951
+#, python-format
+msgid "Imported %d messages and %d notes to %s"
+msgstr ""
+
+#: LocalFolder.py:74
 msgid "Attributes"
 msgstr ""
 
-#: LocalPropertyManager.py:88
+#: LocalPropertyManager.py:83
 msgid "Local properties"
 msgstr "Tulajdonságok"
 
-#: LocalPropertyManager.py:209 LocalPropertyManager.py:225
-#: LocalPropertyManager.py:245 MessageCatalog.py:351 MessageCatalog.py:365
+#: LocalPropertyManager.py:86
+#, fuzzy
+msgid "Translate properties"
+msgstr "Nincs tulajdonságokat leíró lap."
+
+#: MessageCatalog.py:242
+msgid "Messages"
+msgstr "Üzenetek"
+
+#: MessageCatalog.py:244 Utils.py:58
+msgid "Properties"
+msgstr "Tulajdonságok"
+
+#: MessageCatalog.py:377 MessageCatalog.py:391
 #, fuzzy
 msgid "Saved changes."
 msgstr "Változások mentése"
 
-#: MessageCatalog.py:211
-msgid "Messages"
-msgstr "Üzenetek"
-
-#: MessageCatalog.py:213 Utils.py:65
-msgid "Properties"
-msgstr "Tulajdonságok"
-
-#: MessageCatalog.py:214
-msgid "Import/Export"
-msgstr "Impotálás/Exportálás"
-
-#: MessageCatalog.py:216
-msgid "TMX"
+#: MessageCatalog.py:796
+#, python-format
+msgid "Imported %d messages and %d notes"
 msgstr ""
 
-#: Utils.py:63
+#: Utils.py:56
 msgid "Contents"
 msgstr "Tartalom"
 
-#: Utils.py:64
+#: Utils.py:57
 msgid "View"
 msgstr "Nézet"
 
-#: Utils.py:66
+#: Utils.py:59
 msgid "Security"
 msgstr "Biztonság"
 
-#: Utils.py:67
+#: Utils.py:60
 msgid "Undo"
 msgstr "Visszavonás"
 
-#: Utils.py:68
+#: Utils.py:61
 msgid "Ownership"
 msgstr "Tulajdonos"
 
-#: Utils.py:69
+#: Utils.py:62
 msgid "Find"
 msgstr "Keresés"
 
+#: Utils.py:64
+msgid "Abkhazian"
+msgstr ""
+
+#: Utils.py:65
+msgid "Afar"
+msgstr ""
+
+#: Utils.py:66
+msgid "Afrikaans"
+msgstr ""
+
+#: Utils.py:67
+msgid "Albanian"
+msgstr ""
+
+#: Utils.py:68
+msgid "Amharic"
+msgstr ""
+
+#: Utils.py:69
+msgid "Arabic"
+msgstr ""
+
 #: Utils.py:70
-msgid "Catalan"
+msgid "Armenian"
 msgstr ""
 
 #: Utils.py:71
-msgid "German"
-msgstr ""
+#, fuzzy
+msgid "Assamese"
+msgstr "Üzenetek"
 
 #: Utils.py:72
-msgid "Spanish"
+msgid "Aymara"
 msgstr ""
 
 #: Utils.py:73
-msgid "Basque"
+msgid "Azerbaijani"
 msgstr ""
 
 #: Utils.py:74
-msgid "French"
+msgid "Bashkir"
 msgstr ""
 
 #: Utils.py:75
-msgid "Hungarian"
+msgid "Basque"
 msgstr ""
 
 #: Utils.py:76
+msgid "Bengali"
+msgstr ""
+
+#: Utils.py:77
+msgid "Bhutani"
+msgstr ""
+
+#: Utils.py:78
+msgid "Bihari"
+msgstr ""
+
+#: Utils.py:79
+msgid "Bislama"
+msgstr ""
+
+#: Utils.py:80
+msgid "Bosnian"
+msgstr ""
+
+#: Utils.py:81
+msgid "Breton"
+msgstr ""
+
+#: Utils.py:82
+msgid "Bulgarian"
+msgstr ""
+
+#: Utils.py:83
+msgid "Burmese"
+msgstr ""
+
+#: Utils.py:84
+msgid "Belarusian"
+msgstr ""
+
+#: Utils.py:85
+msgid "Cambodian"
+msgstr ""
+
+#: Utils.py:86
+msgid "Catalan"
+msgstr ""
+
+#: Utils.py:87
+#, fuzzy
+msgid "Chinese"
+msgstr "Változtat"
+
+#: Utils.py:88
+msgid "Chinese/China"
+msgstr ""
+
+#: Utils.py:89
+msgid "Chinese/Taiwan"
+msgstr ""
+
+#: Utils.py:90
+msgid "Cornish"
+msgstr ""
+
+#: Utils.py:91
+msgid "Corsican"
+msgstr ""
+
+#: Utils.py:92
+msgid "Croatian"
+msgstr ""
+
+#: Utils.py:93
+msgid "Czech"
+msgstr ""
+
+#: Utils.py:94
+msgid "Danish"
+msgstr ""
+
+#: Utils.py:95
+msgid "Dutch"
+msgstr ""
+
+#: Utils.py:96
+msgid "Dutch/Belgium"
+msgstr ""
+
+#: Utils.py:97
+msgid "English"
+msgstr ""
+
+#: Utils.py:98
+msgid "English/United Kingdom"
+msgstr ""
+
+#: Utils.py:99
+msgid "English/United States"
+msgstr ""
+
+#: Utils.py:100
+msgid "Esperanto"
+msgstr ""
+
+#: Utils.py:101
+msgid "Estonian"
+msgstr ""
+
+#: Utils.py:102
+msgid "Faroese"
+msgstr ""
+
+#: Utils.py:103
+msgid "Fiji"
+msgstr ""
+
+#: Utils.py:104
+msgid "Finnish"
+msgstr ""
+
+#: Utils.py:105
+msgid "French"
+msgstr ""
+
+#: Utils.py:106
+msgid "French/Belgium"
+msgstr ""
+
+#: Utils.py:107
+msgid "French/Canada"
+msgstr ""
+
+#: Utils.py:108
+msgid "French/France"
+msgstr ""
+
+#: Utils.py:109
+msgid "French/Switzerland"
+msgstr ""
+
+#: Utils.py:110
+msgid "Frisian"
+msgstr ""
+
+#: Utils.py:111
+msgid "Galician"
+msgstr ""
+
+#: Utils.py:112
+msgid "Georgian"
+msgstr ""
+
+#: Utils.py:113
+msgid "German"
+msgstr ""
+
+#: Utils.py:114
+msgid "German/Austria"
+msgstr ""
+
+#: Utils.py:115
+msgid "German/Germany"
+msgstr ""
+
+#: Utils.py:116
+msgid "German/Switzerland"
+msgstr ""
+
+#: Utils.py:117
+msgid "Greek"
+msgstr ""
+
+#: Utils.py:118
+msgid "Greenlandic"
+msgstr ""
+
+#: Utils.py:119
+msgid "Guarani"
+msgstr ""
+
+#: Utils.py:120
+msgid "Gujarati"
+msgstr ""
+
+#: Utils.py:121
+msgid "Hausa"
+msgstr ""
+
+#: Utils.py:122
+msgid "Hebrew"
+msgstr ""
+
+#: Utils.py:123
+#, fuzzy
+msgid "Hindi"
+msgstr "Keresés"
+
+#: Utils.py:124
+msgid "Hungarian"
+msgstr ""
+
+#: Utils.py:125
+msgid "Icelandic"
+msgstr ""
+
+#: Utils.py:126
+msgid "Indonesian"
+msgstr ""
+
+#: Utils.py:127
+msgid "Interlingua"
+msgstr ""
+
+#: Utils.py:128
+msgid "Interlingue"
+msgstr ""
+
+#: Utils.py:129
+msgid "Inuktitut"
+msgstr ""
+
+#: Utils.py:130
+msgid "Inupiak"
+msgstr ""
+
+#: Utils.py:131
+msgid "Irish"
+msgstr ""
+
+#: Utils.py:132
+msgid "Italian"
+msgstr ""
+
+#: Utils.py:133
 msgid "Japanese"
 msgstr ""
+
+#: Utils.py:134
+#, fuzzy
+msgid "Javanese"
+msgstr "Változások mentése"
+
+#: Utils.py:135
+msgid "Kannada"
+msgstr ""
+
+#: Utils.py:136
+msgid "Kashmiri"
+msgstr ""
+
+#: Utils.py:137
+msgid "Kazakh"
+msgstr ""
+
+#: Utils.py:138
+msgid "Kinyarwanda"
+msgstr ""
+
+#: Utils.py:139
+msgid "Kirghiz"
+msgstr ""
+
+#: Utils.py:140
+msgid "Kirundi"
+msgstr ""
+
+#: Utils.py:141
+msgid "Korean"
+msgstr ""
+
+#: Utils.py:142
+msgid "Kurdish"
+msgstr ""
+
+#: Utils.py:143
+msgid "Laothian"
+msgstr ""
+
+#: Utils.py:144
+msgid "Latin"
+msgstr ""
+
+#: Utils.py:145
+msgid "Latvian"
+msgstr ""
+
+#: Utils.py:146
+msgid "Lingala"
+msgstr ""
+
+#: Utils.py:147
+msgid "Lithuanian"
+msgstr ""
+
+#: Utils.py:148
+msgid "Luxembourgish"
+msgstr ""
+
+#: Utils.py:149
+msgid "Macedonian"
+msgstr ""
+
+#: Utils.py:150
+msgid "Malagasy"
+msgstr ""
+
+#: Utils.py:151
+msgid "Malay"
+msgstr ""
+
+#: Utils.py:152
+msgid "Malayalam"
+msgstr ""
+
+#: Utils.py:153
+msgid "Maltese"
+msgstr ""
+
+#: Utils.py:154
+msgid "Maori"
+msgstr ""
+
+#: Utils.py:155
+msgid "Marathi"
+msgstr ""
+
+#: Utils.py:156
+msgid "Moldavian"
+msgstr ""
+
+#: Utils.py:157
+msgid "Mongolian"
+msgstr ""
+
+#: Utils.py:158
+msgid "Nauru"
+msgstr ""
+
+#: Utils.py:159
+msgid "Nepali"
+msgstr ""
+
+#: Utils.py:160
+msgid "Northern Saami"
+msgstr ""
+
+#: Utils.py:161
+msgid "Norwegian"
+msgstr ""
+
+#: Utils.py:162
+msgid "Occitan"
+msgstr ""
+
+#: Utils.py:163
+msgid "Oriya"
+msgstr ""
+
+#: Utils.py:164
+msgid "Oromo"
+msgstr ""
+
+#: Utils.py:165
+msgid "Pashto"
+msgstr ""
+
+#: Utils.py:166
+msgid "Persian"
+msgstr ""
+
+#: Utils.py:167
+msgid "Polish"
+msgstr ""
+
+#: Utils.py:168
+#, fuzzy
+msgid "Portuguese"
+msgstr "Tulajdonságok"
+
+#: Utils.py:169
+msgid "Portuguese/Brazil"
+msgstr ""
+
+#: Utils.py:170
+msgid "Punjabi"
+msgstr ""
+
+#: Utils.py:171
+msgid "Quechua"
+msgstr ""
+
+#: Utils.py:172
+msgid "Rhaeto-Romance"
+msgstr ""
+
+#: Utils.py:173
+msgid "Romanian"
+msgstr ""
+
+#: Utils.py:174
+msgid "Russian"
+msgstr ""
+
+#: Utils.py:175
+msgid "Samoan"
+msgstr ""
+
+#: Utils.py:176
+msgid "Sangho"
+msgstr ""
+
+#: Utils.py:177
+msgid "Sanskrit"
+msgstr ""
+
+#: Utils.py:178
+msgid "Scots Gaelic"
+msgstr ""
+
+#: Utils.py:179
+msgid "Serbian"
+msgstr ""
+
+#: Utils.py:180
+msgid "Serbo-Croatian"
+msgstr ""
+
+#: Utils.py:181
+msgid "Sesotho"
+msgstr ""
+
+#: Utils.py:182
+msgid "Setswana"
+msgstr ""
+
+#: Utils.py:183
+msgid "Shona"
+msgstr ""
+
+#: Utils.py:184
+#, fuzzy
+msgid "Sindhi"
+msgstr "Keresés"
+
+#: Utils.py:185
+msgid "Sinhalese"
+msgstr ""
+
+#: Utils.py:186
+msgid "Siswati"
+msgstr ""
+
+#: Utils.py:187
+msgid "Slovak"
+msgstr ""
+
+#: Utils.py:188
+msgid "Slovenian"
+msgstr ""
+
+#: Utils.py:189
+msgid "Somali"
+msgstr ""
+
+#: Utils.py:190
+msgid "Spanish"
+msgstr ""
+
+#: Utils.py:191
+msgid "Spanish/Argentina"
+msgstr ""
+
+#: Utils.py:192
+msgid "Spanish/Colombia"
+msgstr ""
+
+#: Utils.py:193
+msgid "Spanish/Mexico"
+msgstr ""
+
+#: Utils.py:194
+msgid "Spanish/Spain"
+msgstr ""
+
+#: Utils.py:195
+msgid "Sundanese"
+msgstr ""
+
+#: Utils.py:196
+msgid "Swahili"
+msgstr ""
+
+#: Utils.py:197
+msgid "Swedish"
+msgstr ""
+
+#: Utils.py:198
+msgid "Tagalog"
+msgstr ""
+
+#: Utils.py:199
+msgid "Tajik"
+msgstr ""
+
+#: Utils.py:200
+#, fuzzy
+msgid "Tamil"
+msgstr "Cím"
+
+#: Utils.py:201
+msgid "Tatar"
+msgstr ""
+
+#: Utils.py:202
+msgid "Telugu"
+msgstr ""
+
+#: Utils.py:203
+msgid "Thai"
+msgstr ""
+
+#: Utils.py:204
+msgid "Tibetan"
+msgstr ""
+
+#: Utils.py:205
+msgid "Tigrinya"
+msgstr ""
+
+#: Utils.py:206
+msgid "Tonga"
+msgstr ""
+
+#: Utils.py:207
+msgid "Tsonga"
+msgstr ""
+
+#: Utils.py:208
+msgid "Turkish"
+msgstr ""
+
+#: Utils.py:209
+msgid "Turkmen"
+msgstr ""
+
+#: Utils.py:210
+msgid "Twi"
+msgstr ""
+
+#: Utils.py:211
+msgid "Uighur"
+msgstr ""
+
+#: Utils.py:212
+msgid "Ukrainian"
+msgstr ""
+
+#: Utils.py:213
+msgid "Urdu"
+msgstr ""
+
+#: Utils.py:214
+msgid "Uzbek"
+msgstr ""
+
+#: Utils.py:215
+msgid "Vietnamese"
+msgstr ""
+
+#: Utils.py:216
+msgid "Volapuk"
+msgstr ""
+
+#: Utils.py:217
+msgid "Welsh"
+msgstr ""
+
+#: Utils.py:218
+msgid "Wolof"
+msgstr ""
+
+#: Utils.py:219
+msgid "Xhosa"
+msgstr ""
+
+#: Utils.py:220
+msgid "Yiddish"
+msgstr ""
+
+#: Utils.py:221
+msgid "Yoruba"
+msgstr ""
+
+#: Utils.py:222
+#, fuzzy
+msgid "Zhuang"
+msgstr "Változtat"
+
+#: Utils.py:223
+msgid "Zulu"
+msgstr ""
+
+#~ msgid "Default"
+#~ msgstr "Alapértelmezett"
+
+#, fuzzy
+#~ msgid "Hide this language"
+#~ msgstr "Új nyelv"
+
+#, fuzzy
+#~ msgid "Show this language"
+#~ msgstr "Nincs bejegyzés."
 
 #~ msgid "Back to manage messages."
 #~ msgstr "Vissza az üzenetek szerkesztéséhez"
@@ -366,9 +1087,6 @@ msgstr ""
 
 #~ msgid "Batch size"
 #~ msgstr "Köteg mérete"
-
-#~ msgid "Default language"
-#~ msgstr "Alapértelmezett nyelv"
 
 #~ msgid "Full"
 #~ msgstr "Teljes"
