@@ -1,53 +1,42 @@
 
 Localizer 1.1.0 released!
 
-Localizer is a Zope product that provides a set of facilities
-to develop multilingual web applications. It offers solutions to
-internationalize the user interfaces and to manage multilingual
-content.
+Localizer is a Zope product that provides a set of facilities to develop
+multilingual web applications. It offers solutions to internationalize
+the user interfaces and to manage multilingual content.
 
-The changes of this release are:
 
- - Added TMX support, by Roberto Quero and Eduardo Corrales, improved
-   import method by Søren Roug
+What's new in 1.1
+-----------------
 
- - Added XLIFF support, by Søren Roug
+ - Added support for industry standards TMX and XLIFF.
 
- - User interface improvements, by Søren Roug and Rodrigo Senra
+ - Support for Zope Page Templates (the i18n namespace).
 
- - Refactored code, now Localizer depends on iHotfix and itools
+ - User interface improvements, specially for LocalContent objects.
 
- - Closed SourceForge bugs #751282 and #761572
+ - New translations: danish, italian, portuguese and russian.
 
- - Added russian translation, by Alexey Lubimov
+ - New packaging, requires installation of itools and iHotfix.
 
- - Added portuguese translation, by Mario Olimpio de Menezes
+ - Many bugs fixed.
 
- - Added italian translation, by Marco Bizzarri
 
- - New request form accept method, by Rodrigo Senra
+Credits
+-------
 
- - Add support for Zope Page Templates
-
- - Change the LocalContent interface to be more like in MessageCatalog.
-   On the top the source text. Under it a clickable list of languages. 
-   When you click on a language, the text to translate appears under the 
-   source text. On the right side, you have the names of properties in a 
-   column; "title", "body" etc. On this screen the source text is readonly.
-
- - When a property in LocalContent is modified, all translations for the 
-   property are flagged "obsolete". Once the translation was updated, that
-   property for that language is no longer obsolete.
+Many thanks to Alexey Lubimov, Cornel Nitu, Eduardo Corrales, Marco Bizzarri,
+Mario Olimpio de Menezes, Roberto Quero, Søren Roug, 
 
 
 Resources
 ---------
 
-Home site
+Home
 http://www.localizer.org
-
-Download
-http://www.ikaaro.org
 
 Mailing list
 http://in-girum.net/mailman/listinfo/localizer
+
+Bug Tracker
+http://in-girum.net/cgi-bin/bugzilla/index.cgi

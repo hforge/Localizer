@@ -9,24 +9,24 @@ Requirements
 
   - Python 2.3.4 or later
 
-  - Zope 2.7.0 or later
+  - Zope 2.7.4 or later
 
-  - itools 0.6.x (download from http://www.ikaaro.org/itools)
+  - itools 0.7.3 or later (download from http://www.ikaaro.org/itools)
 
-  - iHotfix 0.5.x (download from http://www.ikaaro.org/localizer)
+  - iHotfix 0.5.2 or later (download from http://www.ikaaro.org/localizer)
 
 
 Installation
 
   Download Localizer. Unpack the tarball and install it in the "Products"
-  directory:
+  directory::
 
-    $ tar xzf Localizer-1.1.X.tar.gz
-    $ cp -r Localizer-1.1.0b5 <Zope instance>/Products/Localizer
+    $ tar xzf Localizer-1.1.0rc1.tar.gz
+    $ cp -r Localizer-1.1.0rc1 <Zope instance>/Products/Localizer
 
-  Another option, case you are running Unix, is to use symbolic links:
+  Another option, case you are running Unix, is to use symbolic links::
 
-    $ ln -s Localizer-1.1.0b5 <Zope instance>/Products/Localizer
+    $ ln -s Localizer-1.1.0rc1 <Zope instance>/Products/Localizer
 
 
 Resources
@@ -35,19 +35,24 @@ Resources
 
   - "Mailing list":http://in-girum.net/mailman/listinfo/localizer
 
-  Examples of sites that use Localizer are:
+  - "Bug Tracker":http://in-girum.net/cgi-bin/bugzilla/index.cgi
 
-  - http://200.205.19.3/wagonlit
 
-  - http://europython.org/
+Examples of sites powered by Localizer
 
-  - http://www.castagnari.com/
+  - "European Environment Agency":http://www.eea.eu.int/
 
-  - http://www.egoibarra.com/
+  - "Bank Winter":http://www.bankwinter.com/
 
-  - http://www.hotsak.com/
+  - "Castagnari":http://www.castagnari.com/
 
-  - http://www.udaleuskaltegiak.net/
+  - "Hiru":http://www.hiru.com/
+
+  - "Hotsak":http://www.hotsak.com/
+
+  - "Ego Ibarra":http://www.egoibarra.com/
+
+  - "Udaleuskaltegiak":http://www.udaleuskaltegiak.net/
 
 
 Author and License

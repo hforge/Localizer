@@ -1,1 +1,1 @@
-Localizer 1.1.0b5
+Localizer 1.1.0rc1
