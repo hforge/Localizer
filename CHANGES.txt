@@ -1,3 +1,9 @@
+1.1.0b4 (2005/01/09)
+
+  ZPT
+  - Add support for i18n:domain
+
+
 1.1.0b3 (2004/12/17)
 
   Translations
