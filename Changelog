@@ -2,6 +2,22 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2004-09-14 09:03:55 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-2
+
+    Summary:
+      improve LocalContent interface, by Rodrigo Senra
+    Revision:
+      Localizer--main--1.1--patch-2
+
+    Improve the LocalContent interface (manage_localPropertiesForm), now the
+    property to edit is choosen with a selection box.
+    
+    It is a patch provided by Rodrigo Senra.
+
+    modified files:
+     Changelog ui/LPM_properties.dtml
+
+
 2004-08-24 17:17:49 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-1
 
     Summary:

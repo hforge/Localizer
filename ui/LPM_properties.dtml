@@ -57,39 +57,42 @@
 <dtml-comment>
   Property selector
 </dtml-comment>
+
+ <SCRIPT LANGUAGE="JavaScript"><!--
+  function openURL()
+  {
+   
+   selInd = document.choice.chosen_prop.selectedIndex;
+   goURL = document.choice.chosen_prop.options[selInd].value;
+   document.location.href = goURL;
+  }
+  //-->
+ </SCRIPT>
+
 <dtml-let batch_size="5"
           batch_end="batch_start + batch_size"
           properties="getLocalProperties">
   <dtml-if properties>
-    <table cellspacing="0" cellpadding="2" border="0" width="100%">
-    <dtml-let property_id="properties[batch_index]['id']">
-      <tr class="list-header">
-        <th class="form-label" align="left" colspan="2">
-          <dtml-in "properties[batch_start:batch_start+batch_size]" mapping>
-            &nbsp;
-            <a href="<dtml-var "get_url(URL, batch_start, batch_start + _['sequence-index'], lang_hide)">">
-              <dtml-if "id == property_id">
-                <span style="color: white"><em><dtml-var id></em></span>
-                <dtml-call "REQUEST.set('local_property', _['sequence-item'])">
-              <dtml-else>
-                <dtml-var id>
-              </dtml-if>
-            </a>
-            &nbsp;
-          </dtml-in>
-        </th>
-        <th class="form-label">
-          <dtml-if "batch_start > 0">
-            <a href="<dtml-var "get_url(URL, batch_start - 1, _.min(batch_index, batch_end - 2), lang_hide)">"><img src="/misc_/Localizer/arrow_left" border="0"></a>
-          </dtml-if>
-          <dtml-if "batch_end < _.len(properties)">
-            <a href="<dtml-var "get_url(URL, batch_start + 1, _.max(batch_index, batch_start + 1), lang_hide)">"><img src="/misc_/Localizer/arrow_right" border="0"></a>
-          </dtml-if>
-        </th>
-      </tr>
-    </dtml-let>
-    </table>
 
+    <dtml-let property_id="properties[batch_index]['id']">
+    <blockquote> 
+      <form name="choice">
+       <tt>
+       <select name="chosen_prop" size="1">
+         <dtml-in properties mapping>
+           <option value="<dtml-var "get_url(URL, batch_start, batch_start+ _['sequence-index'], lang_hide)">"
+                <dtml-if "id == property_id">selected <dtml-call "REQUEST.set('local_property', _['sequence-item'])"></dtml-if>
+           >
+                 <dtml-var id>
+                
+           </option>
+         </dtml-in>
+       </select>
+       <input TYPE="button" VALUE=" Select " onClick="openURL()">
+       </tt>
+      </form>    
+    </blockquote>
+    </dtml-let>
 
     <dtml-comment>
       Edit/delete selected property
