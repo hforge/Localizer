@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2002  Juan David Ibáñez Palomar <jdavid@itaapy.com>
+# Copyright (C) 2000-2004  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -16,24 +16,9 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
-# Import from Zope
-from Globals import package_home
-
-# Import from Localizer
-from LocalFiles import gettext
+# Import from iHotfix
+from Products.iHotfix import translation, dummy
 
 
-
-class translation:
-    def __init__(self, namespace):
-        self.locale = package_home(namespace) + '/locale/'
-
-    __call__ = gettext
-
-
-def dummy(message, language=None):
-    """
-    Used to markup a string for translation but without translating it,
-    this is known as deferred translations.
-    """
-    return message
+# XXX This module is kept only for backwards compatibility with
+# Localizer <= 1.1.0b1

@@ -2,6 +2,28 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2004-11-22 18:59:00 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-7
+
+    Summary:
+      move Gettext to iHotfix
+    Revision:
+      Localizer--main--1.1--patch-7
+
+    Move Gettext to iHotfix. This removes the last dependency of iKaaro on
+    Localizer.
+
+    new files:
+     .arch-ids/Gettext.py.id Gettext.py
+
+    removed files:
+     .arch-ids/Gettext.py.id Gettext.py
+
+    modified files:
+     Changelog LanguageManager.py LocalContent.py LocalFiles.py
+     LocalFolder.py LocalPropertyManager.py Localizer.py
+     LocalizerSupport.py MessageCatalog.py Utils.py
+
+
 2004-11-18 18:16:15 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-6
 
     Summary:

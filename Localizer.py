@@ -1,6 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2002  Juan David Ibáñez Palomar <jdavid@itaapy.com>
-#               2003  Itaapy  <jdavid@itaapy.com>
+# Copyright (C) 2000-2004  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,17 +16,13 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
-
-__revision__ = "$Id: Localizer.py,v 1.72 2004/03/15 17:36:09 roug Exp $"
-
-
-# Import python modules
+# Import from the Standard Library
 from urllib import unquote
 
-# Import itools modules
+# Import from itools
 from itools import i18n
 
-# Import Zope modules
+# Import from Zope
 from AccessControl import ClassSecurityInfo
 from Globals import DTMLFile, InitializeClass
 from OFS.Folder import Folder
@@ -35,16 +30,18 @@ from ZPublisher.BeforeTraverse import registerBeforeTraverse, \
      unregisterBeforeTraverse, queryBeforeTraverse, NameCaller
 from zLOG import LOG, ERROR, INFO, PROBLEM
 
+# Import from iHotfix
+from Products import iHotfix
+
 # Import Localizer modules
 from LocalFiles import LocalDTMLFile
 from MessageCatalog import MessageCatalog
 from Utils import lang_negotiator
 from LanguageManager import LanguageManager
-import Gettext
 
 
-_ = Gettext.translation(globals())
-N_ = Gettext.dummy
+_ = iHotfix.translation(globals())
+N_ = iHotfix.dummy
 
 
 

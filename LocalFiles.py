@@ -16,9 +16,6 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
-__revision__ = "$Id: LocalFiles.py,v 1.10 2004/03/15 17:36:09 roug Exp $"
-
-
 """
 Localizer
 
@@ -30,66 +27,14 @@ PageTemplateFile.
 
 
 # Import Python modules
-from gettext import GNUTranslations
 import os
 
 # Import Zope modules
 from Globals import DTMLFile, package_home
 
-# Import Localizer modules
-from Utils import lang_negotiator
+# Import from iHotfix
+from Products.iHotfix import gettext
 
-
-translations = {}
-
-
-def get_translations(localedir, language=None):
-    """
-    Looks the <language>.mo file in <localedir> and returns a
-    GNUTranslations instance for it. If <language> is None uses
-    the language negotiator to guess the user preferred language.
-    """
-    # Initialize the product translations
-    locale = localedir
-    if not translations.has_key(locale):
-        translations[locale] = None
-
-    if translations[locale] is None:
-        translations[locale] = {}
-        # Load .mo files
-        for filename in [ x for x in os.listdir(locale) if x.endswith('.mo') ]:
-            lang = filename[:-3]
-            filename = os.path.join(locale, filename)
-            f = open(filename, 'rb')
-            translations[locale][lang] = GNUTranslations(f)
-            f.close()
-
-    # Get the translations to use
-    ptranslations = translations[locale]
-
-    if language is None:
-        # Builds the list of available languages
-        available_languages = ptranslations.keys()
-
-        # Get the language!
-        lang = lang_negotiator(available_languages)
-    else:
-        lang = None
-
-    return ptranslations.get(lang or language, None)
-
-
-def gettext(self, message, language=None):
-    """ """
-    # Get the translations to use
-    translations = get_translations(self.locale, language)
-
-    if translations is not None:
-        return translations.ugettext(message)
-
-    return message
-
-ugettext = gettext   # XXX backwards compatibility
 
 
 class LocalDTMLFile(DTMLFile):
@@ -106,10 +51,11 @@ class LocalDTMLFile(DTMLFile):
                      (self, bound_data, args, kw))
 
     gettext = gettext
-    ugettext = ugettext  # XXX backwards compatibility
+    ugettext = gettext  # XXX backwards compatibility
 
 
 # Zope Page Templates (ZPT)
+# XXX Deprecated, use the i18n namespace instead.
 try:
     from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 except ImportError:
@@ -131,4 +77,4 @@ else:
                          (self, bound_data, args, kw))
 
         gettext = gettext
-        ugettext = ugettext  # XXX backwards compatibility
+        ugettext = gettext  # XXX backwards compatibility

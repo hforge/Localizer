@@ -1,6 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
 # Copyright (C) 2000-2003  Juan David Ibáñez Palomar <jdavid@itaapy.com>
-#               2003  Itaapy <contact@itaapy.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -15,9 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
-
-
-__revision__ = '$Id: Utils.py,v 1.20 2004/03/26 21:47:45 roug Exp $'
 
 
 # Import from itools
@@ -49,8 +45,8 @@ def lang_negotiator(available_languages):
     lang = request.accept_language.select_language(available_languages)
 
     # XXX Here we should set the Vary header, but, which value should it have??
-##    response.setHeader('Vary', 'accept-language')
-##    response.setHeader('Vary', '*')
+##    response.set_header('Vary', 'accept-language')
+##    response.set_header('Vary', '*')
 
     return lang
 

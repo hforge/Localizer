@@ -1,6 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2003  Juan David Ibáñez Palomar <jdavid@itaapy.com>
-#               2003  Itaapy <contact@itaapy.com>
+# Copyright (C) 2000-2004  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,28 +16,25 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
-__revision__ = "$Id: LocalPropertyManager.py,v 1.41 2003/08/12 16:14:35 jdavid Exp $" 
-
-
-
-
-# Import Python modules
+# Import from the Standard Library
 from urllib import quote
 
-# Import Zope modules
+# Import from Zope
 from AccessControl import ClassSecurityInfo
 import Globals
 
-# Localizer
-import Gettext
+# Import from iHotfix
+from Products import iHotfix
+
+# Import from Localizer
 from LanguageManager import LanguageManager
 from LocalAttributes import LocalAttribute, LocalAttributesBase
 from LocalFiles import LocalDTMLFile
 
 
 # To translate.
-_ = Gettext.translation(globals())
-N_ = Gettext.dummy
+_ = iHotfix.translation(globals())
+N_ = iHotfix.dummy
 
 
 # XXX

@@ -24,7 +24,7 @@ provides message catalogs for the web.
 """
 
 
-# Import Python modules
+# Import from Python
 import base64, md5
 import codecs
 import re
@@ -36,27 +36,31 @@ from xml.sax import make_parser, handler, InputSource
 from cStringIO import StringIO
 from cgi import escape
 
-# Import itools modules
+# Import from itools
 from itools.resources import memory
 from itools.handlers import PO
 
-# Import Zope modules
+# Import from Zope
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 from Globals import  MessageDialog, PersistentMapping, InitializeClass
 from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
 
-# Import Localizer modules
-import Gettext
+# Import from iHotfix
+from Products import iHotfix
+
+# Import from Localizer
 from LanguageManager import LanguageManager
 from LocalFiles import LocalDTMLFile
 from Utils import charsets, lang_negotiator
 from tmx_parser import HandleTMXParsing
 from xliff_parser import HandleXliffParsing
 
-_ = Gettext.translation(globals())
-N_ = Gettext.dummy
+
+_ = iHotfix.translation(globals())
+N_ = iHotfix.dummy
+
 
 def md5text(str):
     """

@@ -1,7 +1,6 @@
 # -*- coding: ISO-8859-1 -*-
 # Localizer, Zope product that provides internationalization services
-# Copyright (C) 2000-2003  Juan David Ibáñez Palomar <jdavid@itaapy.com>
-#               2003  Itaapy <contact@itaapy.com>
+# Copyright (C) 2000-2004  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -18,23 +17,22 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
-__revision__ = "$Id: LanguageManager.py,v 1.26 2003/08/26 09:59:47 jdavid Exp $"
-
-
-# Import Python modules
+# Import from the Standard Library
 from urlparse import urlparse
 
 # Import itools modules
 from itools import i18n
 
-# Import Zope modules
+# Import from Zope
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 
-# Import Localizer modules
+# Import from iHotfix
+from Products.iHotfix import dummy as N_
+
+# Import from Localizer
 from LocalFiles import LocalDTMLFile
 from Utils import lang_negotiator
-from Gettext import dummy as N_
 
 
 class LanguageManager(i18n.Multilingual):
