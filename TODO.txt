@@ -1,23 +1,6 @@
 
-ROADMAP 1.1
------------
-
-Localizer 1.1 will include few bug fixes and a new feature, the TMX support.
-The packaging also will change, the non-Zope code will go to itools and the
-Zope patchs will go to iHotfix.
-
-
-
-Open bugs
----------
-
- * Use the library libgettextpo introduced in gettext 0.12 to parse the
-   PO files, see the docs: "Writing your own programs that process PO files".
-
- * Develop an API to get messages and translations from the message catalog,
-   see email from Pierre-Yves Delens.
-
- * MessageCatalog, sometimes export fails because there is not charset.
+It would be nice to do for 1.1.0
+================================
 
  * Andy McKay (on Localizer dependencies with itools and iHotfix):
 
@@ -26,6 +9,27 @@ Open bugs
     Control_Panel, but is if an object exists in the ZMI and its not in the
     drop down list for add products. No error message is generated either."
 
+ * MessageCatalog, sometimes export fails because there is not charset.
+   [I believe this one is fixed, check it.]
+
+ * Provide support for domains in the i18n namespace of ZPT. See if something
+   else is missing.
+
+ * Integrate the new LPM interface, being developed by Cornel Nitu and
+   Søren Roug.
+
+ * Look at the problems Marco Bizarri has found (see email).
+
+
+
+Things thay may be done sometime in the future (it is a bit of a mess)
+======================================================================
+
+ * Use the library libgettextpo introduced in gettext 0.12 to parse the
+   PO files, see the docs: "Writing your own programs that process PO files".
+
+ * Develop an API to get messages and translations from the message catalog,
+   see email from Pierre-Yves Delens.
 
  * Bo M. Maryniuck:
 
@@ -34,10 +38,6 @@ Open bugs
     object uses "register before traverse". In my case there is an product,
     which is always modifies the request. So if I put there also Localizer,
     you'll never enter the site.
-
-
- * Localizer can't be refreshed since Zope 2.4.1b1.
-
 
  * (Zope bug) See if something feasible can be done to remove the hardcoded
    use of Latin-1 encoding from Zope and Localizer.
@@ -50,13 +50,11 @@ Open bugs
    the header? When managing the message catalog through FTP, should
    the header also be editable?
 
-
  * François Meehan:
 
    "Also found that using the import/export function in Localizer/zope
     can bring corruption to the po file, a problem with the accents it
     seems."
-
 
  * Document the path where Localizer.changeLanguage sets the cookie,
    which is the path from where it is called, not its physical path.
@@ -126,8 +124,6 @@ New features
  * Work on locale information: dates, money, etc..
 
  * Integrate the File System Message Catalog from CMFLocalizer.
-
- * Provide support for the i18n namespace of PageTemtamplates.
 
  * Add the ability to manage localized versions of standard files
    in a product: the on-line help system, README.txt, etc..

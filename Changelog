@@ -2,6 +2,22 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2004-11-27 20:10:46 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-8
+
+    Summary:
+      get ready to release 1.1.0b2
+    Revision:
+      Localizer--main--1.1--patch-8
+
+    Get ready to release 1.1.0b2.
+
+    removed files:
+     .arch-ids/INSTALL.txt.id INSTALL.txt
+
+    modified files:
+     Changelog README.txt RELEASE-1.1.0.txt.en TODO.txt version.txt
+
+
 2004-11-22 18:59:00 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-7
 
     Summary:

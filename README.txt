@@ -1,29 +1,55 @@
 
-Localizer is a Zope product that provides a set of facilities
-to develop multilingual web applications. It offers solutions to
-internationalize the user interfaces and to manage multilingual
-content.
+Localizer is the de-facto standard to build multilingual applications with
+Zope. It helps to internationalize and localize Zope products and to build
+multilingual web sites through the Management Interface. It deals with
+both user interfaces and content.
 
-There are hundreds, maybe thousands, of web sites made with Localizer,
-few of them are:
+
+Requirements
+
+  - Python 2.3.4 or later
+
+  - Zope 2.7.0 or later
+
+  - itools 0.5.x (download from http://www.ikaaro.org)
+
+  - iHotfix 0.5.x (download from http://www.ikaaro.org)
+
+
+Installation
+
+  Download the Localizer tarball into the Products directory of your Zope
+  instance, and rename it to 'Localizer'; or unpack it somewhere else and
+  create a symbolic link from the Products directory.
+
+
+Resources
+
+  - "Home site":http://www.localizer.org
+
+  - "Download":http://www.ikaaro.org
+
+  - "Mailing list":http://in-girum.net/mailman/listinfo/localizer
+
+  Examples of sites that use Localizer are:
 
   - http://200.205.19.3/wagonlit
+
   - http://europython.org/
+
   - http://www.castagnari.com/
+
   - http://www.egoibarra.com/
+
   - http://www.hotsak.com/
+
   - http://www.udaleuskaltegiak.net/
 
 
-Look at the Localizer's "web site":http://www.localizer.org for
-credits, documentation and other resources.
+Author and License
 
-
-Author and license
-
-  Copyright 2001-2003  J. David Ibáñez (jdavid@itaapy.com)
+  Copyright 2001-2004  J. David Ibáñez (jdavid@itaapy.com)
             2001 Universitat Jaume I
-            2003 Itaapy
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License
