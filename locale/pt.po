@@ -10,17 +10,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Export messages to XLIFF file"
-msgstr ""
+msgstr "Exportar mensagens para arquivo no formato XLIFF"
 
-#, fuzzy
 msgid "Target language"
-msgstr "Não existem línguas definidas"
+msgstr "Língua alvo"
 
 msgid "Export"
 msgstr "Exportar"
 
 msgid "Import translations from XLIFF file"
-msgstr ""
+msgstr "Importar traduções de arquivo no formato XLIFF"
 
 msgid "File"
 msgstr "Arquivo"
@@ -28,7 +27,6 @@ msgstr "Arquivo"
 msgid "Import"
 msgstr "Importar"
 
-#, fuzzy
 msgid ""
 "You can export the messages and their translations to XLIFF files. Check any "
 "option to get a XLIFF file with the messages and their translations to the "
@@ -41,10 +39,10 @@ msgstr ""
 "<tt>Exportar</tt>."
 
 msgid "Export messages to TMX file"
-msgstr ""
+msgstr "Exportar mensagens para arquivo no formato TMX"
 
 msgid "Import translations from TMX file"
-msgstr ""
+msgstr "Importar traduções a partir de arquivo no formato TMX"
 
 msgid ""
 "TMX stands for Translation Memory eXchange. The purpose of a translation "
@@ -69,23 +67,21 @@ msgstr ""
 "adicionar mensagens e traduções importando um arquivo TMX em um TMX nível 1. "
 "Entre com o nome do arquivo e clique no botão <tt>Importar</tt>."
 
-#, fuzzy
 msgid "Add language"
-msgstr "Língua"
+msgstr "Adicionar Língua"
 
 msgid "Add"
 msgstr "Adicionar"
 
-#, fuzzy
 msgid "Delete languages"
-msgstr "Não existem línguas definidas"
+msgstr "Apagar línguas"
 
 msgid "Delete"
 msgstr "Apagar"
 
-#, fuzzy
+
 msgid "Default language"
-msgstr "Ocultar esta língua"
+msgstr "Língua default"
 
 msgid "Change"
 msgstr "Alterar"
@@ -95,29 +91,27 @@ msgstr ""
 "Para acrescentar uma língua selecione a mesma e clique no botão "
 "<tt>Adicionar</tt>"
 
-#, fuzzy
 msgid "To delete a language check it and click the <tt>Delete</tt> button."
 msgstr ""
-"Para remover um atributo selecione o mesmo e clique no botão <tt>Remover</"
+"Para remover uma língua selecione a mesma e clique no botão <tt>Remover</"
 "tt>."
 
-#, fuzzy
 msgid "There are no languages"
 msgstr "Não existem línguas definidas"
 
-#, fuzzy
+
 msgid ""
 "To change the default language select it and click the <tt>Change</tt> "
 "button."
 msgstr ""
-"Para acrescentar uma língua selecione a mesma e clique no botão "
+"Para alterar a língua default selecione a mesma e clique no botão "
 "<tt>Adicionar</tt>"
 
 msgid "Name"
 msgstr "Nome"
 
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 msgid "Type"
 msgstr "Tipo"
@@ -132,7 +126,6 @@ msgstr "Este <tt>%s</tt> objeto precisa de atualização"
 msgid "Upgrade"
 msgstr "Atualizar"
 
-#, fuzzy
 msgid "This object doesn't need to be upgraded."
 msgstr "Este objeto não precisa de atualização."
 
@@ -142,22 +135,19 @@ msgstr "Adicionar Local Content"
 msgid "Id"
 msgstr "Id"
 
-#, fuzzy
 msgid "Original language"
-msgstr "Ocultar esta língua"
+msgstr "Língua Original"
 
-#, fuzzy
 msgid "Target languages"
-msgstr "Não existem línguas definidas"
+msgstr "Línguas Alvo"
 
-#, fuzzy
 msgid ""
 "A Local Content object provides a storage for multilingual (and non "
 "multilingual) properties. It also helps you keep your content separated from "
 "the logic and the presentation."
 msgstr ""
 "Um objeto Local Content provê armazenamento para propriedades multi-"
-"linguísticas (ou não multi-linguísticas). Tambe facilita na separação entre "
+"linguísticas (ou não multi-linguísticas). Também facilita na separação entre "
 "lógica e apresentação de conteúdo."
 
 msgid "Add Local Folder"
@@ -182,7 +172,6 @@ msgstr ""
 "Para remover um atributo selecione o mesmo e clique no botão <tt>Remover</"
 "tt>."
 
-#, fuzzy
 msgid "There are no attributes"
 msgstr "Não existem atributos definidos"
 
@@ -194,7 +183,7 @@ msgstr ""
 msgid "Add Localizer"
 msgstr "Adiciona Localizer"
 
-#, fuzzy
+
 msgid ""
 "A Localizer object lets you customize the language negotiation policy. It "
 "lets you use cookies, the path or any other criteria to select the user "
@@ -223,7 +212,7 @@ msgstr ""
 msgid "This <tt>Localizer</tt> object needs to be upgraded."
 msgstr "Este objeto <tt>Localizer</tt> precisa ser atualizado."
 
-#, fuzzy
+
 msgid "This <tt>Localizer</tt> object doesn't need to be upgraded."
 msgstr "Este objeto <tt>Localizer</tt> não precisa ser atualizado."
 
@@ -242,13 +231,13 @@ msgstr ""
 "componentes da interface como rótulos, botões, etc."
 
 msgid "Export messages to PO file"
-msgstr ""
+msgstr "Exportar mensagens para arquivos no formato PO"
 
 msgid "File / Language"
 msgstr "Arquivo / Língua"
 
 msgid "Import translations from PO file"
-msgstr ""
+msgstr "Importar traduções de arquivo no formato PO"
 
 msgid "Language"
 msgstr "Língua"
@@ -275,7 +264,7 @@ msgstr ""
 "<tt>Importar</tt>."
 
 msgid "Note"
-msgstr ""
+msgstr "Observação"
 
 msgid "Save"
 msgstr "Salvar"
@@ -289,7 +278,6 @@ msgstr "Filtro"
 msgid "Results %d-%d of %d"
 msgstr "Resultados %d-%d em %d"
 
-#, fuzzy
 msgid "There are no messages."
 msgstr "Não existem mensagens"
 
@@ -297,6 +285,8 @@ msgid ""
 "<em>No languages available, please add them using the <a "
 "href='manage_languages'>Languages</a> tab</em>"
 msgstr ""
+"<em>Não há linguas disponíveis, favor adicioná-las através da aba <a "
+"href='manage_languages'>Línguas</a> </em>"
 
 msgid "Your name"
 msgstr "Seu nome"
@@ -316,8 +306,12 @@ msgid ""
 "header of the PO files, which are generated when the message catalog is "
 "exported."
 msgstr ""
+"Com este formulário você pode alterar o título do Catálogo de Mensagens. "
+"O título também é usado como valor do campo <tt>Project-Id-version</tt> no "
+"cabeçalho dos arquivos PO, os quais são gerados quando o catálogo é exportado."
 
-#, fuzzy
+
+
 msgid ""
 "Besides the title the header of a PO file stores more information; the name "
 "and the email address of the last translator, the email address of the "
@@ -330,16 +324,16 @@ msgstr ""
 "tasi informações para cada uma das línguas."
 
 msgid "How much"
-msgstr ""
+msgstr "Quanto"
 
 msgid "Import only translations for messages that exist already"
-msgstr ""
+msgstr "Importar apenas traduções para mensagens pré-existentes"
 
 msgid "Import all messages"
-msgstr ""
+msgstr "Importar todas as mensagens"
 
 msgid "Clear catalog and import all messages"
-msgstr ""
+msgstr "Limpar este catálogo e re-importar todas as mensagens."
 
 #: LocalContent.py:79 MessageCatalog.py:245
 msgid "Import/Export"
@@ -354,14 +348,13 @@ msgid "label"
 msgstr "rótulo"
 
 #: LocalContent.py:415 MessageCatalog.py:795 MessageCatalog.py:950
-#, fuzzy
 msgid "Messages imported"
-msgstr "Mensagens"
+msgstr "Mensagens importadas"
 
 #: LocalContent.py:416 MessageCatalog.py:951
 #, python-format
 msgid "Imported %d messages and %d notes to %s"
-msgstr ""
+msgstr "Importadas %d mensagens e %d observações para %s"
 
 #: LocalFolder.py:74
 msgid "Attributes"
@@ -372,9 +365,8 @@ msgid "Local properties"
 msgstr "Propriedades locais"
 
 #: LocalPropertyManager.py:86
-#, fuzzy
 msgid "Translate properties"
-msgstr "Não existem propriedades definidas"
+msgstr "Traduzir propriedades"
 
 #: MessageCatalog.py:242
 msgid "Messages"
@@ -391,7 +383,7 @@ msgstr "Mudanças salvas."
 #: MessageCatalog.py:796
 #, python-format
 msgid "Imported %d messages and %d notes"
-msgstr ""
+msgstr "Importadas %d mensagens e %d observações"
 
 #: Utils.py:56
 msgid "Contents"
@@ -419,48 +411,47 @@ msgstr "Buscar"
 
 #: Utils.py:64
 msgid "Abkhazian"
-msgstr ""
+msgstr "Afegão"
 
 #: Utils.py:65
 msgid "Afar"
-msgstr ""
+msgstr "Afar"
 
 #: Utils.py:66
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaans"
 
 #: Utils.py:67
 msgid "Albanian"
-msgstr ""
+msgstr "Albanês"
 
 #: Utils.py:68
 msgid "Amharic"
-msgstr ""
+msgstr "Aramaico"
 
 #: Utils.py:69
 msgid "Arabic"
-msgstr ""
+msgstr "Árabe"
 
 #: Utils.py:70
 msgid "Armenian"
-msgstr ""
+msgstr "Armeno"
 
 #: Utils.py:71
-#, fuzzy
 msgid "Assamese"
-msgstr "Mensagens"
+msgstr "Assamês"
 
 #: Utils.py:72
 msgid "Aymara"
-msgstr ""
+msgstr "Aymarês"
 
 #: Utils.py:73
 msgid "Azerbaijani"
-msgstr ""
+msgstr "Azerbaijanês"
 
 #: Utils.py:74
 msgid "Bashkir"
-msgstr ""
+msgstr "Bashkir"
 
 #: Utils.py:75
 msgid "Basque"
@@ -468,207 +459,195 @@ msgstr "Basco"
 
 #: Utils.py:76
 msgid "Bengali"
-msgstr ""
+msgstr "Bengalês"
 
 #: Utils.py:77
 msgid "Bhutani"
-msgstr ""
+msgstr "Bhutanês"
 
 #: Utils.py:78
 msgid "Bihari"
-msgstr ""
+msgstr "Bihari"
 
 #: Utils.py:79
 msgid "Bislama"
-msgstr ""
+msgstr "Bislama"
 
 #: Utils.py:80
 msgid "Bosnian"
-msgstr ""
+msgstr "Bosniano"
 
 #: Utils.py:81
 msgid "Breton"
-msgstr ""
+msgstr "Bretão"
 
 #: Utils.py:82
-#, fuzzy
 msgid "Bulgarian"
-msgstr "Húngaro"
+msgstr "Búlgaro"
 
 #: Utils.py:83
 msgid "Burmese"
-msgstr ""
+msgstr "Brumanês"
 
 #: Utils.py:84
 msgid "Belarusian"
-msgstr ""
+msgstr "Bilorusso"
 
 #: Utils.py:85
 msgid "Cambodian"
-msgstr ""
+msgstr "Cambojano"
 
 #: Utils.py:86
 msgid "Catalan"
 msgstr "Catalão"
 
 #: Utils.py:87
-#, fuzzy
 msgid "Chinese"
-msgstr "Alterar"
+msgstr "Chinês"
 
 #: Utils.py:88
 msgid "Chinese/China"
-msgstr ""
+msgstr "Chinês/China"
 
 #: Utils.py:89
 msgid "Chinese/Taiwan"
-msgstr ""
+msgstr "Chinês/Taiwan"
 
 #: Utils.py:90
 msgid "Cornish"
-msgstr ""
+msgstr "Cornês"
 
 #: Utils.py:91
 msgid "Corsican"
-msgstr ""
+msgstr "Corso"
 
 #: Utils.py:92
-#, fuzzy
 msgid "Croatian"
-msgstr "Catalão"
+msgstr "Croata"
 
 #: Utils.py:93
 msgid "Czech"
-msgstr ""
+msgstr "Tcheco"
 
 #: Utils.py:94
-#, fuzzy
 msgid "Danish"
-msgstr "Espanhol"
+msgstr "Noroeguês"
 
 #: Utils.py:95
 msgid "Dutch"
-msgstr ""
+msgstr "Holandês"
 
 #: Utils.py:96
 msgid "Dutch/Belgium"
-msgstr ""
+msgstr "Holandês/Bélgica"
 
 #: Utils.py:97
 msgid "English"
-msgstr ""
+msgstr "Inglês"
 
 #: Utils.py:98
 msgid "English/United Kingdom"
-msgstr ""
+msgstr "Inglês/Reino Unido"
 
 #: Utils.py:99
 msgid "English/United States"
-msgstr ""
+msgstr "Inglês/Estados Unidos"
 
 #: Utils.py:100
 msgid "Esperanto"
-msgstr ""
+msgstr "Esperanto"
 
 #: Utils.py:101
 msgid "Estonian"
-msgstr ""
+msgstr "Estonês"
 
 #: Utils.py:102
 msgid "Faroese"
-msgstr ""
+msgstr "Faroês"
 
 #: Utils.py:103
 msgid "Fiji"
-msgstr ""
+msgstr "Fiji"
 
 #: Utils.py:104
 msgid "Finnish"
-msgstr ""
+msgstr "Finlandês"
 
 #: Utils.py:105
 msgid "French"
 msgstr "Francês"
 
 #: Utils.py:106
-#, fuzzy
 msgid "French/Belgium"
-msgstr "Francês"
+msgstr "Francês/Bélgica"
 
 #: Utils.py:107
-#, fuzzy
 msgid "French/Canada"
-msgstr "Francês"
+msgstr "Francês/Canadá"
 
 #: Utils.py:108
-#, fuzzy
 msgid "French/France"
-msgstr "Francês"
+msgstr "Francês/França"
 
 #: Utils.py:109
 msgid "French/Switzerland"
-msgstr ""
+msgstr "Francês/Suiça"
 
 #: Utils.py:110
 msgid "Frisian"
-msgstr ""
+msgstr "Frisian"
 
 #: Utils.py:111
 msgid "Galician"
-msgstr ""
+msgstr "Espanhol/Galícia"
 
 #: Utils.py:112
-#, fuzzy
 msgid "Georgian"
-msgstr "Alemão"
+msgstr "Georgia"
 
 #: Utils.py:113
 msgid "German"
 msgstr "Alemão"
 
 #: Utils.py:114
-#, fuzzy
 msgid "German/Austria"
-msgstr "Alemão"
+msgstr "Alemão/Aústria"
 
 #: Utils.py:115
-#, fuzzy
 msgid "German/Germany"
-msgstr "Alemão"
+msgstr "Alemão/Alemanha"
 
 #: Utils.py:116
 msgid "German/Switzerland"
-msgstr ""
+msgstr "Alemão/Suiça"
 
 #: Utils.py:117
 msgid "Greek"
-msgstr ""
+msgstr "Grego"
 
 #: Utils.py:118
 msgid "Greenlandic"
-msgstr ""
+msgstr "Groelandês"
 
 #: Utils.py:119
-#, fuzzy
 msgid "Guarani"
-msgstr "Húngaro"
+msgstr "Guarani"
 
 #: Utils.py:120
 msgid "Gujarati"
-msgstr ""
+msgstr "Gujarati"
 
 #: Utils.py:121
 msgid "Hausa"
-msgstr ""
+msgstr "Hausa"
 
 #: Utils.py:122
 msgid "Hebrew"
-msgstr ""
+msgstr "hebreu"
 
 #: Utils.py:123
-#, fuzzy
 msgid "Hindi"
-msgstr "Buscar"
+msgstr "Hindu"
 
 #: Utils.py:124
 msgid "Hungarian"
@@ -676,81 +655,79 @@ msgstr "Húngaro"
 
 #: Utils.py:125
 msgid "Icelandic"
-msgstr ""
+msgstr "Islândia"
 
 #: Utils.py:126
 msgid "Indonesian"
-msgstr ""
+msgstr "Indonésia"
 
 #: Utils.py:127
 msgid "Interlingua"
-msgstr ""
+msgstr "Intrerlíngua"
 
 #: Utils.py:128
 msgid "Interlingue"
-msgstr ""
+msgstr "Interlíngua"
 
 #: Utils.py:129
 msgid "Inuktitut"
-msgstr ""
+msgstr "Inuktitut"
 
 #: Utils.py:130
 msgid "Inupiak"
-msgstr ""
+msgstr "Inupiak"
 
 #: Utils.py:131
 msgid "Irish"
-msgstr ""
+msgstr "Irlandês"
 
 #: Utils.py:132
-#, fuzzy
 msgid "Italian"
-msgstr "Catalão"
+msgstr "Italiano"
 
 #: Utils.py:133
 msgid "Japanese"
 msgstr "Japonês"
 
 #: Utils.py:134
-#, fuzzy
 msgid "Javanese"
-msgstr "Japonês"
+msgstr "Javanês"
 
 #: Utils.py:135
 msgid "Kannada"
-msgstr ""
+msgstr "Kannada"
 
 #: Utils.py:136
 msgid "Kashmiri"
-msgstr ""
+msgstr "Kashmiri"
 
 #: Utils.py:137
 msgid "Kazakh"
-msgstr ""
+msgstr "Kazakh"
 
 #: Utils.py:138
 msgid "Kinyarwanda"
-msgstr ""
+msgstr "Kinyarwandanês"
 
 #: Utils.py:139
 msgid "Kirghiz"
-msgstr ""
+msgstr "Kirghiz"
 
 #: Utils.py:140
 msgid "Kirundi"
-msgstr ""
+msgstr "Kirundi"
 
 #: Utils.py:141
 msgid "Korean"
-msgstr ""
+msgstr "Coreano"
 
 #: Utils.py:142
 msgid "Kurdish"
-msgstr ""
+msgstr "Curdo"
 
 #: Utils.py:143
 msgid "Laothian"
-msgstr ""
+msgstr "Laoanês"
 
 #: Utils.py:144
 msgid "Latin"
@@ -758,23 +735,23 @@ msgstr ""
 
 #: Utils.py:145
 msgid "Latvian"
-msgstr ""
+msgstr "Latvério"
 
 #: Utils.py:146
 msgid "Lingala"
-msgstr ""
+msgstr "Lingala"
 
 #: Utils.py:147
 msgid "Lithuanian"
-msgstr ""
+msgstr "Lituano"
 
 #: Utils.py:148
 msgid "Luxembourgish"
-msgstr ""
+msgstr "Luxemburguês"
 
 #: Utils.py:149
 msgid "Macedonian"
-msgstr ""
+msgstr "Macedônico"
 
 #: Utils.py:150
 msgid "Malagasy"
@@ -790,11 +767,11 @@ msgstr ""
 
 #: Utils.py:153
 msgid "Maltese"
-msgstr ""
+msgstr "Maltês"
 
 #: Utils.py:154
 msgid "Maori"
-msgstr ""
+msgstr "Maori"
 
 #: Utils.py:155
 msgid "Marathi"
@@ -802,11 +779,11 @@ msgstr ""
 
 #: Utils.py:156
 msgid "Moldavian"
-msgstr ""
+msgstr "Moldávio"
 
 #: Utils.py:157
 msgid "Mongolian"
-msgstr ""
+msgstr "Mongol"
 
 #: Utils.py:158
 msgid "Nauru"
@@ -814,15 +791,15 @@ msgstr ""
 
 #: Utils.py:159
 msgid "Nepali"
-msgstr ""
+msgstr "Nepalês"
 
 #: Utils.py:160
 msgid "Northern Saami"
-msgstr ""
+msgstr "Saami do Norte"
 
 #: Utils.py:161
 msgid "Norwegian"
-msgstr ""
+msgstr "Noroeguês"
 
 #: Utils.py:162
 msgid "Occitan"
@@ -841,22 +818,20 @@ msgid "Pashto"
 msgstr ""
 
 #: Utils.py:166
-#, fuzzy
 msgid "Persian"
-msgstr "Alemão"
+msgstr "Persa"
 
 #: Utils.py:167
 msgid "Polish"
-msgstr ""
+msgstr "Polonês"
 
 #: Utils.py:168
-#, fuzzy
 msgid "Portuguese"
-msgstr "Propriedades"
+msgstr "Português"
 
 #: Utils.py:169
 msgid "Portuguese/Brazil"
-msgstr ""
+msgstr "Português/Brazil"
 
 #: Utils.py:170
 msgid "Punjabi"
@@ -872,37 +847,35 @@ msgstr ""
 
 #: Utils.py:173
 msgid "Romanian"
-msgstr ""
+msgstr "Romaniano"
 
 #: Utils.py:174
 msgid "Russian"
-msgstr ""
+msgstr "Russo"
 
 #: Utils.py:175
 msgid "Samoan"
-msgstr ""
+msgstr "Samoano"
 
 #: Utils.py:176
-#, fuzzy
 msgid "Sangho"
-msgstr "Espanhol"
+msgstr ""
 
 #: Utils.py:177
 msgid "Sanskrit"
-msgstr ""
+msgstr "Sânscrito"
 
 #: Utils.py:178
 msgid "Scots Gaelic"
-msgstr ""
+msgstr "Galês Escocês"
 
 #: Utils.py:179
-#, fuzzy
 msgid "Serbian"
-msgstr "Alemão"
+msgstr "Sérvio"
 
 #: Utils.py:180
 msgid "Serbo-Croatian"
-msgstr ""
+msgstr "Servo-Croata"
 
 #: Utils.py:181
 msgid "Sesotho"
@@ -917,9 +890,8 @@ msgid "Shona"
 msgstr ""
 
 #: Utils.py:184
-#, fuzzy
 msgid "Sindhi"
-msgstr "Buscar"
+msgstr ""
 
 #: Utils.py:185
 msgid "Sinhalese"
@@ -931,11 +903,11 @@ msgstr ""
 
 #: Utils.py:187
 msgid "Slovak"
-msgstr ""
+msgstr "Eslovaco"
 
 #: Utils.py:188
 msgid "Slovenian"
-msgstr ""
+msgstr "Esloveno"
 
 #: Utils.py:189
 msgid "Somali"
@@ -947,26 +919,23 @@ msgstr "Espanhol"
 
 #: Utils.py:191
 msgid "Spanish/Argentina"
-msgstr ""
+msgstr "Espanhol/Argentina"
 
 #: Utils.py:192
-#, fuzzy
 msgid "Spanish/Colombia"
-msgstr "Espanhol"
+msgstr "Espanhol/Colômbia"
 
 #: Utils.py:193
-#, fuzzy
 msgid "Spanish/Mexico"
-msgstr "Espanhol"
+msgstr "Espanhol/México"
 
 #: Utils.py:194
-#, fuzzy
 msgid "Spanish/Spain"
-msgstr "Espanhol"
+msgstr "Espanhol/Espanha"
 
 #: Utils.py:195
 msgid "Sundanese"
-msgstr ""
+msgstr "Sudanês"
 
 #: Utils.py:196
 msgid "Swahili"
@@ -974,7 +943,7 @@ msgstr ""
 
 #: Utils.py:197
 msgid "Swedish"
-msgstr ""
+msgstr "Sueco"
 
 #: Utils.py:198
 msgid "Tagalog"
@@ -985,9 +954,8 @@ msgid "Tajik"
 msgstr ""
 
 #: Utils.py:200
-#, fuzzy
 msgid "Tamil"
-msgstr "Título"
+msgstr ""
 
 #: Utils.py:201
 msgid "Tatar"
@@ -1003,7 +971,7 @@ msgstr ""
 
 #: Utils.py:204
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetano"
 
 #: Utils.py:205
 msgid "Tigrinya"
@@ -1019,11 +987,11 @@ msgstr ""
 
 #: Utils.py:208
 msgid "Turkish"
-msgstr ""
+msgstr "Turco"
 
 #: Utils.py:209
 msgid "Turkmen"
-msgstr ""
+msgstr "Turcomeno"
 
 #: Utils.py:210
 msgid "Twi"
@@ -1035,7 +1003,7 @@ msgstr ""
 
 #: Utils.py:212
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ucraniano"
 
 #: Utils.py:213
 msgid "Urdu"
@@ -1043,11 +1011,11 @@ msgstr ""
 
 #: Utils.py:214
 msgid "Uzbek"
-msgstr ""
+msgstr "Uzbeco"
 
 #: Utils.py:215
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamita"
 
 #: Utils.py:216
 msgid "Volapuk"
@@ -1055,7 +1023,7 @@ msgstr ""
 
 #: Utils.py:217
 msgid "Welsh"
-msgstr ""
+msgstr "Escocês"
 
 #: Utils.py:218
 msgid "Wolof"
@@ -1074,13 +1042,12 @@ msgid "Yoruba"
 msgstr ""
 
 #: Utils.py:222
-#, fuzzy
 msgid "Zhuang"
-msgstr "Alterar"
+msgstr ""
 
 #: Utils.py:223
 msgid "Zulu"
-msgstr ""
+msgstr "Zulu"
 
 #~ msgid "Default"
 #~ msgstr "Default"
