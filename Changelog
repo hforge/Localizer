@@ -2,6 +2,19 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2004-11-18 18:16:15 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-6
+
+    Summary:
+      fix i18m support, when there is not a catalog
+    Revision:
+      Localizer--main--1.1--patch-6
+
+    Fix i18m support, when there is not a catalog. Bug reported by Marco Bizzarri.
+
+    modified files:
+     Changelog __init__.py
+
+
 2004-11-18 16:47:39 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-5
 
     Summary:
