@@ -2,6 +2,19 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-01-21 17:13:08 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-15
+
+    Summary:
+      now PTS and Localizer's translation service work together
+    Revision:
+      Localizer--main--1.1--patch-15
+
+    This has been achieved thorugh patching of PlacelessTranslationService.
+
+    modified files:
+     Changelog __init__.py
+
+
 2005-01-21 16:04:46 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-14
 
     Summary:

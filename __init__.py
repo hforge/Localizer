@@ -29,6 +29,7 @@ from LocalFiles import LocalDTMLFile, LocalPageTemplateFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty
 from GettextTag import GettextTag
 
+
 misc_ = {'arrow_left': ImageFile('img/arrow_left.gif', globals()),
          'arrow_right': ImageFile('img/arrow_right.gif', globals()),
          'eye_opened': ImageFile('img/eye_opened.gif', globals()),
@@ -37,6 +38,13 @@ misc_ = {'arrow_left': ImageFile('img/arrow_left.gif', globals()),
 
 
 class GlobalTranslationService:
+    def __init__(self, service=None):
+        if service is not None:
+            self.pts_wrapper = PTSWrapper(service)
+        else:
+            self.pts_wrapper = None
+
+
     def translate(self, domain, msgid, *args, **kw):
         if domain == 'default':
             domain = 'gettext'
@@ -53,7 +61,21 @@ class GlobalTranslationService:
             if isinstance(translation_service, MessageCatalog):
                 return translation_service.translate(domain, msgid, *args,
                                                      **kw)
+        # Try PlacelessTranslationService
+        if self.pts_wrapper is not None:
+            return self.pts_wrapper.translate(domain, msgid, *args, **kw)
+
         return msgid
+
+
+# Import from PlacelessTranslationService
+try:
+    from Products import PlacelessTranslationService
+except ImportError:
+    PTSWrapper = None
+else:
+    PTSWrapper = PlacelessTranslationService.PTSWrapper
+    PlacelessTranslationService.PTSWrapper = GlobalTranslationService
 
 
 
@@ -102,5 +124,7 @@ def initialize(context):
 
     # Register the dtml-gettext tag
     String.commands['gettext'] = GettextTag
+
     # Register the global translation service for the i18n namespace (ZPT)
-    setGlobalTranslationService(GlobalTranslationService())
+    if PTSWrapper is None:
+        setGlobalTranslationService(GlobalTranslationService())
