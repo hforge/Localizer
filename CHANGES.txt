@@ -1,3 +1,8 @@
+1.1.0 (2005/04/0X)
+
+  Nothing new, just some information files have been updated.
+
+
 1.1.0rc1 (2005/03/21)
 
   User Interface

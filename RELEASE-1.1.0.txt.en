@@ -1,32 +1,59 @@
 
-Localizer 1.1.0 released!
+Localizer 1.1
+=============
 
-Localizer is a Zope product that provides a set of facilities to develop
-multilingual web applications. It offers solutions to internationalize
-the user interfaces and to manage multilingual content.
+April 7, 2005 - Two years after the release of Localizer 1.0, I am
+pleased to announce the availability of the next major version,
+Localizer 1.1.
+
+Localizer is a Zope product addressed to developers and web masters.
+It provides solutions to build multilingual products and web sites,
+ranging from the internationalization and localization of the user
+interface to the the management of multilingual content.
 
 
 What's new in 1.1
 -----------------
 
- - Added support for industry standards TMX and XLIFF.
+This release brings new key features, specifically it provides support
+for the industry standards TMX [1] and XLIFF [2], what enhances the
+interoperability of Localizer based applications within mainstream
+environments.
 
- - Support for Zope Page Templates (the i18n namespace).
+Native support for the 'i18n' namespace from ZPT (Zope Page Templates)
+is also included. Hence avoiding the need to install another product.
 
- - User interface improvements, specially for LocalContent objects.
+The user interfaces have been vastly improved, specially for 'LocalContent'
+objects. And they have been localized to four new languages: danish,
+italian, portuguese and russian.
 
- - New translations: danish, italian, portuguese and russian.
+Localizer 1.1 has a new packaging too, now it depends on the itools Python
+package and the iHotfix Zope product. While this change makes installation
+slightly harder, it has noticeably helped on the management of the source.
+And it has allowed to bring, through itools, some of the Localizer services
+to the wider audience of Python developers.
 
- - New packaging, requires installation of itools and iHotfix.
-
- - Many bugs fixed.
+And last but not least, the stability has been improved and many bugs have
+been fixed, resulting in a mature and even more reliable product.
 
 
 Credits
 -------
 
+XXX
+
 Many thanks to Alexey Lubimov, Cornel Nitu, Eduardo Corrales, Marco Bizzarri,
-Mario Olimpio de Menezes, Roberto Quero, Søren Roug, 
+Mario Olimpio de Menezes, Roberto Quero, Rodrigo Senra and Søren Roug.
+
+
+Install
+-------
+
+ 1. Download the Localizer metapackage from http://www.localizer.org
+
+ 2. Unpack the tarball
+
+ 3. Follow the instructions within the README file
 
 
 Resources

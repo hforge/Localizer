@@ -2,6 +2,45 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-04-06 18:19:35 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-25
+
+    Summary:
+      getting ready to release 1.1.0 (not finished yet)
+    Revision:
+      Localizer--main--1.1--patch-25
+
+
+    modified files:
+     CHANGES.txt Changelog README.txt RELEASE-1.1.0.txt.en
+     version.txt
+
+    renamed files:
+     .arch-ids/RELEASE-0.9.0.txt.id
+       ==> old/.arch-ids/RELEASE-0.9.0.txt.id
+     .arch-ids/RELEASE-0.9.1.txt.en.id
+       ==> old/.arch-ids/RELEASE-0.9.1.txt.en.id
+     .arch-ids/RELEASE-0.9.1.txt.es.id
+       ==> old/.arch-ids/RELEASE-0.9.1.txt.es.id
+     .arch-ids/RELEASE-0.9.1.txt.fr.id
+       ==> old/.arch-ids/RELEASE-0.9.1.txt.fr.id
+     .arch-ids/RELEASE-0.9.2.txt.en.id
+       ==> old/.arch-ids/RELEASE-0.9.2.txt.en.id
+     .arch-ids/RELEASE-0.9.3.txt.en.id
+       ==> old/.arch-ids/RELEASE-0.9.3.txt.en.id
+     RELEASE-0.9.0.txt
+       ==> old/RELEASE-0.9.0.txt
+     RELEASE-0.9.1.txt.en
+       ==> old/RELEASE-0.9.1.txt.en
+     RELEASE-0.9.1.txt.es
+       ==> old/RELEASE-0.9.1.txt.es
+     RELEASE-0.9.1.txt.fr
+       ==> old/RELEASE-0.9.1.txt.fr
+     RELEASE-0.9.2.txt.en
+       ==> old/RELEASE-0.9.2.txt.en
+     RELEASE-0.9.3.txt.en
+       ==> old/RELEASE-0.9.3.txt.en
+
+
 2005-03-21 16:02:11 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-24
 
     Summary:
