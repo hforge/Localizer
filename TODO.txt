@@ -2,22 +2,10 @@
 It would be nice to do for 1.1.0
 ================================
 
- * Andy McKay (on Localizer dependencies with itools and iHotfix):
-
-   "You might want to stick a dependency check in __init__.py, Localizer
-    fails in confusing manner to users in Zope. It's not broken in the
-    Control_Panel, but is if an object exists in the ZMI and its not in the
-    drop down list for add products. No error message is generated either."
-
  * MessageCatalog, sometimes export fails because there is not charset.
    [I believe this one is fixed, check it.]
 
- * Provide support for domains in the i18n namespace of ZPT. See if something
-   else is missing.
-
  * Test woth Python 2.4
-
- * Try to solve the problem pointed out by Miguel Perez, see the email.
 
 
 

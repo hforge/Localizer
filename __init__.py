@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2004  Juan David Ibáñez Palomar <jdavid@itaapy.com>
+# Copyright (C) 2000-2005  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -16,6 +16,18 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
+# First check itools and iHotfix are installed
+try:
+    import itools
+except ImportError:
+    raise ImportError, ('itools is not installed, download from'
+                        ' http://www.ikaaro.org/itools')
+try:
+    from Products import iHotfix
+except ImportError:
+    raise ImportError, ('iHotfix is not installed, download from'
+                        ' http://www.ikaaro.org/localizer')
+
 # Import from Zope
 from ImageFile import ImageFile
 from DocumentTemplate.DT_String import String
@@ -28,6 +40,7 @@ import Localizer, LocalContent, MessageCatalog, LocalFolder
 from LocalFiles import LocalDTMLFile, LocalPageTemplateFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty
 from GettextTag import GettextTag
+
 
 
 misc_ = {'arrow_left': ImageFile('img/arrow_left.gif', globals()),
