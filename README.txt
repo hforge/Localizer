@@ -11,23 +11,27 @@ Requirements
 
   - Zope 2.7.0 or later
 
-  - itools 0.5.x (download from http://www.ikaaro.org)
+  - itools 0.6.x (download from http://www.ikaaro.org/itools)
 
-  - iHotfix 0.5.x (download from http://www.ikaaro.org)
+  - iHotfix 0.5.x (download from http://www.ikaaro.org/localizer)
 
 
 Installation
 
-  Download the Localizer tarball into the Products directory of your Zope
-  instance, and rename it to 'Localizer'; or unpack it somewhere else and
-  create a symbolic link from the Products directory.
+  Download Localizer. Unpack the tarball and install it in the "Products"
+  directory:
+
+    $ tar xzf Localizer-1.1.X.tar.gz
+    $ cp -r Localizer-1.1.0b5 <Zope instance>/Products/Localizer
+
+  Another option, case you are running Unix, is to use symbolic links:
+
+    $ ln -s Localizer-1.1.0b5 <Zope instance>/Products/Localizer
 
 
 Resources
 
   - "Home site":http://www.localizer.org
-
-  - "Download":http://www.ikaaro.org
 
   - "Mailing list":http://in-girum.net/mailman/listinfo/localizer
 
@@ -48,7 +52,7 @@ Resources
 
 Author and License
 
-  Copyright 2001-2004  J. David Ibáñez (jdavid@itaapy.com)
+  Copyright 2001-2005  J. David Ibáñez (jdavid@itaapy.com)
             2001 Universitat Jaume I
 
   This program is free software; you can redistribute it and/or

@@ -2,9 +2,6 @@
 It would be nice to do for 1.1.0
 ================================
 
- * README.txt, explain it better the new convention to expand the tarballs
-   to a directory that includes the software version.
-
  * Andy McKay (on Localizer dependencies with itools and iHotfix):
 
    "You might want to stick a dependency check in __init__.py, Localizer
@@ -18,8 +15,9 @@ It would be nice to do for 1.1.0
  * Provide support for domains in the i18n namespace of ZPT. See if something
    else is missing.
 
- * Integrate the new LPM interface, being developed by Cornel Nitu and
-   Søren Roug.
+ * Test woth Python 2.4
+
+ * Try to solve the problem pointed out by Miguel Perez, see the email.
 
 
 
