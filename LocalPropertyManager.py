@@ -234,10 +234,12 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
         """Edit a property"""
         def_lang = self.get_default_language()
 
+        form = REQUEST.form
         for prop in self.getLocalProperties():
             name = prop['id']
-            value = REQUEST.get(name, [])
-            self.set_localpropvalue(name, def_lang, value.strip())
+            if form.has_key(name):
+                value = form[name].strip()
+                self.set_localpropvalue(name, def_lang, value)
 
         if REQUEST is not None:
             url = "%s/%s?manage_tabs_message=Saved changes." \
