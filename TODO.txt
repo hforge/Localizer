@@ -2,6 +2,9 @@
 It would be nice to do for 1.1.0
 ================================
 
+ * README.txt, explain it better the new convention to expand the tarballs
+   to a directory that includes the software version.
+
  * Andy McKay (on Localizer dependencies with itools and iHotfix):
 
    "You might want to stick a dependency check in __init__.py, Localizer

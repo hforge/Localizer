@@ -2,6 +2,22 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2004-11-29 12:47:16 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-9
+
+    Summary:
+      add italian translation
+    Revision:
+      Localizer--main--1.1--patch-9
+
+    Add italian translation, thanks to Marco Bizzarri.
+
+    new files:
+     locale/.arch-ids/it.po.id locale/it.po
+
+    modified files:
+     Changelog TODO.txt
+
+
 2004-11-27 20:10:46 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-8
 
     Summary:
