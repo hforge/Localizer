@@ -49,9 +49,12 @@ class GlobalTranslationService:
 
         # Find it by acquisition
         translation_service = getattr(context, domain, None)
-        if translation_service is None:
-            return msgid
-        return translation_service.translate(domain, msgid, *args, **kw)
+        if translation_service is not None:
+            from MessageCatalog import MessageCatalog
+            if isinstance(translation_service, MessageCatalog):
+                return translation_service.translate(domain, msgid, *args,
+                                                     **kw)
+        return msgid
 
 
 

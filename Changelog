@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-01-21 11:11:53 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-13
+
+    Summary:
+      translation service, check the "domain" is a message catalog
+    Revision:
+      Localizer--main--1.1--patch-13
+
+
+    modified files:
+     Changelog __init__.py
+
+
 2005-01-09 13:26:20 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-12
 
     Summary:
