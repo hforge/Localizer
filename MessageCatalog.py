@@ -222,6 +222,12 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     __call__ = gettext
 
 
+    def translate(self, domain, msgid, *args, **kw):
+        """
+        This method is required to get the i18n namespace from ZPT working.
+        """
+        return self.gettext(msgid)
+
 
     #######################################################################
     # Management screens

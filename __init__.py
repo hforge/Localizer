@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2002  Juan David Ibáñez Palomar <j-david@noos.fr>
+# Copyright (C) 2000-2004  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -16,15 +16,14 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
-"""Localizer"""
-
-__version__ = "$Revision: 1.50 $"
-
-
+# Import from Zope
 from ImageFile import ImageFile
 from DocumentTemplate.DT_String import String
 import ZClasses
+from Products.PageTemplates.GlobalTranslationService import \
+     setGlobalTranslationService
 
+# Import from Localizer
 import Localizer, LocalContent, MessageCatalog, LocalFolder
 from LocalFiles import LocalDTMLFile, LocalPageTemplateFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty
@@ -35,6 +34,23 @@ misc_ = {'arrow_left': ImageFile('img/arrow_left.gif', globals()),
          'arrow_right': ImageFile('img/arrow_right.gif', globals()),
          'eye_opened': ImageFile('img/eye_opened.gif', globals()),
          'eye_closed': ImageFile('img/eye_closed.gif', globals())}
+
+
+
+class GlobalTranslationService:
+    def translate(self, *args, **kw):
+        context = kw.get('context')
+        if context is None:
+            # Placeless!
+            return None # no translation
+
+        # Find a placeful translation service
+        request = context.REQUEST.other
+        # Find it by acquisition
+        translation_service = getattr(context, 'gettext', None)
+        if translation_service is None:
+            return None # no translation
+        return translation_service.translate(*args, **kw)
 
 
 
@@ -76,3 +92,5 @@ def initialize(context):
 
     # Register the dtml-gettext tag
     String.commands['gettext'] = GettextTag
+    # Register the global translation service for the i18n namespace (ZPT)
+    setGlobalTranslationService(GlobalTranslationService())

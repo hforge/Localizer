@@ -2,6 +2,19 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2004-10-31 20:29:19 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-3
+
+    Summary:
+      add support for the i18n namespace (ZPT)
+    Revision:
+      Localizer--main--1.1--patch-3
+
+    Add support for the i18n namespace (ZPT).
+
+    modified files:
+     Changelog MessageCatalog.py __init__.py
+
+
 2004-09-14 09:03:55 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-2
 
     Summary:
