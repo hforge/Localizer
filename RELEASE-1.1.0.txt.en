@@ -6,17 +6,19 @@ April 7, 2005 - Two years after the release of Localizer 1.0, I am
 pleased to announce the availability of the next major version,
 Localizer 1.1.
 
-Localizer is a Zope product addressed to developers and web masters.
+Localizer is a Zope [1] product addressed to developers and web masters.
 It provides solutions to build multilingual products and web sites,
 ranging from the internationalization and localization of the user
 interface to the the management of multilingual content.
+
+jdavid at itaapy.com [2]
 
 
 What's new in 1.1
 -----------------
 
 This release brings new key features, specifically it provides support
-for the industry standards TMX [1] and XLIFF [2], what enhances the
+for the industry standards TMX [3] and XLIFF [4], what enhances the
 interoperability of Localizer based applications within mainstream
 environments.
 
@@ -31,7 +33,7 @@ Localizer 1.1 has a new packaging too, now it depends on the itools Python
 package and the iHotfix Zope product. While this change makes installation
 slightly harder, it has noticeably helped on the management of the source.
 And it has allowed to bring, through itools, some of the Localizer services
-to the wider audience of Python developers.
+to the wider audience of Python [5] developers.
 
 And last but not least, the stability has been improved and many bugs have
 been fixed, resulting in a mature and even more reliable product.
@@ -40,14 +42,29 @@ been fixed, resulting in a mature and even more reliable product.
 Credits
 -------
 
-XXX
+This is the first release where most work has been contributed by others
+than the original author. Credit where credit's due.
 
-Many thanks to Alexey Lubimov, Cornel Nitu, Eduardo Corrales, Marco Bizzarri,
-Mario Olimpio de Menezes, Roberto Quero, Rodrigo Senra and Søren Roug.
+To Eduardo Corrales and Roberto Quero from the Deusto University [6], for
+the original implementation of the TMX standard.
+
+To Søren Roug and Cornel Nitu from the European Environment Agency [7], for
+their work on the TMX code, the implementation of the XLIFF standard, the
+overhaul of the LocalContent interfaces, and the danish translation.
+
+To Alexey Lubimov for the russian translation.
+
+To Mario Olimpio de Menezes for the original portuguese translation.
+
+To Rodrigo Senra for updating the portuguese translation, and for improving
+the Localizer API.
+
+To Marco Bizzarri for the italian translation, and for improving the
+stability.
 
 
-Install
--------
+Download and Install
+--------------------
 
  1. Download the Localizer metapackage from http://www.localizer.org
 
@@ -67,3 +84,15 @@ http://in-girum.net/mailman/listinfo/localizer
 
 Bug Tracker
 http://in-girum.net/cgi-bin/bugzilla/index.cgi
+
+
+References
+----------
+
+[1] http://www.zope.org
+[2] http://www.itaapy.com
+[3] http://www.lisa.org/tmx/
+[4] http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=xliff
+[5] http://www.python.org
+[6] http://www.deusto.es/
+[7] http://www.eea.eu.int/
