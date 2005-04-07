@@ -26,8 +26,8 @@ Native support for the 'i18n' namespace from ZPT (Zope Page Templates)
 is also included. Hence avoiding the need to install another product.
 
 The user interfaces have been vastly improved, specially for 'LocalContent'
-objects. And they have been localized to four new languages: danish,
-italian, portuguese and russian.
+objects. And they have been localized to four new languages: Danish,
+Italian, Portuguese and Russian.
 
 Localizer 1.1 has a new packaging too, now it depends on the itools Python
 package and the iHotfix Zope product. While this change makes installation
@@ -50,16 +50,16 @@ the original implementation of the TMX standard.
 
 To Søren Roug and Cornel Nitu from the European Environment Agency [7], for
 their work on the TMX code, the implementation of the XLIFF standard, the
-overhaul of the LocalContent interfaces, and the danish translation.
+overhaul of the LocalContent interfaces, and the Danish translation.
 
-To Alexey Lubimov for the russian translation.
+To Alexey Lubimov for the Russian translation.
 
-To Mario Olimpio de Menezes for the original portuguese translation.
+To Mario Olimpio de Menezes for the original Portuguese translation.
 
-To Rodrigo Senra for updating the portuguese translation, and for improving
+To Rodrigo Senra for updating the Portuguese translation, and for improving
 the Localizer API.
 
-To Marco Bizzarri for the italian translation, and for improving the
+To Marco Bizzarri for the Italian translation, and for improving the
 stability.
 
 

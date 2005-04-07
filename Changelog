@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-04-07 12:29:22 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-27
+
+    Summary:
+      spell check the press release
+    Revision:
+      Localizer--main--1.1--patch-27
+
+
+    modified files:
+     Changelog RELEASE-1.1.0.txt.en
+
+
 2005-04-07 12:18:16 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-26
 
     Summary:
