@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-04-10 16:54:11 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-28
+
+    Summary:
+      get ready to release 1.1.0
+    Revision:
+      Localizer--main--1.1--patch-28
+
+
+    modified files:
+     CHANGES.txt Changelog RELEASE-1.1.0.txt.en
+
+
 2005-04-07 12:29:22 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-27
 
     Summary:

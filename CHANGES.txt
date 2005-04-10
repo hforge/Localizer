@@ -1,4 +1,4 @@
-1.1.0 (2005/04/0X)
+1.1.0 (2005/04/10)
 
   Nothing new, just some information files have been updated.
 
