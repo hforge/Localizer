@@ -31,11 +31,17 @@
 	      <input type="hidden" name="empty" value="<dtml-var empty>">
 	      <input type="hidden" name="message:utf8:ustring"
 		     value="<dtml-var msg_encoded html_quote>">
-	      <textarea cols="65" rows="10" wrap="off" readonly><dtml-var msg html_quote></textarea>
-
-	      <br><dtml-var "gettext('Note')">:&nbsp;<input name="note:utf8:ustring" type="text" value="&dtml-note;" size="55">
-              <br>
-
+              <fieldset>
+                <legend><dtml-var "gettext('Message to translate')"></legend>
+                <div style="font-family: monospace"><dtml-var msg html_quote></div>
+              </fieldset>
+              <fieldset>
+                <legend><dtml-var "gettext('Note')"></legend>
+                <input name="note:utf8:ustring" type="text" value="&dtml-note;" size="55">
+              </fieldset>
+              <fieldset>
+                <legend><dtml-var "gettext('Translation')"></legend>
+              Target Language:
               <dtml-in languages mapping sort=name>
                 <dtml-let name="gettext(name)"
                           url="get_url(URL, batch_start, batch_size, regex, code, empty, msg=msg_encoded)">
@@ -45,6 +51,7 @@
 	      <input type="hidden" name="language" value="<dtml-var lang>">
               <br>
               <textarea name="translation:utf8:ustring" cols="65" rows="10" wrap="off"><dtml-var translation html_quote></textarea>
+              </fieldset>
               <br>
               <input type="submit" name="manage_editMessage:method"
                      value=" <dtml-var "gettext('Save')"> ">
@@ -63,6 +70,8 @@
         </dtml-if>
       </td>
       <td valign="top" width="300">
+        <fieldset>
+          <legend><dtml-var "gettext('Browse the messages')"></legend>
         <form action="manage_messages" action="get">
 	  <input type="hidden" name="batch_start:int"
 	         value="<dtml-var batch_start>">
@@ -99,6 +108,7 @@
 	<dtml-else>
 	  <dtml-gettext>There are no messages.</dtml-gettext>
 	</dtml-if>
+        </fieldset>
       </td>
     </tr>
   </table>
