@@ -21,12 +21,12 @@ Installation
   Download Localizer. Unpack the tarball and install it in the "Products"
   directory::
 
-    $ tar xzf Localizer-1.1.0rc1.tar.gz
-    $ cp -r Localizer-1.1.0rc1 <Zope instance>/Products/Localizer
+    $ tar xzf Localizer-1.1.0.tar.gz
+    $ cp -r Localizer-1.1.0 <Zope instance>/Products/Localizer
 
   Another option, case you are running Unix, is to use symbolic links::
 
-    $ ln -s Localizer-1.1.0rc1 <Zope instance>/Products/Localizer
+    $ ln -s Localizer-1.1.0 <Zope instance>/Products/Localizer
 
 
 Resources
