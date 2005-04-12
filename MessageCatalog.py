@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2004  Juan David Ibáñez Palomar <jdavid@itaapy.com>
+# Copyright (C) 2000-2005  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 #               2003  Roberto Quero, Eduardo Corrales
 #               2004  Søren Roug
 #
@@ -570,7 +570,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                 messages[msgid][lang] = msgstr
 
         # Set the encoding (the full header should be loaded XXX)
-        self.update_po_header(lang, charset=po.encoding)
+        self.update_po_header(lang, charset=po.get_encoding())
 
 
     security.declareProtected('Manage messages', 'manage_import')
