@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-05-03 10:32:13 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-32
+
+    Summary:
+      backwards compatibility patches by Yoshinori Okuji
+    Revision:
+      Localizer--main--1.1--patch-32
+
+
+    modified files:
+     Changelog LanguageManager.py MessageCatalog.py
+
+
 2005-05-03 10:09:22 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-31
 
     Summary:
