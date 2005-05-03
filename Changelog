@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-05-03 10:09:22 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-31
+
+    Summary:
+      fix "LPM.get_available_languages" when property is empty
+    Revision:
+      Localizer--main--1.1--patch-31
+
+
+    modified files:
+     Changelog LocalPropertyManager.py
+
+
 2005-04-11 14:13:37 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-30
 
     Summary:
