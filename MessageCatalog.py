@@ -38,7 +38,7 @@ from cgi import escape
 
 # Import from itools
 from itools.resources import memory
-from itools.handlers import PO
+from itools.gettext import PO
 
 # Import from Zope
 from AccessControl import ClassSecurityInfo
