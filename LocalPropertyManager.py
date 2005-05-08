@@ -327,8 +327,11 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
             # Is this thing right??
             return languages
         else:
-            property = self._local_properties[id]
-            return [ x for x in languages if property.get(x, None) ]
+            if id in self._local_properties:
+                property = self._local_properties[id]
+                return [ x for x in languages if property.get(x, None) ]
+            else:
+                return []
 
 
     security.declarePublic('get_default_language')

@@ -2,6 +2,31 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.2
 #
 
+2005-05-08 17:45:17 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-6
+
+    Summary:
+      merge fixes from the 1.1 branch
+    Revision:
+      Localizer--main--1.2--patch-6
+
+    Patches applied:
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.1--patch-31
+       fix "LPM.get_available_languages" when property is empty
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.1--patch-32
+       backwards compatibility patches by Yoshinori Okuji
+    
+
+    modified files:
+     Changelog LanguageManager.py LocalPropertyManager.py
+     MessageCatalog.py
+
+    new patches:
+     jdavid@itaapy.com--public/Localizer--main--1.1--patch-31
+     jdavid@itaapy.com--public/Localizer--main--1.1--patch-32
+
+
 2005-04-19 10:38:55 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-5
 
     Summary:

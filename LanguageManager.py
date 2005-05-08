@@ -104,11 +104,12 @@ class LanguageManager(i18n.Multilingual):
 
 
     security.declareProtected('Manage languages', 'manage_addLanguage')
-    def manage_addLanguage(self, language, REQUEST, RESPONSE):
+    def manage_addLanguage(self, language, REQUEST=None, RESPONSE=None):
         """ """
         self.add_language(language)
 
-        RESPONSE.redirect("%s/manage_languages" % REQUEST['URL1'])
+        if RESPONSE is not None:
+            RESPONSE.redirect("%s/manage_languages" % REQUEST['URL1'])
 
 
     security.declareProtected('Manage languages', 'manage_delLanguages')

@@ -576,7 +576,14 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     security.declareProtected('Manage messages', 'manage_import')
     def manage_import(self, lang, file, REQUEST=None, RESPONSE=None):
         """ """
-        self.po_import(lang, file.read())
+        # XXX For backwards compatibility only, use "po_import" instead.
+        if isinstance(file, str):
+            content = file
+        else:
+            content = file.read()
+
+        self.po_import(lang, content)
+
         if RESPONSE is not None:
             RESPONSE.redirect('manage_messages')
 
