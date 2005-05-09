@@ -2,6 +2,24 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-05-09 16:07:03 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-33
+
+    Summary:
+      check for TranslationService before installing Localizer's
+    Revision:
+      Localizer--main--1.1--patch-33
+
+    Check wether the product "TranslationService" is installed before
+    deploying the Localizer's translation service. This is a backwards
+    compatibility fix to avoid breaking existing sites that use the
+    "TranslationService" product.
+    
+    Fix provided by Yoshinori Okuji.
+
+    modified files:
+     Changelog __init__.py
+
+
 2005-05-03 10:32:13 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-32
 
     Summary:
