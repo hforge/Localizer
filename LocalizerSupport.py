@@ -59,8 +59,8 @@ __version__ = '1.1.0'
 
 try:
     from Products import iHotfix
+    from Products.iHotfix import N_
     _ = iHotfix.translation(globals())
-    N_ = iHotfix.dummy
 
     from Products.Localizer import LocalDTMLFile, LocalPageTemplateFile
 except ImportError:

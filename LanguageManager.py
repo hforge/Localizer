@@ -28,7 +28,7 @@ from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
 
 # Import from iHotfix
-from Products.iHotfix import dummy as N_
+from Products.iHotfix import N_
 
 # Import from Localizer
 from LocalFiles import LocalDTMLFile

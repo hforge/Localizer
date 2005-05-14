@@ -26,6 +26,7 @@ import Globals
 
 # Import from iHotfix
 from Products import iHotfix
+from Products.iHotfix import N_
 
 # Import from Localizer
 from LanguageManager import LanguageManager
@@ -35,7 +36,6 @@ from LocalFiles import LocalDTMLFile
 
 # To translate.
 _ = iHotfix.translation(globals())
-N_ = iHotfix.dummy
 
 
 # XXX

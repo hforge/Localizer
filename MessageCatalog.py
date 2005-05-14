@@ -49,6 +49,7 @@ from OFS.SimpleItem import SimpleItem
 
 # Import from iHotfix
 from Products import iHotfix
+from Products.iHotfix import N_
 
 # Import from Localizer
 from LanguageManager import LanguageManager
@@ -59,7 +60,6 @@ from xliff_parser import HandleXliffParsing
 
 
 _ = iHotfix.translation(globals())
-N_ = iHotfix.dummy
 
 
 def md5text(str):

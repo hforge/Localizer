@@ -17,7 +17,8 @@
 
 
 # Import from iHotfix
-from Products.iHotfix import translation, dummy
+from Products.iHotfix import translation
+from Products.iHotfix import N_ as dummy
 
 
 # XXX This module is kept only for backwards compatibility with

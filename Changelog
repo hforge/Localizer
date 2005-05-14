@@ -2,6 +2,20 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.2
 #
 
+2005-05-14 19:31:16 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-8
+
+    Summary:
+      update to the last itools/iHotfix (itools.gettext.domains)
+    Revision:
+      Localizer--main--1.2--patch-8
+
+
+    modified files:
+     Changelog Gettext.py LanguageManager.py LocalContent.py
+     LocalFiles.py LocalFolder.py LocalPropertyManager.py
+     Localizer.py LocalizerSupport.py MessageCatalog.py
+
+
 2005-05-08 17:50:36 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-7
 
     Summary:

@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2003  Juan David Ibáñez Palomar <jdavid@itaapy.com>
+# Copyright (C) 2000-2005 Juan David Ibáñez Palomar <jdavid@itaapy.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -25,33 +25,37 @@ LocalPageTemplateFile, which should be used instead of DTMLFile and
 PageTemplateFile.
 """
 
-
-# Import Python modules
+# Import from the Standard Library
 import os
 
+# Import from itools
+from itools import get_abspath
+from itools.gettext import domains
+
 # Import Zope modules
-from Globals import DTMLFile, package_home
+from Globals import DTMLFile
 
 # Import from iHotfix
-from Products.iHotfix import gettext
+from Products.iHotfix import Domain
 
 
+class LocalDTMLFile(DTMLFile, Domain):
 
-class LocalDTMLFile(DTMLFile):
     def __init__(self, name, _prefix=None, **kw):
         apply(LocalDTMLFile.inheritedAttribute('__init__'),
               (self, name, _prefix), kw)
-        self.locale = os.path.join(package_home(_prefix), 'locale')
+
+        domain = get_abspath(_prefix, 'locale')
+        self.class_domain = domain
+        domains.register_domain(domain, domain)
+
 
     def _exec(self, bound_data, args, kw):
         # Add our gettext first
         bound_data['gettext'] = self.gettext
-        bound_data['ugettext'] = self.ugettext  # XXX backwards compatibility
+        bound_data['ugettext'] = self.gettext  # XXX backwards compatibility
         return apply(LocalDTMLFile.inheritedAttribute('_exec'),
                      (self, bound_data, args, kw))
-
-    gettext = gettext
-    ugettext = gettext  # XXX backwards compatibility
 
 
 # Zope Page Templates (ZPT)
@@ -63,18 +67,20 @@ except ImportError:
     class LocalPageTemplateFile:
         pass
 else:
-    class LocalPageTemplateFile(PageTemplateFile):
+    class LocalPageTemplateFile(PageTemplateFile, Domain):
+
         def __init__(self, name, _prefix=None, **kw):
             apply(LocalPageTemplateFile.inheritedAttribute('__init__'),
                   (self, name, _prefix), kw)
-            self.locale = os.path.join(package_home(_prefix), 'locale')
+
+            domain = get_abspath(_prefix, 'locale')
+            self.class_domain = domain
+            domains.register_domain(domain, domain)
+
 
         def _exec(self, bound_data, args, kw):
             # Add our gettext first
             bound_data['gettext'] = self.gettext
-            bound_data['ugettext'] = self.ugettext # XXX backwards compatibility
+            bound_data['ugettext'] = self.gettext # XXX backwards compatibility
             return apply(LocalPageTemplateFile.inheritedAttribute('_exec'),
                          (self, bound_data, args, kw))
-
-        gettext = gettext
-        ugettext = gettext  # XXX backwards compatibility

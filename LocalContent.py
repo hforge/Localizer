@@ -31,6 +31,7 @@ from Globals import InitializeClass, MessageDialog
 
 # Import from iHotfix
 from Products import iHotfix
+from Products.iHotfix import N_
 
 # Import from Localizer
 from LocalFiles import LocalDTMLFile
@@ -40,7 +41,6 @@ from xliff_parser import HandleXliffParsing
 
 
 _ = iHotfix.translation(globals())
-N_ = iHotfix.dummy
 
 
 manage_addLocalContentForm = LocalDTMLFile('ui/LocalContent_add', globals())

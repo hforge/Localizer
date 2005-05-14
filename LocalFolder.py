@@ -22,6 +22,7 @@ from OFS.Folder import Folder
 
 # Import from iHotfix
 from Products import iHotfix
+from Products.iHotfix import N_
 
 # Import from Localizer
 from LanguageManager import LanguageManager
@@ -30,7 +31,6 @@ from LocalAttributes import LocalAttribute, LocalAttributes
 
 
 _ = iHotfix.translation(globals())
-N_ = iHotfix.dummy
 
 
 
