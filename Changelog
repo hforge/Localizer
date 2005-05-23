@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.2
 #
 
+2005-05-23 18:06:35 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-9
+
+    Summary:
+      update to last changes in itools.gettext
+    Revision:
+      Localizer--main--1.2--patch-9
+
+
+    modified files:
+     Changelog LocalFiles.py
+
+
 2005-05-14 19:31:16 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-8
 
     Summary:

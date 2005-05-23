@@ -36,10 +36,10 @@ from itools.gettext import domains
 from Globals import DTMLFile
 
 # Import from iHotfix
-from Products.iHotfix import Domain
+from Products.iHotfix import DomainAware
 
 
-class LocalDTMLFile(DTMLFile, Domain):
+class LocalDTMLFile(DTMLFile, DomainAware):
 
     def __init__(self, name, _prefix=None, **kw):
         apply(LocalDTMLFile.inheritedAttribute('__init__'),
@@ -67,7 +67,7 @@ except ImportError:
     class LocalPageTemplateFile:
         pass
 else:
-    class LocalPageTemplateFile(PageTemplateFile, Domain):
+    class LocalPageTemplateFile(PageTemplateFile, DomainAware):
 
         def __init__(self, name, _prefix=None, **kw):
             apply(LocalPageTemplateFile.inheritedAttribute('__init__'),
