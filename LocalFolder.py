@@ -66,8 +66,6 @@ class LocalFolder(LanguageManager, LocalAttributes, Folder):
         self._local_attributes = ()
 
 
-    manage_attributesForm = LocalDTMLFile 
-
     def manage_options(self):
         """ """
         options = Folder.manage_options[:1] \

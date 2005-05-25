@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-05-25 12:32:12 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-34
+
+    Summary:
+      remove bogus class variable (manage_attributesForm)
+    Revision:
+      Localizer--main--1.1--patch-34
+
+
+    modified files:
+     Changelog LocalFolder.py
+
+
 2005-05-09 16:07:03 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-33
 
     Summary:
