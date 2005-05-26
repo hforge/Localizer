@@ -2,6 +2,26 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-05-26 14:18:03 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-36
+
+    Summary:
+      back-port user interface improvement from the 1.2 branch
+    Revision:
+      Localizer--main--1.1--patch-36
+
+    Patches applied:
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.2--patch-4
+       improve message catalog interface
+    
+
+    modified files:
+     Changelog ui/MC_messages.dtml
+
+    new patches:
+     jdavid@itaapy.com--public/Localizer--main--1.2--patch-4
+
+
 2005-05-26 09:52:35 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-35
 
     Summary:
