@@ -2,6 +2,26 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-05-26 09:52:35 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-35
+
+    Summary:
+      merge fix from the 1.2 branch
+    Revision:
+      Localizer--main--1.1--patch-35
+
+    Patches applied:
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.2--patch-3
+       message catalog, fix PO import with itools 0.8
+    
+
+    modified files:
+     Changelog MessageCatalog.py
+
+    new patches:
+     jdavid@itaapy.com--public/Localizer--main--1.2--patch-3
+
+
 2005-05-25 12:32:12 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-34
 
     Summary:
