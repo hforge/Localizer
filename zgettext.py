@@ -41,6 +41,7 @@ import tempfile
 import time
 
 # Import from itools
+from itools.handlers import get_handler
 from itools.gettext.PO import PO
 
 
@@ -174,17 +175,16 @@ def do_all(filenames, languages):
         for filename in filenames2:
             handler = get_handler(filename)
             for msgid, line_number in handler.get_messages():
-                po.set_message(msgid, references={source_file: [line_number]})
+                po.set_message(msgid, references={filename: [line_number]})
         filename = tempfile.mktemp('.po')
         filenames.append(filename)
-        # XXX Should omit the header
-        open(filename).write(po.to_str())
+        open(filename, 'w').write(po.to_str())
 
     # Create the POT file
     if filenames:
         filename = tempfile.mktemp('.po')
-        os.system('msgcat --output-file=%s %s'
-                  % (filename, ' '.join(filenames)))
+        cmd = 'msgcat -s --output-file=%s %s' % (filename, ' '.join(filenames))
+        os.system(cmd)
         os.system('msgmerge -U locale/locale.pot %s' % filename)
 
         # Remove temporal files

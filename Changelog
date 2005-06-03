@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.2
 #
 
+2005-06-03 11:53:28 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-11
+
+    Summary:
+      fix zgettext
+    Revision:
+      Localizer--main--1.2--patch-11
+
+
+    modified files:
+     Changelog zgettext.py
+
+
 2005-06-03 10:05:02 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-10
 
     Summary:
