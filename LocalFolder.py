@@ -22,7 +22,6 @@ from OFS.Folder import Folder
 
 # Import from iHotfix
 from Products import iHotfix
-from Products.iHotfix import N_
 
 # Import from Localizer
 from LanguageManager import LanguageManager
@@ -71,7 +70,7 @@ class LocalFolder(LanguageManager, LocalAttributes, Folder):
     def manage_options(self):
         """ """
         options = Folder.manage_options[:1] \
-                  + ({'label': N_('Attributes'),
+                  + ({'label': u'Attributes',
                     'action': 'manage_attributes'},) \
                   + LanguageManager.manage_options \
                   + Folder.manage_options[1:]

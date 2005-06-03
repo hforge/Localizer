@@ -16,7 +16,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-
 # Import from the Standard Library
 from urlparse import urlparse
 
@@ -26,9 +25,6 @@ from itools import i18n
 # Import from Zope
 from Globals import InitializeClass
 from AccessControl import ClassSecurityInfo
-
-# Import from iHotfix
-from Products.iHotfix import N_
 
 # Import from Localizer
 from LocalFiles import LocalDTMLFile
@@ -40,7 +36,7 @@ class LanguageManager(i18n.Multilingual):
 
     security = ClassSecurityInfo()
 
-    manage_options = ({'label': N_('Languages'), 'action': 'manage_languages',
+    manage_options = ({'label': u'Languages', 'action': 'manage_languages',
                        'help': ('Localizer', 'LM_languages.stx')},)
 
 

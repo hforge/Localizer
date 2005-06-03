@@ -2,6 +2,20 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.2
 #
 
+2005-06-03 10:05:02 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-10
+
+    Summary:
+      stop using "N_", now unicode strings are extracted
+    Revision:
+      Localizer--main--1.2--patch-10
+
+
+    modified files:
+     Changelog LanguageManager.py LocalContent.py LocalFolder.py
+     LocalPropertyManager.py Localizer.py MessageCatalog.py
+     Utils.py zgettext.py
+
+
 2005-05-23 18:06:35 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-9
 
     Summary:

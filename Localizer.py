@@ -31,7 +31,6 @@ from zLOG import LOG, ERROR, INFO, PROBLEM
 
 # Import from iHotfix
 from Products import iHotfix
-from Products.iHotfix import N_
 
 # Import Localizer modules
 from LocalFiles import LocalDTMLFile
