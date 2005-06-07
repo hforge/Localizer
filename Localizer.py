@@ -15,7 +15,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-
 # Import from the Standard Library
 from urllib import unquote
 
@@ -41,7 +40,6 @@ from LanguageManager import LanguageManager
 
 
 _ = iHotfix.translation(globals())
-N_ = iHotfix.dummy
 
 
 

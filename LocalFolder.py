@@ -30,7 +30,6 @@ from LocalAttributes import LocalAttribute, LocalAttributes
 
 
 _ = iHotfix.translation(globals())
-N_ = iHotfix.dummy
 
 
 
@@ -69,7 +68,7 @@ class LocalFolder(LanguageManager, LocalAttributes, Folder):
     def manage_options(self):
         """ """
         options = Folder.manage_options[:1] \
-                  + ({'label': N_('Attributes'),
+                  + ({'label': u'Attributes',
                     'action': 'manage_attributes'},) \
                   + LanguageManager.manage_options \
                   + Folder.manage_options[1:]

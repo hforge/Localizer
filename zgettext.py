@@ -40,6 +40,10 @@ import sys
 import tempfile
 import time
 
+# Import from itools
+from itools.handlers import get_handler
+from itools.gettext.PO import PO
+
 
 
 # Exceptions
@@ -167,16 +171,20 @@ def do_all(filenames, languages):
 
     # Parse the rest of the files
     if filenames2:
+        po = PO()
+        for filename in filenames2:
+            handler = get_handler(filename)
+            for msgid, line_number in handler.get_messages():
+                po.set_message(msgid, references={filename: [line_number]})
         filename = tempfile.mktemp('.po')
         filenames.append(filename)
-        os.system('xgettext --omit-header --keyword=ugettext --keyword=N_ --output=%s %s' % (filename, ' '.join(filenames2)))
-
+        open(filename, 'w').write(po.to_str())
 
     # Create the POT file
     if filenames:
         filename = tempfile.mktemp('.po')
-        os.system('msgcat --output-file=%s %s'
-                  % (filename, ' '.join(filenames)))
+        cmd = 'msgcat -s --output-file=%s %s' % (filename, ' '.join(filenames))
+        os.system(cmd)
         os.system('msgmerge -U locale/locale.pot %s' % filename)
 
         # Remove temporal files
@@ -193,7 +201,6 @@ def do_all(filenames, languages):
             # po doesn't exist, just copy locale.pot
             text = open('./locale/locale.pot').read()
             open('./locale/%s.po' % language, 'w').write(text)
-
 
 
 

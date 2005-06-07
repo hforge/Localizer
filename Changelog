@@ -2,6 +2,49 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.1
 #
 
+2005-06-07 13:05:49 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-38
+
+    Summary:
+      merge from the 1.2 branch (move to itools 0.9)
+    Revision:
+      Localizer--main--1.1--patch-38
+
+    Patches applied:
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.2--patch-7
+       fix import of the PO handler (itools 0.9)
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.2--patch-8
+       update to the last itools/iHotfix (itools.gettext.domains)
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.2--patch-9
+       update to last changes in itools.gettext
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.2--patch-10
+       stop using "N_", now unicode strings are extracted
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.2--patch-11
+       fix zgettext
+    
+     * jdavid@itaapy.com--public/Localizer--main--1.2--patch-12
+       fix file system locale DTML and ZPT templates
+    
+
+    modified files:
+     Changelog Gettext.py LanguageManager.py LocalContent.py
+     LocalFiles.py LocalFolder.py LocalPropertyManager.py
+     Localizer.py LocalizerSupport.py MessageCatalog.py Utils.py
+     zgettext.py
+
+    new patches:
+     jdavid@itaapy.com--public/Localizer--main--1.2--patch-7
+     jdavid@itaapy.com--public/Localizer--main--1.2--patch-8
+     jdavid@itaapy.com--public/Localizer--main--1.2--patch-9
+     jdavid@itaapy.com--public/Localizer--main--1.2--patch-10
+     jdavid@itaapy.com--public/Localizer--main--1.2--patch-11
+     jdavid@itaapy.com--public/Localizer--main--1.2--patch-12
+
+
 2005-05-26 14:25:06 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-37
 
     Summary:

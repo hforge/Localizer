@@ -38,7 +38,7 @@ from cgi import escape
 
 # Import from itools
 from itools.resources import memory
-from itools.handlers import PO
+from itools.gettext import PO
 
 # Import from Zope
 from AccessControl import ClassSecurityInfo
@@ -59,7 +59,6 @@ from xliff_parser import HandleXliffParsing
 
 
 _ = iHotfix.translation(globals())
-N_ = iHotfix.dummy
 
 
 def md5text(str):
@@ -239,12 +238,12 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     def manage_options(self):
         """ """
         options = (
-            {'label': N_('Messages'), 'action': 'manage_messages',
+            {'label': u'Messages', 'action': 'manage_messages',
              'help': ('Localizer', 'MC_messages.stx')},
-            {'label': N_('Properties'), 'action': 'manage_propertiesForm'},
-            {'label': N_('Import/Export'), 'action': 'manage_importExport',
+            {'label': u'Properties', 'action': 'manage_propertiesForm'},
+            {'label': u'Import/Export', 'action': 'manage_importExport',
              'help': ('Localizer', 'MC_importExport.stx')},
-            {'label': N_('TMX'), 'action': 'manage_tmx'}) \
+            {'label': u'TMX', 'action': 'manage_tmx'}) \
             + LanguageManager.manage_options \
             + SimpleItem.manage_options
 
@@ -374,7 +373,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                            REQUEST['regex'], REQUEST.get('lang', ''),
                            REQUEST.get('empty', 0),
                            msg=message_encoded,
-                           manage_tabs_message=_('Saved changes.'))
+                           manage_tabs_message=_(u'Saved changes.'))
         RESPONSE.redirect(url)
 
 
@@ -388,7 +387,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                            REQUEST['batch_start'], REQUEST['batch_size'],
                            REQUEST['regex'], REQUEST.get('lang', ''),
                            REQUEST.get('empty', 0),
-                           manage_tabs_message=_('Saved changes.'))
+                           manage_tabs_message=_(u'Saved changes.'))
         RESPONSE.redirect(url)
 
 
@@ -799,8 +798,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
         if REQUEST is not None:
             return MessageDialog(
-                title = _('Messages imported'),
-                message = _('Imported %d messages and %d notes')
+                title = _(u'Messages imported'),
+                message = _(u'Imported %d messages and %d notes')
                           % (num_translations, num_notes),
                 action = 'manage_messages')
 
@@ -954,10 +953,11 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                     messages[srcmsg][targetlang] = transunit['target']
 
         if REQUEST is not None:
-            return MessageDialog(title = _('Messages imported'),
-             message = _('Imported %d messages and %d notes to %s') % \
-                (num_translations, num_notes, targetlang) ,
-             action = 'manage_messages',)
+            return MessageDialog(
+                title = _(u'Messages imported'),
+                message = (_(u'Imported %d messages and %d notes to %s') % \
+                           (num_translations, num_notes, targetlang)),
+                action = 'manage_messages')
 
 
 class POFile(SimpleItem):

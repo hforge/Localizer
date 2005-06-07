@@ -40,7 +40,6 @@ from xliff_parser import HandleXliffParsing
 
 
 _ = iHotfix.translation(globals())
-N_ = iHotfix.dummy
 
 
 manage_addLocalContentForm = LocalDTMLFile('ui/LocalContent_add', globals())
@@ -76,9 +75,9 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
         options = LocalContent.inheritedAttribute('manage_options')(self) \
                   + PropertyManager.manage_options[:1] \
                   + ({'label': 'View', 'action': ''},
-                     {'label': N_('Import/Export'), 'action': 'manage_importExport',
+                     {'label': u'Import/Export', 'action': 'manage_importExport',
                          'help': ('Localizer', 'MC_importExport.stx')},
-                     {'label': N_('TMX'), 'action': 'manage_tmx'}) \
+                     {'label': u'TMX', 'action': 'manage_tmx'}) \
                   + PropertyManager.manage_options[1:] \
                   + SimpleItem.manage_options
 
@@ -412,10 +411,11 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
                     messages[k][targetlang] = v['target']
 
         if REQUEST is not None:
-            return MessageDialog(title = _('Messages imported'),
-             message = _('Imported %d messages and %d notes to %s') % \
-                (num_translations, num_notes, targetlang) ,
-             action = 'manage_localPropertiesForm',)
+            return MessageDialog(
+                title = _(u'Messages imported'),
+                message = (_(u'Imported %d messages and %d notes to %s') %
+                           (num_translations, num_notes, targetlang)),
+                action = 'manage_localPropertiesForm')
 
 
 InitializeClass(LocalContent)

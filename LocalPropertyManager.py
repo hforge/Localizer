@@ -15,7 +15,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-
 # Import from the Standard Library
 from urllib import quote
 from time import time
@@ -24,18 +23,10 @@ from time import time
 from AccessControl import ClassSecurityInfo
 import Globals
 
-# Import from iHotfix
-from Products import iHotfix
-
 # Import from Localizer
 from LanguageManager import LanguageManager
 from LocalAttributes import LocalAttribute, LocalAttributesBase
 from LocalFiles import LocalDTMLFile
-
-
-# To translate.
-_ = iHotfix.translation(globals())
-N_ = iHotfix.dummy
 
 
 # XXX
@@ -74,16 +65,16 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
         """ """
         if self.need_upgrade():
             # This instance needs to be upgraded
-            options = ({'label': N_('Upgrade'), 'action': 'manage_upgradeForm',
+            options = ({'label': u'Upgrade', 'action': 'manage_upgradeForm',
                         'help': ('Localizer', 'LPM_upgrade.stx')},)
         else:
             options = ()
 
         return options \
-               + ({'label': N_('Local properties'),
+               + ({'label': u'Local properties',
                    'action': 'manage_localPropertiesForm',
                    'help': ('Localizer', 'LPM_properties.stx')},
-                   {'label': N_('Translate properties'),
+                   {'label': u'Translate properties',
                    'action': 'manage_transPropertiesForm',
                    'help': ('Localizer', 'LPM_translate.stx')},) \
                + LanguageManager.manage_options
