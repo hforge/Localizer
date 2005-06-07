@@ -126,7 +126,6 @@ class LanguageManager(i18n.Multilingual):
             RESPONSE.redirect("%s/manage_languages" % REQUEST['URL1'])
 
 
-
     # Unicode support, custom ZMI
     manage_page_header = LocalDTMLFile('ui/manage_page_header', globals())
 

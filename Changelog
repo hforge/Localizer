@@ -2,6 +2,18 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.2
 #
 
+2005-06-07 13:04:44 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-12
+
+    Summary:
+      fix file system locale DTML and ZPT templates
+    Revision:
+      Localizer--main--1.2--patch-12
+
+
+    modified files:
+     Changelog LanguageManager.py LocalFiles.py
+
+
 2005-06-03 11:53:28 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-11
 
     Summary:

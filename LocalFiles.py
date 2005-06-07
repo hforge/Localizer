@@ -39,7 +39,7 @@ from Globals import DTMLFile
 from Products.iHotfix import DomainAware
 
 
-class LocalDTMLFile(DTMLFile, DomainAware):
+class LocalDTMLFile(DTMLFile):
 
     def __init__(self, name, _prefix=None, **kw):
         apply(LocalDTMLFile.inheritedAttribute('__init__'),
@@ -58,6 +58,11 @@ class LocalDTMLFile(DTMLFile, DomainAware):
                      (self, bound_data, args, kw))
 
 
+    def gettext(self, message, language=None):
+        return DomainAware.gettext(message, language, self.class_domain)
+
+
+
 # Zope Page Templates (ZPT)
 # XXX Deprecated, use the i18n namespace instead.
 try:
@@ -67,7 +72,7 @@ except ImportError:
     class LocalPageTemplateFile:
         pass
 else:
-    class LocalPageTemplateFile(PageTemplateFile, DomainAware):
+    class LocalPageTemplateFile(PageTemplateFile):
 
         def __init__(self, name, _prefix=None, **kw):
             apply(LocalPageTemplateFile.inheritedAttribute('__init__'),
@@ -84,3 +89,7 @@ else:
             bound_data['ugettext'] = self.gettext # XXX backwards compatibility
             return apply(LocalPageTemplateFile.inheritedAttribute('_exec'),
                          (self, bound_data, args, kw))
+
+
+        def gettext(self, message, language=None):
+            return DomainAware.gettext(message, language, self.class_domain)
