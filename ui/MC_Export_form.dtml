@@ -37,6 +37,27 @@
 </form>
 </fieldset>
 
+
+<fieldset><legend><dtml-var "gettext('Export messages to TMX file')"></legend>
+<p class="form-help">
+  <dtml-gettext>
+    You can export the messages and their translations to TMX level 1 files.
+ To do that just click the <tt>Export</tt> button.
+  </dtml-gettext>
+</p>
+
+<form action="tmx_export" method="post">
+  <table>
+    <tr>
+    <td><br></td>
+    <tr>
+      <td><input type="submit" value=" <dtml-var "gettext('Export')"> "></td>
+      <td></td>
+    </tr>
+  </table>
+</form>
+</fieldset>
+
 <fieldset><legend><dtml-var "gettext('Export messages to XLIFF file')"></legend>
 <p class="form-help">
   <dtml-gettext>
@@ -76,55 +97,5 @@
   </table>
 </form>
 </fieldset>
-
-<fieldset><legend><dtml-var "gettext('Import translations from XLIFF file')"></legend>
-<form action="xliff_import" method="post" enctype="multipart/form-data">
-<table>
-    <tr>
-      <th align="right"><dtml-var "gettext('File')"></th>
-      <td><input type="file" name="file"></td>
-    </tr>
-    <tr>
-      <th></th>
-      <td><input type="submit" value=" <dtml-var "gettext('Import')"> "></td>
-    </tr>
-</table>
-</form>
-</fieldset>
-
-<fieldset><legend><dtml-var "gettext('Import translations from PO file')"></legend>
-<p class="form-help">
-  <dtml-gettext>
-    You can add new messages and translations importing a PO file. Enter the
-    filename, select the language of the translations and click the
-    <tt>Import</tt> button.
-  </dtml-gettext>
-</p>
-
-
-<form action="manage_import" method="post" enctype="multipart/form-data">
-  <table>
-    <tr>
-      <th align="right"><dtml-var "gettext('File')"></th>
-      <td><input type="file" name="file"></td>
-    </tr>
-    <tr>
-      <th align="right" valign="top"><dtml-var "gettext('Language')"></th>
-      <td>
-        <select name="lang">
-          <dtml-in get_languages_mapping mapping sort=name>
-            <option value="<dtml-var code>" <dtml-if sequence-start>selected</dtml-if>><dtml-var "gettext(name)"> [&dtml-code;]</option>
-          </dtml-in>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <th></th>
-      <td><input type="submit" value=" <dtml-var "gettext('Import')"> "></td>
-    </tr>
-  </table>
-</form>
-</fieldset>
-
 
 <dtml-var manage_page_footer>

@@ -35,11 +35,26 @@ from Products import iHotfix
 # Import from Localizer
 from LocalFiles import LocalDTMLFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty
-from tmx_parser import HandleTMXParsing
-from xliff_parser import HandleXliffParsing
+
+# Import from itools
+from itools.tmx.TMX import TMX, Sentence, Message
+from itools.xliff.XLIFF import XLIFF, Translation, File as xliff_File
+from itools.types.languages import LanguageTag
+from itools.resources.memory import File as mFile
+
+# Import from Python
+import md5
 
 
 _ = iHotfix.translation(globals())
+
+
+def md5text(str):
+    """
+    Create an MD5 sum (or hash) of a text. It is guaranteed to be 32 bytes
+    long.
+    """
+    return md5.new(str.encode('utf-8')).hexdigest()
 
 
 manage_addLocalContentForm = LocalDTMLFile('ui/LocalContent_add', globals())
@@ -74,10 +89,10 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
         """ """
         options = LocalContent.inheritedAttribute('manage_options')(self) \
                   + PropertyManager.manage_options[:1] \
-                  + ({'label': 'View', 'action': ''},
-                     {'label': u'Import/Export', 'action': 'manage_importExport',
+                  + ({'label': u'Import', 'action': 'manage_import',
                          'help': ('Localizer', 'MC_importExport.stx')},
-                     {'label': u'TMX', 'action': 'manage_tmx'}) \
+                     {'label': u'Export', 'action': 'manage_export',
+                      'help': ('Localizer', 'MC_importExport.stx')}) \
                   + PropertyManager.manage_options[1:] \
                   + SimpleItem.manage_options
 
@@ -128,249 +143,154 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
 
         self.reindex_object()
 
-    security.declareProtected('View management screens', 'manage_importExport')
-    manage_importExport = LocalDTMLFile('ui/LC_importExport', globals())
+    security.declareProtected('View management screens', 'manage_import')
+    manage_import = LocalDTMLFile('ui/LC_import_form', globals())
 
     #######################################################################
     # TMX support
-    security.declareProtected('View management screens', 'manage_tmx')
-    manage_tmx = LocalDTMLFile('ui/LC_tmx', globals())
+    security.declareProtected('View management screens', 'manage_export')
+    manage_export = LocalDTMLFile('ui/LC_export_form', globals())
 
     security.declareProtected('Manage messages', 'tmx_export')
     def tmx_export(self, REQUEST, RESPONSE=None):
         """
         Exports the content of the message catalog to a TMX file
         """
-        messages = self._local_properties
         langorg = self._default_language
-        r = []
 
-        # Generate the TMX file header
-        r.append('<?xml version="1.0" encoding="utf-8"?>')
-        r.append('<!DOCTYPE tmx SYSTEM "http://www.lisa.org/tmx/tmx14.dtd">')
-        r.append('<tmx version="1.4">')
-        r.append('<header')
-        r.append('creationtool="Localizer"')
-        r.append('creationtoolversion="1.x"')
-        r.append('datatype="plaintext"')
-        r.append('segtype="paragraph"')
-        r.append('adminlang="%s"' % langorg)
-        r.append('srclang="%s"' % langorg)
+        # build data structure for the xml header
+        xml_header = {}
+        xml_header['standalone'] = -1
+        xml_header['xml_version'] = u'1.0'
+        xml_header['document_type'] = (u'tmx',
+                                       u'http://www.lisa.org/tmx/tmx14.dtd')     
+        # build data structure for the tmx header
+        version = u'1.4'
+        tmx_header = {}
+        tmx_header['creationtool'] = u'Localizer'
+        tmx_header['creationtoolversion'] = u'1.x'
+        tmx_header['datatype'] = u'plaintext'
+        tmx_header['segtype'] = u'paragraph'
+        tmx_header['adminlang'] = u'%s' % langorg
+        tmx_header['srclang'] = u'%s' % langorg
+        tmx_header['o-encoding'] = u'utf-8'
 
-        r.append('>')
-        r.append('</header>')
-        r.append('')
 
         # Get the messages, and perhaps its translations.
         d = {}
         filename = '%s.tmx' % self.id
-        # Example: {'title': {'en': 'Title', 'es': 'T�ulo'}}
-        for k, v in messages.items():
-            try:
-                d[k] = v[langorg]
-            except KeyError:
-                d[k] = ""
 
-        # Generate sorted msgids to simplify diffs
-        dkeys = d.keys()
-        dkeys.sort()
-        r.append('<body>')
-        for k in dkeys:
-            r.append('<tu>')
-            for tlang in self._languages:
-                value = messages.get(k)
-                try:
-                    v = value[tlang]
-                except KeyError:
-                    v = ""
-                v = escape(v)
-                r.append('<tuv xml:lang="%s">' % tlang)
-                r.append('<seg>%s</seg></tuv>' % v)
+        for k in self._local_properties.keys():
+            sentences = {}
+            for lang in self._languages:
+                trans, fuzzy = self.get_localproperty(k, lang)
+                sentences[lang] = Sentence(trans, {'lang':lang})
+            d[self.get_localproperty(k, langorg)[0]] = Message(sentences)
 
-            r.append('</tu>')
-            r.append('')
-
-        r.append('</body>')
-        r.append('</tmx>')
+        tmx = TMX()
+        tmx.build(xml_header, version, tmx_header, d)
 
         if RESPONSE is not None:
             RESPONSE.setHeader('Content-type','application/data')
             RESPONSE.setHeader('Content-Disposition',
                                'attachment; filename="%s"' % filename)
 
-        r2 = []
-        for x in r:
-            if type(x) is UnicodeType:
-                r2.append(x.encode('utf-8'))
-            else:
-                r2.append(x)
-
-        return '\r\n'.join(r2)
+        return tmx.to_str() 
 
 
-    def _normalize_lang(self,langcode):
-        """ Get the core language (The part before the '-') and return it
-            in lowercase. If there is a local part, return it in uppercase.
-        """
-        dash = langcode.find('-')
-        if dash == -1:
-            la = langcode.lower()
-            return (la,la)
-        else:
-            la = langcode[:dash].lower()
-            lo = langcode[dash+1:].upper()
-            return (la+'-'+lo,la)
-
-    def _tmx_header(self, attrs):
-        """ Works on a header (<header>)
-        """
-        if attrs.has_key('srclang'):
-            self._v_srclang = attrs['srclang']
-
-    def _tmx_tu(self, unit):
-        """ Works on a translation unit (<tu>)
-        """
-        src_lang = self._default_language
-        # We look up the message for the language we have chosen to be our
-        # working language
-        if unit.has_key(self._default_language):
-            src_lang = self._default_language
-        else:
-            # This MUST exist. Otherwise the TMX file is bad
-            src_lang = self._v_srclang
-        tukey = unit[src_lang]
-
-        messages = self._local_properties
-        newlanguages = []
-        # Example: {'title': {'en': 'Title', 'es': 'T�ulo'}}
-        key = None
-        for k, v in messages.items():
-            if v[src_lang] == tukey:
-                key = k
-        if key is None:
-            # We didn't find a property where the source matches anything
-            # in the translation unit, so we give up
-            return
-
-        for lang in unit.keys():
-            # Since the messagecatalog's default language overrides our
-            # source language anyway, we handle *all* correctly already.
-            # In the test below *all* should not be allowed.
-            if lang == '*all*' or lang == '*none*':
-                lang = self._v_srclang
-            (target_lang, core_lang) = self._normalize_lang(lang)
-            # If the core language is not seen before then add it
-            if core_lang not in self._languages and core_lang not in newlanguages:
-                newlanguages.append(core_lang)
-            # If the language+locality is not seen before then add it
-            if target_lang not in self._languages and target_lang not in newlanguages:
-                newlanguages.append(target_lang)
-            # Add message for language+locality
-            if target_lang != src_lang:
-                messages[key][target_lang] = unit[target_lang]
-            # Add message for core language
-            if not (unit.has_key(core_lang) or core_lang == src_lang):
-                messages[key][core_lang] = unit[target_lang]
-
-        if len(newlanguages) != 0:
-            self._languages = tuple(self._languages) + tuple(newlanguages)
-        self._local_properties = messages
 
     security.declareProtected('Manage messages', 'tmx_import')
     def tmx_import(self, file, REQUEST=None, RESPONSE=None):
         """ Imports a TMX level 1 file.
-            We use the SAX parser. It has the benefit that it internally
-            converts everything to python unicode strings.
         """
-        self._v_srclang = self._default_language
-        # Create a parser
-        parser = make_parser()
-        chandler = HandleTMXParsing(self._tmx_tu, self._tmx_header)
-        # Tell the parser to use our handler
-        parser.setContentHandler(chandler)
-        # Don't load the DTD from the Internet
-        parser.setFeature(handler.feature_external_ges, 0)
-        inputsrc = InputSource()
+        try:
+            f = mFile(file.read())
+            tmx = TMX(f)
+        except:
+            return MessageDialog(title = 'Parse error',
+                               message = _('impossible to parse the file') ,
+                               action = 'manage_import',) 
 
-        if type(file) is StringType:
-            inputsrc.setByteStream(StringIO(file))
-            parser.parse(inputsrc)
-        else:
-            content = file.read()
-            inputsrc.setByteStream(StringIO(content))
-            parser.parse(inputsrc)
-
-        if hasattr(self, '_v_srclang'):
-            del self._v_srclang
+        for (id, msg) in tmx.state.messages.items():
+            for (prop, d) in self._local_properties.items():
+                if d[self._default_language][0] == id:
+                    msg.msgstr.pop(self._default_language)
+                    for lang in msg.msgstr.keys():
+                        # normalize the languageTag and extract the core
+                        (core, local) = LanguageTag.decode(lang)
+                        lang = LanguageTag.encode((core, local))
+                        if lang not in self._languages:
+                            self._languages += (lang,)
+                        texte = msg.msgstr[lang].text
+                        if texte:
+                            self.set_localpropvalue(prop, lang, texte)
+                            if core != lang and core != self._default_language:
+                                if core not in self._languages:
+                                    self._languages += (core,)
+                                if not msg.msgstr.has_key(core):
+                                    self.set_localpropvalue(prop, lang, texte)
 
         if REQUEST is not None:
             RESPONSE.redirect('manage_localPropertiesForm')
 
+
+
     security.declareProtected('Manage messages', 'xliff_export')
-    def xliff_export(self, targetlang, export_all=1, REQUEST=None, RESPONSE=None):
+    def xliff_export(self, targetlang, export_all=1, REQUEST=None, 
+                     RESPONSE=None):
         """ Exports the content of the message catalog to an XLIFF file
         """
         orglang = self._default_language
-        messages = self._local_properties
-#       orglang = orglang.lower()
+        export_all = int(export_all)
         from DateTime import DateTime
-        r = []
-        r_append = r.append   #alias for append function. For optimization purposes
+
         # Generate the XLIFF file header
         RESPONSE.setHeader('Content-Type', 'text/xml; charset=UTF-8')
         RESPONSE.setHeader('Content-Disposition',
-           'attachment; filename="%s_%s_%s.xlf"' % ( self.id, orglang, targetlang ))
+           'attachment; filename="%s_%s_%s.xlf"' % ( self.id, orglang, 
+                                                     targetlang ))
 
-        r_append('<?xml version="1.0" encoding="UTF-8"?>')
-        # Version 1.1 of the DTD is not yet available - use version 1.0
-        r_append('<!DOCTYPE xliff SYSTEM "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">')
-        # Force a UTF-8 char in the start
-        r_append(u'<!-- XLIFF Format Copyright \xa9 OASIS Open 2001-2003 -->')
-        r_append('<xliff version="1.0">')
-        r_append('<file')
-        r_append('original="/%s"' % self.absolute_url(1))
-        r_append('product-name="Localizer"')
-        r_append('product-version="1.1.x"')
-        r_append('datatype="plaintext"')
-        r_append('source-language="%s"' % orglang)
-        r_append('target-language="%s"' % targetlang)
-        r_append('date="%s"' % DateTime().HTML4())
-        r_append('>')
-        r_append('<header>')
-        r_append('</header>')
-        r_append('<body>')
+        # build data structure for the xml header
+        xml_header = {}
+        xml_header['standalone'] = -1
+        xml_header['xml_version'] = u'1.0'
+        xml_header['document_type'] = (u'xliff', 
+              u'http://www.oasis-open.org/committees/xliff/documents/xliff.dtd')
+
+        version = u'1.0'
+
+        # build the data-stucture for the File tag
+        attributes = {}
+        attributes['original'] = u'/%s' % self.absolute_url(1)
+        attributes['product-name'] = u'Localizer'
+        attributes['product-version'] = u'1.1.x'
+        attributes['data-type'] = u'plaintext'
+        attributes['source-language'] = orglang
+        attributes['target-language'] = targetlang
+        attributes['date'] = DateTime().HTML4()
 
         # Get the messages, and perhaps its translations.
         d = {}
-        # Example: {'title': {'en': 'Title', 'es': 'T�ulo'}}
-        for k, v in messages.items():
-            try:
-                #if export_all=1 export all messages otherwise export only untranslated messages
-                if int(export_all) == 1 or (int(export_all) == 0 and v[targetlang] == ''):
-                    d[k] = v
-            except KeyError:
-                pass
-        # Generate sorted msgids to simplify diffs
-        dkeys = d.keys()
-        dkeys.sort()
-        for k in dkeys:
-            r_append('<trans-unit id="%s">' % k)
-            r_append(' <source>%s</source>' % escape(d[k][orglang]))
-            r_append(' <target>%s</target>' % escape(d[k][targetlang]))
-            r_append('</trans-unit>')
 
-        r_append('</body>')
-        r_append('</file>')
-        r_append('</xliff>')
+        for prop in self._local_properties.keys():
+            target, fuzzy = self.get_localproperty(prop, targetlang)
+            msgkey, fuzzy = self.get_localproperty(prop, self._default_language)
+            # if export_all=1 export all messages otherwise export
+            # only untranslated messages
+            if export_all or not target:
+                id = md5text(msgkey)
+                if target:
+                    t = Translation(msgkey, target, {'id':id})
+                else:
+                    t = Translation(msgkey, msgkey, {'id':id})
+                d[msgkey] = t
 
-        r2 = []
-        for x in r:
-            if type(x) is UnicodeType:
-                r2.append(x.encode('utf-8'))
-            else:
-                r2.append(x)
+        files = [xliff_File(d, attributes)]
 
-        return '\r\n'.join(r2)
+        xliff = XLIFF()
+        xliff.build(xml_header, version, files)
+
+        return xliff.to_str()
 
     security.declareProtected('Manage messages', 'xliff_import')
     def xliff_import(self, file, REQUEST=None):
@@ -378,43 +298,42 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
             designed by a group of software providers.
             It is specified by www.oasis-open.org
         """
-
-        messages = self._local_properties
-
-        parser = HandleXliffParsing()
-
-        #parse the xliff information
-        chandler = parser.parseXLIFFFile(file)
-        if chandler is None:
+        try:
+            f = mFile(file.read())
+            xliff = XLIFF(f)
+        except:
             return MessageDialog(title = 'Parse error',
-             message = 'Unable to parse XLIFF file' ,
-             action = 'manage_main',)
+                                 message = _('impossible to parse the file') ,
+                                 action = 'manage_import',)
 
-        header_info = chandler.getFileTag()
-        #get the target language
-        lang = [x for x in header_info if x[0]=='target-language'][0][1]
-        (targetlang, core_lang) = self._normalize_lang(lang)
+        num_trans = 0
+        (file_ids, sources, targets) = xliff.get_languages()
 
-        body_info = chandler.getBody()
+        # update languages
+        if len(sources) > 1 or sources[0] != self._default_language:
+            return MessageDialog(title = 'Language error',
+                                 message = _('incompatible language sources') ,
+                                 action = 'manage_import',)
+        for lang in targets:
+            if lang != self._default_language and lang not in self._languages:
+                self._languages += (lang,)
 
-        num_notes = 0
-        num_translations = 0
-        #load the data
-        for k, v in body_info.items():
-            # If message is not in catalog, then it is new in xliff file -- not legal
-            if messages.has_key(k):
-                num_translations = num_translations + 1
-                if v['target'] == u'' and v['source'] != srcmsg:
-                # The source was translated. Happens sometimes
-                    messages[k][targetlang] = v['source']
-                else:
-                    messages[k][targetlang] = v['target']
+        # get messages
+        for file in xliff.state.files:
+            cur_target = file.attributes.get('target-language', '')
+            for msg in file.body.keys():
+                for (prop, val) in self._local_properties.items():
+                    if val[self._default_language][0] == msg:
+                        if cur_target and file.body[msg].target:
+                            texte = file.body[msg].target
+                            self.set_localpropvalue(prop, cur_target, texte)
+                            num_trans += 1
 
         if REQUEST is not None:
             return MessageDialog(
                 title = _(u'Messages imported'),
-                message = (_(u'Imported %d messages and %d notes to %s') %
-                           (num_translations, num_notes, targetlang)),
+                message = (_(u'Imported %d messages to %s') %
+                           (num_trans, ' '.join(targets))),
                 action = 'manage_localPropertiesForm')
 
 

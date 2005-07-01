@@ -90,6 +90,11 @@ else:
     PTSWrapper = PlacelessTranslationService.PTSWrapper
     PlacelessTranslationService.PTSWrapper = GlobalTranslationService
 
+# Try TranslationService
+try:
+    from Products import TranslationService
+except ImportError:
+    TranslationService = None
 
 
 def initialize(context):
@@ -139,5 +144,5 @@ def initialize(context):
     String.commands['gettext'] = GettextTag
 
     # Register the global translation service for the i18n namespace (ZPT)
-    if PTSWrapper is None:
+    if PTSWrapper is None and TranslationService is None:
         setGlobalTranslationService(GlobalTranslationService())
