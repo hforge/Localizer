@@ -16,7 +16,7 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 # Import from itools
-from itools.zope import get_context
+from itools.web import get_context
 
 # Import from Zope
 from Globals import package_home

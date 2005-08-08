@@ -39,7 +39,7 @@ from LocalPropertyManager import LocalPropertyManager, LocalProperty
 # Import from itools
 from itools.tmx.TMX import TMX, Sentence, Message
 from itools.xliff.XLIFF import XLIFF, Translation, File as xliff_File
-from itools.types.languages import LanguageTag
+from itools.datatypes.languages import LanguageTag
 from itools.resources.memory import File as mFile
 
 # Import from Python

@@ -43,7 +43,7 @@ from itools.tmx.TMX import TMX, Sentence, Message, Note
 from itools.xliff.XLIFF import XLIFF, Translation
 from itools.xliff.XLIFF import Note as xliff_Note, File as xliff_File
 from itools.resources.memory import File as mFile
-from itools.types.languages import LanguageTag
+from itools.datatypes.languages import LanguageTag
 
 # Import from Zope
 from AccessControl import ClassSecurityInfo
