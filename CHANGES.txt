@@ -1,3 +1,8 @@
+1.1.2 (2005/10/21)
+
+  Upgrade to itools 0.9
+
+
 1.1.1 (2005/05/26)
 
   User Interface
