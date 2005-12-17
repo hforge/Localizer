@@ -16,6 +16,8 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 # Import from itools
+from itools import get_abspath
+from itools.gettext import domains
 from itools.web import get_context
 
 # Import from Zope
@@ -48,6 +50,32 @@ def lang_negotiator(available_languages):
 ##    response.set_header('Vary', '*')
 
     return lang
+
+
+# Provide an API to access translations stored as MO files in the 'locale'
+# directory. This code has been moved from Localizer.
+
+class DomainAware(domains.DomainAware):
+
+    def select_language(cls, languages):
+        accept = get_context().request.accept_language
+        return accept.select_language(languages)
+
+    select_language = classmethod(select_language)
+
+
+class translation(DomainAware):
+
+    def __init__(self, namespace):
+        domain = get_abspath(namespace, 'locale')
+        self.class_domain = domain
+        domains.register_domain(domain, domain)
+
+
+    def __call__(self, message, language=None):
+        return DomainAware.gettext(message, language, self.class_domain)
+
+_ = translation(globals())
 
 
 # Defines strings that must be internationalized

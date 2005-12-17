@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2004  Juan David Ibáñez Palomar <jdavid@itaapy.com>
+# Copyright (C) 2000-2005  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -15,7 +15,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-
 # Import from the Standard Library
 from cgi import escape
 from types import StringType, UnicodeType
@@ -29,12 +28,10 @@ from Products.ZCatalog.CatalogPathAwareness import CatalogAware
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass, MessageDialog
 
-# Import from iHotfix
-from Products import iHotfix
-
 # Import from Localizer
 from LocalFiles import LocalDTMLFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty
+from utils import _
 
 # Import from itools
 from itools.tmx.TMX import TMX, Sentence, Message
@@ -45,8 +42,6 @@ from itools.resources.memory import File as mFile
 # Import from Python
 import md5
 
-
-_ = iHotfix.translation(globals())
 
 
 def md5text(str):

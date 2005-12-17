@@ -52,16 +52,11 @@ from Globals import  MessageDialog, PersistentMapping, InitializeClass
 from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
 
-# Import from iHotfix
-from Products import iHotfix
-
 # Import from Localizer
 from LanguageManager import LanguageManager
 from LocalFiles import LocalDTMLFile
-from Utils import charsets, lang_negotiator
+from utils import charsets, lang_negotiator, _
 
-
-_ = iHotfix.translation(globals())
 
 
 def md5text(str):

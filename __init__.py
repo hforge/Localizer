@@ -16,17 +16,12 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
-# First check itools and iHotfix are installed
+# First check wether itools is installed
 try:
     import itools
 except ImportError:
     raise ImportError, ('itools is not installed, download from'
                         ' http://www.ikaaro.org/itools')
-try:
-    from Products import iHotfix
-except ImportError:
-    raise ImportError, ('iHotfix is not installed, download from'
-                        ' http://www.ikaaro.org/localizer')
 
 # Import from Zope
 from ImageFile import ImageFile
@@ -36,6 +31,7 @@ from Products.PageTemplates.GlobalTranslationService import \
      setGlobalTranslationService
 
 # Import from Localizer
+import patches
 import Localizer, LocalContent, MessageCatalog, LocalFolder
 from LocalFiles import LocalDTMLFile, LocalPageTemplateFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty

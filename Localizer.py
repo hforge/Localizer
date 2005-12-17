@@ -29,17 +29,11 @@ from ZPublisher.BeforeTraverse import registerBeforeTraverse, \
      unregisterBeforeTraverse, queryBeforeTraverse, NameCaller
 from zLOG import LOG, ERROR, INFO, PROBLEM
 
-# Import from iHotfix
-from Products import iHotfix
-
 # Import Localizer modules
 from LocalFiles import LocalDTMLFile
 from MessageCatalog import MessageCatalog
-from Utils import lang_negotiator
+from utils import lang_negotiator, _
 from LanguageManager import LanguageManager
-
-
-_ = iHotfix.translation(globals())
 
 
 

@@ -35,8 +35,8 @@ from itools.gettext import domains
 # Import Zope modules
 from Globals import DTMLFile
 
-# Import from iHotfix
-from Products.iHotfix import DomainAware
+# Import from Localizer
+from utils import DomainAware
 
 
 class LocalDTMLFile(DTMLFile):

@@ -2,6 +2,32 @@
 # arch-tag: automatic-ChangeLog--jdavid@itaapy.com--public/Localizer--main--1.2
 #
 
+2005-12-17 18:32:50 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-16
+
+    Summary:
+      merge iHotfix back to Localizer
+    Revision:
+      Localizer--main--1.2--patch-16
+
+
+    new files:
+     .arch-ids/patches.py.id patches.py
+
+    removed files:
+     .arch-ids/Gettext.py.id Gettext.py
+
+    modified files:
+     Changelog LanguageManager.py LocalContent.py LocalFiles.py
+     LocalFolder.py Localizer.py LocalizerSupport.py
+     MessageCatalog.py __init__.py utils.py
+
+    renamed files:
+     .arch-ids/Utils.py.id
+       ==> .arch-ids/utils.py.id
+     Utils.py
+       ==> utils.py
+
+
 2005-08-08 17:49:54 GMT	J. David Ibanez <jdavid@itaapy.com>	patch-15
 
     Summary:

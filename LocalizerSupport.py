@@ -25,14 +25,14 @@ It provides dummy versions of some Localizer features. To internationalize
 your code copy and paste this module to your product directory and, in the
 modules you need it, just type:
 
-  from LocalizerSupport import _, N_
+  from LocalizerSupport import _
   from LocalizerSupport import LocalDTMLFile as DTMLFile
   from LocalizerSupport import LocalPageTemplateFile as PageTemplateFile
 
 Note that the 'as' keyword is new to Python 2.0, if to support older
 versions is a requirement you should type this instead:
 
-  from LocalizerSupport import _, N_
+  from LocalizerSupport import _
   from LocalizerSupport import LocalDTMLFile, LocalPageTemplateFile
 
   DTMLFile = LocalDTMLFile
@@ -58,16 +58,12 @@ __version__ = '1.1.0'
 
 
 try:
-    from Products import iHotfix
-    from Products.iHotfix import N_
-    _ = iHotfix.translation(globals())
-
     from Products.Localizer import LocalDTMLFile, LocalPageTemplateFile
+    from Products.Localizer import _
 except ImportError:
     # For Python code
     def _(s, language=None):
         return s
-    N_ = _
 
 
     # For DTML and Page Templates

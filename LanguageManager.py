@@ -28,7 +28,7 @@ from AccessControl import ClassSecurityInfo
 
 # Import from Localizer
 from LocalFiles import LocalDTMLFile
-from Utils import lang_negotiator
+from utils import lang_negotiator
 
 
 class LanguageManager(i18n.Multilingual):
