@@ -69,6 +69,13 @@ class GlobalTranslationService:
 
         # Find it by acquisition
         translation_service = getattr(context, domain, None)
+
+        # Try to get a catalog from a Localizer Object
+        if translation_service is None:
+            localizerObj = getattr(context, "Localizer", None)
+            if localizerObj is not None:
+                translation_service = getattr(localizerObj, domain, None)
+
         if translation_service is not None:
             from MessageCatalog import MessageCatalog
             if isinstance(translation_service, MessageCatalog):
