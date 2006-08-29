@@ -43,9 +43,11 @@ from itools.gettext import PO
 # Import from Zope
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
+from DocumentTemplate.DT_Util import ustr
 from Globals import  MessageDialog, PersistentMapping, InitializeClass
 from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
+from TAL.TALInterpreter import _interp_regex, _get_var_regex
 
 # Import from iHotfix
 from Products import iHotfix
@@ -229,7 +231,20 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         """
         This method is required to get the i18n namespace from ZPT working.
         """
-        return self.gettext(msgid)
+        msgstr = self.gettext(msgid)
+
+        mapping = kw.get('mapping')
+        if not mapping:
+            return msgstr
+
+        # Interpolate
+        for string in _interp_regex.findall(msgstr):
+            var = _get_var_regex.findall(string)[0]
+            if var in mapping:
+                subst = ustr(mapping[var])
+                msgstr = msgstr.replace(string, subst)
+
+        return msgstr
 
 
     #######################################################################
