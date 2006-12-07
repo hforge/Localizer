@@ -56,18 +56,23 @@ Of course, you don't need to import the features you don't need.
 __version__ = '1.1.0'
 
 
+def N_(message, language=None):
+    """
+    Used to markup a string for translation but without translating it,
+    this is known as deferred translations.
+    """
+    return message
+
+
 
 try:
     from Products import iHotfix
-    from Products.iHotfix import N_
     _ = iHotfix.translation(globals())
 
     from Products.Localizer import LocalDTMLFile, LocalPageTemplateFile
 except ImportError:
     # For Python code
-    def _(s, language=None):
-        return s
-    N_ = _
+    _ = N_
 
 
     # For DTML and Page Templates

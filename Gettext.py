@@ -15,10 +15,19 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-
 # Import from iHotfix
 from Products.iHotfix import translation
-from Products.iHotfix import N_ as dummy
+
+
+def N_(message, language=None):
+        """
+    Used to markup a string for translation but without translating it,
+    this is known as deferred translations.
+    """
+    return message
+
+
+dummy = N_
 
 
 # XXX This module is kept only for backwards compatibility with
