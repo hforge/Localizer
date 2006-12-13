@@ -1,0 +1,440 @@
+
+Localizer 1.1.3 (2006/12/13)
+============================
+
+Localizer is a Zope product for developers and web masters. Localizer
+solves the problem of building multilingual products and web sites,
+ranging from internationalization and localization of the user interface
+to management of multilingual content.
+
+The 1.1.3 release brings some new features for ZPT. Most important is
+the support of interpolation. And now message catalogs are searched for
+within the "Localizer" objects, if it exists.
+
+There are also a couple of bugs fixed:
+
+ - The method "LocalPropertyManager.__getattr__" works again.
+
+ - The function "Utils.lang_negotiator" works now when the context
+   is not available.
+
+Credits:
+
+ - Mikel Larreategi fixed "LocalPropertyManager.__getattr__".
+ - Josef Meile worked on ZPT.
+ - Yoshinori Okuji fixed "Utils.lang_negotiator".
+
+
+Resources
+---------
+
+Download
+http://download.ikaaro.org/localizer/Localizer-1.1.3.tar.gz
+
+Home
+http://www.localizer.org
+
+Mailing list
+http://mail.ikaaro.org/mailman/listinfo/localizer
+
+Bug Tracker
+http://bugs.ikaaro.org/
+
+
+
+Localizer 1.1
+=============
+
+April 11, 2005 - Two years after release of Localizer 1.0, I am
+pleased to announce the availability of the next major version,
+Localizer 1.1.
+
+Localizer is a Zope [1] product for developers and web masters.
+Localizer solves the problem of building multilingual products
+and web sites, ranging from internationalization and localization
+of the user interface to management of multilingual content.
+
+jdavid at itaapy.com [2]
+
+
+What's new in 1.1
+-----------------
+
+This release brings several new features. Specifically Localizer
+now supports industry standards such as TMX [3] and XLIFF [4],
+which enhance the interoperability of Localizer based applications
+within mainstream environments. 
+
+Native support for 'i18n' namespaces for ZPT (Zope Page Templates)
+is included avoiding the need to install other products.
+
+The user interfaces have been vastly improved, specially for
+'LocalContent' objects.
+
+Four new translations are available: Danish, Italian, Portuguese
+and Russian.
+
+Localizer 1.1 has been re-packaged and now depends on itools Python
+package and iHotfix Zope product. While these changes make installation
+a bit more complex, the added benefit is simplified source management.
+Furthermore this subtle change makes Localizer Services available to
+the wider audience of Python [5] developers.
+
+Last but not least, Localizer's stability has been dramatically
+improved by resolution of many bugs resulting in a mature and even
+more reliable product.
+
+
+Credits
+-------
+
+This is the first release where the majority of work has been
+contributed by community users and the original author. Credit
+where credit is due.
+
+To Eduardo Corrales and Roberto Quero from the Deusto University [6],
+for the original implementation of the TMX standard.
+
+To Søren Roug and Cornel Nitu from the European Environment Agency [7],
+for their work on the TMX code, the implementation of the XLIFF standard,
+the overhaul of the LocalContent interfaces, and the Danish translation.
+
+To Alexey Lubimov for the Russian translation.
+
+To Mario Olimpio de Menezes for the original Portuguese translation.
+
+To Rodrigo Senra for updating the Portuguese translation, and for improving
+the Localizer API.
+
+To Marco Bizzarri for the Italian translation, and for improving the
+stability.
+
+
+Download and Install
+--------------------
+
+ 1. Download the Localizer meta-package from http://www.localizer.org
+
+ 2. Unpack the tarball
+
+ 3. Follow the instructions within the README file
+
+
+Resources
+---------
+
+Home
+http://www.localizer.org
+
+Mailing list
+http://in-girum.net/mailman/listinfo/localizer
+
+Bug Tracker
+http://in-girum.net/cgi-bin/bugzilla/index.cgi
+
+
+References
+----------
+
+[1] http://www.zope.org
+[2] http://www.itaapy.com
+[3] http://www.lisa.org/tmx/
+[4] http://www.oasis-open.org/committees/tc_home.php?wg_abbrev=xliff
+[5] http://www.python.org
+[6] http://www.deusto.es/
+[7] http://www.eea.eu.int/
+
+
+
+Localizer 1.0.1
+===============
+
+Localizer is a Zope product that provides a set of facilities
+to develop multilingual web applications. It offers solutions to
+internationalize the user interfaces and to manage multilingual
+content.
+
+The changes of this release are:
+
+ - Added missing docstring to the Localizer class, thanks to
+   Christian Scholz.
+
+ - Strip the quality when parsing an accept header, this lets the
+   browser w3m and mobile phones to work, thanks to Helge Tesdal.
+
+ - Don't trigger Localizer instances when traversing if the request
+   variable AcceptLanguage does not exist. Thanks to Florent Guillaume.
+
+ - Now LocalPropertyManager.get_default_language returns None if
+   there isn't _default_language and get_languages returns an
+   empty list. Thanks to Greg Ward.
+
+ - Renamed the VERSION.txt file to version.txt, this lets to see the
+   version string from the control panel in the Zope management screens.
+   Thanks to Gilles Lenfant.
+
+ - Fixed bug in MessageCatalog.manage_export, thanks to Joachim Werner.
+
+
+Resources
+---------
+
+Home page
+http://www.localizer.org
+
+Download
+http://sourceforge.net/projects/lleu
+
+Mailing list
+http://mail.freesoftware.fsf.org/mailman/listinfo/nuxeo-localizer
+
+
+
+Localizer 1.0.0
+===============
+
+Localizer is a Zope product that provides a set of facilities
+to develop multilingual web applications. It offers solutions to
+internationalize the user interfaces and to manage multilingual
+content.
+
+This is a bug fix release, the changes are:
+
+ - The dynamic global request patch is not installed if the static
+   version (by Tim McLaughlin) is already applied.
+
+
+
+Resources
+---------
+
+Home page
+http://www.localizer.org
+
+Download
+http://sourceforge.net/projects/lleu
+
+Mailing list
+http://mail.freesoftware.fsf.org/mailman/listinfo/nuxeo-localizer
+
+
+
+Localizer 0.9.3
+===============
+
+Localizer is a Zope product that provides a set of facilities
+to develop multilingual web applications. It offers solutions to
+internationalize the user interfaces and to manage multilingual
+content.
+
+This is a bug fix release, the changes are:
+
+ - Open MO files as binary files, this caused problems on Windows.
+   Thanks to Johan Carlsson
+
+ - Correctly copy and paste Localizer instances.
+
+ - Correctly detect Netscape 4.x, before Internet Explorer was thought
+   to be NS, this caused problems with the language negotiation. Thanks
+   to Olivier Nibart.
+
+ - Add the languages from a Localizer instance (if it exists) to the
+   languages input box of the LocalFolder add screen (as it already
+   was done with LocalContent).
+
+ - Quote messages in the Message Catalog interface, thanks to Geir Bækholt.
+
+
+Resources
+---------
+
+Home page
+http://www.localizer.org
+
+Download
+http://sourceforge.net/projects/lleu
+
+Mailing list
+http://mail.freesoftware.fsf.org/mailman/listinfo/nuxeo-localizer
+
+
+
+Localizer 0.9.2
+===============
+
+Localizer is a Zope product that provides a set of facilities
+to develop multilingual web applications. It offers solutions to
+internationalize the user interfaces and to manage multilingual
+content.
+
+This is a bug fix release, the changes are:
+
+ - The "zgettext.py" script correctly parses Python files, to do
+   it the xgettext program from the GNU Gettext utilities is used.
+
+ - Now "zgettext.py" don't preserves the old messages in the
+   locale.pot file.
+
+ - Updated the Unicode patch, by Florent Guillaume.
+
+ - In some rare conditions the request object dissapears from the
+   global dictionary, this produces a key error when it's tried to be
+   removed. Fixed catching the exception (I couldn't reproduce the
+   error).
+
+And a new "feature":
+
+ - Added the new module "LocalizerSupport.py", it helps to develop
+   Localizer based products that become monolingual when Localizer
+   is not installed (instead of becoming broken). It provides dummy
+   versions for some of the features of Localizer, not all.
+
+
+Resources
+---------
+
+Home page
+http://www.j-david.net/software/localizer
+
+Download
+http://sourceforge.net/projects/lleu
+
+Mailing list
+http://mail.freesoftware.fsf.org/mailman/listinfo/nuxeo-localizer
+
+
+
+Localizer 0.9.1
+===============
+
+Localizer is a Zope [1] product that provides a set of facilities
+to develop multilingual web applications. It offers solutions to
+internationalize the user interfaces and to manage multilingual
+content.
+
+
+Localizer becomes beta
+----------------------
+
+Finally I've decided to officially declare Localizer as beta. This
+means that no new features will be added for the 1.0 release, the
+focus will be stability and documentation.
+
+
+What's new
+----------
+
+Added unicode support to ZPT. Final version by Florent Guillaume.
+
+New icons for all the meta types. Now Localizer has a logo (see logo.gif).
+This is a contribution of Maite Rementeria, from Code&Syntax [2].
+
+Spanish translation updated. New japanese version!, by Kazuya Fukamachi.
+
+Some minor bugs fixed.
+
+
+Resources
+---------
+
+Home page
+http://www.j-david.net/software/localizer
+
+Download
+http://sourceforge.net/projects/lleu
+
+Mailing list
+http://mail.freesoftware.fsf.org/mailman/listinfo/nuxeo-localizer
+
+
+Footnotes
+---------
+
+[1] http://www.zope.org
+
+[2] http://www.codesyntax.com
+
+
+
+Localizer 0.9.0
+===============
+
+General arquitecture
+
+  In the version 0.9 there're four meta types (Localizer, MessageCatalog,
+  LocalContent and LocalFolder), each one specialized in one task, finishing
+  this way with the confusion present in previous versions, where the
+  different features weren't clearly separated.
+
+  Previous versions mixed two features in the Localizer meta type, language
+  negotiation and generic support of multilingual objects.
+
+  Now the Localizer meta type is specialized in language negotiation. And a
+  new meta type, named LocalFolder, provides the generic support for language
+  negotiation following a different approach.
+
+  The old "locale folders" feature that was present in the Localizer meta
+  type has been definitely removed.
+
+
+Language negotiation
+
+  This is one of the areas that has seen mayor improvements since version
+  0.8, now there's a simple default criteria to choose the language, based
+  only in the browser configuration. But the developer has much more power
+  to customize the language negotiation policy through the Localizer meta
+  type.
+
+  Also, the algorithm that chooses the language is finally standards compliant.
+
+
+Unicode
+
+  The Unicode support is another of the big new features in this version.
+  To implement it now Localizer depends on the Unicode patches from Toby
+  Dickenson (http://www.zope.org/Members/htrd/wstring), which are part of
+  Zope since the version 2.6.
+
+  Now the policy is to use Python Unicode strings for everything:
+
+   - translations in the message catalog are stored as unicode strings;
+
+   - multilingual properties of LocalContent objects are stored as unicode
+     strings;
+
+   - the gettext method, when used from the file system, always returns
+     unicode strings (as the "ugettext" method of the "gettext" python
+     module).
+
+  The problem could raise when unicode and normal strings are mixed. By
+  default Python converts the normal strings to unicode as if they were
+  in ASCII. However, in Zope the default is considered to be iso-8859-1,
+  which is hardcoded in several places. Just be careful if you mix normal
+  and unicode strings, specially if they're in an encoding different than
+  iso-8859-1.
+
+  But maybe the main problem is the lack of proper unicode support in ZPT,
+  this will cause problems to anybody that wants to use ZPT and Unicode.
+
+  So it's likely that both Zope and Localizer will need a bit of work before
+  the Unicode support becomes stable.
+
+
+Message Catalog
+
+  The message catalog interface has been completely redone. Now it correctly
+  supports multiline messages, including correct import and export from and
+  to PO files (thanks to Jean-Paul Smets).
+
+
+There're other minor changes, like some improvements in the management
+screens. The relevant links are:
+
+  - Home page
+    http://www.j-david.net/localizer
+
+  - Download
+    http://sourceforge.net/projects/lleu
+
+  - Mailing list
+    http://mail.freesoftware.fsf.org/mailman/listinfo/nuxeo-localizer

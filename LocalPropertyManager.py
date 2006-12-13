@@ -382,7 +382,7 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
             raise AttributeError, "%s instance has no attribute '%s'" \
                                   % (self.__class__.__name__, name)
 
-        return property.get(lang, '')
+        return self.getLocalAttribute(id, lang)
  
 
 

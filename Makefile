@@ -18,5 +18,3 @@ test:
 
 binary: clean mo
 	rm -f refresh.txt
-	rm -rf CVS
-	rm -rf */CVS

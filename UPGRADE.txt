@@ -1,4 +1,7 @@
-----> 0.8.1
+
+***************************************************************************
+Localizer 0.8.1
+***************************************************************************
 
   * The request variable USER_PREF_LANGUAGES isn't a list anymore,
     now it's an object that represents a tree. Any code that directly
@@ -56,7 +59,9 @@
     way will be preserved for a while, probably a long while.
 
 
-----> 0.8.0
+***************************************************************************
+Localizer 0.8.0
+***************************************************************************
 
   * The 0.7 version saw a big redesign of message catalogs, and
     also of the way they're used. Before they were implicitly called,
@@ -102,7 +107,9 @@
 
 
 
-----> 0.7.0
+***************************************************************************
+Localizer 0.7.0
+***************************************************************************
 
   * There're several changes that require all Localizer instances
     to be upgraded, to do so go to the management interfaces of
@@ -131,7 +138,9 @@
     doubt send me an email.
 
 
-----> 0.6.1
+***************************************************************************
+Localizer 0.6.1
+***************************************************************************
 
   Before 0.6.0 changeLanguageForm was a LocalDTMLFile, in 0.6.0
   I changed it to a DTML Method. Now it's again a LocalDTMLFile.
@@ -145,7 +154,9 @@
   bindings can be used from a DTMLFile.
 
 
-----> 0.6
+***************************************************************************
+Localizer 0.6
+***************************************************************************
 
  * LocalContent and LocalPropertyManager      
 
@@ -188,7 +199,9 @@
     Perhaps there're other minor changes that could break something.
 
 
-----> 0.3
+***************************************************************************
+Localizer 0.3
+***************************************************************************
 
 In Localizer versions < 0.3 the way to localize DTML files was:
 

@@ -7,13 +7,13 @@ both user interfaces and content.
 
 Requirements
 
-  - Python 2.3.4 or later
+  - Python 2.3.5 or later
 
-  - Zope 2.7.4 or later
+  - Zope 2.7.6 or later
 
-  - itools 0.7.3 or later (download from http://www.ikaaro.org/itools)
+  - itools 0.9.5 or later (download from http://www.ikaaro.org/itools)
 
-  - iHotfix 0.5.2 or later (download from http://www.ikaaro.org/localizer)
+  - iHotfix 0.6.1 or later (download from http://www.ikaaro.org/localizer)
 
 
 Installation
@@ -21,21 +21,21 @@ Installation
   Download Localizer. Unpack the tarball and install it in the "Products"
   directory::
 
-    $ tar xzf Localizer-1.1.0.tar.gz
-    $ cp -r Localizer-1.1.0 <Zope instance>/Products/Localizer
+    $ tar xzf Localizer-1.1.3.tar.gz
+    $ cp -r Localizer-1.1.3 <Zope instance>/Products/Localizer
 
   Another option, case you are running Unix, is to use symbolic links::
 
-    $ ln -s Localizer-1.1.0 <Zope instance>/Products/Localizer
+    $ ln -s Localizer-1.1.3 <Zope instance>/Products/Localizer
 
 
 Resources
 
   - "Home site":http://www.localizer.org
 
-  - "Mailing list":http://in-girum.net/mailman/listinfo/localizer
+  - "Mailing list":http://mail.ikaaro.org/mailman/listinfo/localizer
 
-  - "Bug Tracker":http://in-girum.net/cgi-bin/bugzilla/index.cgi
+  - "Bug Tracker":http://bugs.ikaaro.org/
 
 
 Examples of sites powered by Localizer
@@ -57,7 +57,7 @@ Examples of sites powered by Localizer
 
 Author and License
 
-  Copyright 2001-2005  J. David Ibáñez (jdavid@itaapy.com)
+  Copyright 2001-2006  J. David Ibáñez (jdavid@itaapy.com)
             2001 Universitat Jaume I
 
   This program is free software; you can redistribute it and/or

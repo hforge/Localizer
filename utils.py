@@ -41,8 +41,10 @@ def lang_negotiator(available_languages):
     language that is available, if none is available returns None.
     """
     context = get_context()
-    request, response = context.request, context.response
+    if context is None:
+        return None
 
+    request, response = context.request, context.response
     lang = request.accept_language.select_language(available_languages)
 
     # XXX Here we should set the Vary header, but, which value should it have??
