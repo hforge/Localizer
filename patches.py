@@ -1,5 +1,5 @@
 # -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2005  Juan David Ibáñez Palomar <jdavid@itaapy.com>
+# Copyright (C) 2000-2006  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,32 +17,36 @@
 
 
 """
-This Zope product is a hotfix, it dynamically applies several patches
-to Zope.
+This is a hotfix, it dynamically applies several patches to Zope.
 """
 
 # Import from the Standard Library
+import logging
 import os
 import pprint
 from StringIO import StringIO as originalStringIO
 
 # Import from itools
 from itools import web
+from itools.web import zope2
 from itools.web import get_context
 
 # Import from Zope
 import Globals
-from Products.PageTemplates.PageTemplate import getEngine, PageTemplate, \
-     PTRuntimeError
+from Products.PageTemplates.PageTemplate import (getEngine, PageTemplate,
+     PTRuntimeError)
 from Products.PageTemplates import TALES
 from TAL.TALInterpreter import TALInterpreter
-from zLOG import LOG, ERROR, INFO, PROBLEM, DEBUG
 from ZPublisher import Publish
 
 
 # Flag
 patch = False
 Z_DEBUG_MODE = os.environ.get('Z_DEBUG_MODE') == '1'
+
+
+logger = logging.getLogger('Localizer')
+
 
 # PATCH 1: Global Request
 #
@@ -63,7 +67,7 @@ Z_DEBUG_MODE = os.environ.get('Z_DEBUG_MODE') == '1'
 
 def new_publish(zope_request, module_name, after_list, debug=0):
     # Build the Context instance, a wrapper around the Zope request
-    web.zope2.init(zope_request)
+    zope2.init(zope_request)
 
     try:
         # Publish
@@ -82,6 +86,8 @@ def new_publish(zope_request, module_name, after_list, debug=0):
 
 
 if patch is False:
+    logger.info('Make the request object available globaly.')
+
     # Apply the patch
     Publish.zope_publish = Publish.publish
     Publish.publish = new_publish
@@ -103,7 +109,6 @@ if patch is False:
 # PATCH 2: Unicode
 #
 # Enables support of Unicode in ZPT.
-# For Zope 2.5.1 (unsupported), patch appropriately.
 # For Zope 2.6b1+
 #   - if LOCALIZER_USE_ZOPE_UNICODE, use standard Zope Unicode handling,
 #   - otherwise use Localizer's version of StringIO for ZPT and TAL.
@@ -113,42 +118,32 @@ if patch is False:
 patch_251 = not hasattr(TALInterpreter, 'StringIO')
 
 if patch_251:
-    try:
-        # Patched 2.5.1 should have ustr in __builtins__
-        ustr
-    except NameError:
-        LOG('Localizer', PROBLEM,
-            'A Unicode-aware version of Zope is needed by Localizer to'
-            ' apply its Unicode patch. Please consult the documentation'
-            ' for a patched version of Zope 2.5.1, or use Zope 2.6b1 or'
-            ' later.')
-    else:
-        # 3.1 - Fix two instances where ustr must be used
-        def evaluateText(self, expr):
-            text = self.evaluate(expr)
-            if text is TALES.Default or text is None:
-                return text
-            return ustr(text) # Use "ustr" instead of "str"
-        TALES.Context.evaluateText = evaluateText
+    # 3.1 - Fix two instances where ustr must be used
+    def evaluateText(self, expr):
+        text = self.evaluate(expr)
+        if text is TALES.Default or text is None:
+            return text
+        return ustr(text) # Use "ustr" instead of "str"
+    TALES.Context.evaluateText = evaluateText
 
-        def do_insertStructure_tal(self, (expr, repldict, block)):
-            structure = self.engine.evaluateStructure(expr)
-            if structure is None:
-                return
-            if structure is self.Default:
-                self.interpret(block)
-                return
-            text = ustr(structure)  # Use "ustr" instead of "str"
-            if not (repldict or self.strictinsert):
-                # Take a shortcut, no error checking
-                self.stream_write(text)
-                return
-            if self.html:
-                self.insertHTMLStructure(text, repldict)
-            else:
-                self.insertXMLStructure(text, repldict)
-        TALInterpreter.do_insertStructure_tal = do_insertStructure_tal
-        TALInterpreter.bytecode_handlers_tal["insertStructure"] = do_insertStructure_tal
+    def do_insertStructure_tal(self, (expr, repldict, block)):
+        structure = self.engine.evaluateStructure(expr)
+        if structure is None:
+            return
+        if structure is self.Default:
+            self.interpret(block)
+            return
+        text = ustr(structure)  # Use "ustr" instead of "str"
+        if not (repldict or self.strictinsert):
+            # Take a shortcut, no error checking
+            self.stream_write(text)
+            return
+        if self.html:
+            self.insertHTMLStructure(text, repldict)
+        else:
+            self.insertXMLStructure(text, repldict)
+    TALInterpreter.do_insertStructure_tal = do_insertStructure_tal
+    TALInterpreter.bytecode_handlers_tal["insertStructure"] = do_insertStructure_tal
 
 
 # 3.2 - Fix uses of StringIO with a Unicode-aware StringIO
@@ -167,10 +162,10 @@ class LocalizerStringIO(originalStringIO):
 
 if not patch_251:
     if os.environ.get('LOCALIZER_USE_ZOPE_UNICODE'):
-        LOG('Localizer', DEBUG, 'No Unicode patching')
+        logger.debug('No Unicode patching')
         # Use the standard Zope way of dealing with Unicode
     else:
-        LOG('Localizer', DEBUG, 'Unicode patching for Zope 2.6b1+')
+        logger.debug('Unicode patching for Zope 2.6b1+')
         # Patch the StringIO method of TALInterpreter and PageTemplate
         def patchedStringIO(self):
             return LocalizerStringIO()
@@ -178,7 +173,7 @@ if not patch_251:
         PageTemplate.StringIO = patchedStringIO
 
 else:
-    LOG('Localizer', DEBUG, 'Unicode patching for Zope 2.5.1')
+    logger.debug('Unicode patching for Zope 2.5.1')
     # Patch uses of StringIO in Zope 2.5.1
     def no_tag(self, start, program):
         state = self.saveState()

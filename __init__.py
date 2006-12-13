@@ -15,7 +15,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-
 # First check wether itools is installed
 try:
     import itools
@@ -24,7 +23,7 @@ except ImportError:
                         ' http://www.ikaaro.org/itools')
 
 # Import from Zope
-from ImageFile import ImageFile
+from App.ImageFile import ImageFile
 from DocumentTemplate.DT_String import String
 import ZClasses
 from Products.PageTemplates.GlobalTranslationService import \
