@@ -30,7 +30,7 @@ from Products.PageTemplates.GlobalTranslationService import \
      setGlobalTranslationService
 
 # Import from Localizer
-import patches
+from patches import get_request
 import Localizer, LocalContent, MessageCatalog, LocalFolder
 from LocalFiles import LocalDTMLFile, LocalPageTemplateFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty

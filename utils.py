@@ -17,11 +17,14 @@
 
 # Import from itools
 from itools import get_abspath
+from itools.i18n.accept import AcceptLanguage
 from itools.gettext import domains
-from itools.web import get_context
 
 # Import from Zope
 from Globals import package_home
+
+# Import from Localizer
+from patches import get_request
 
 
 # Package home
@@ -40,16 +43,18 @@ def lang_negotiator(available_languages):
     and the list of available languages. Returns the first user pref.
     language that is available, if none is available returns None.
     """
-    context = get_context()
-    if context is None:
+    request = get_request()
+    if request is None:
         return None
 
-    request, response = context.request, context.response
-    lang = request.accept_language.select_language(available_languages)
+    accept = request.get_header('accept-language', default='')
+    accept = AcceptLanguage(accept)
+    lang = accept.select_language(available_languages)
 
     # XXX Here we should set the Vary header, but, which value should it have??
-##    response.set_header('Vary', 'accept-language')
-##    response.set_header('Vary', '*')
+##    response = request.RESPONSE
+##    response.setHeader('Vary', 'accept-language')
+##    response.setHeader('Vary', '*')
 
     return lang
 
@@ -60,7 +65,9 @@ def lang_negotiator(available_languages):
 class DomainAware(domains.DomainAware):
 
     def select_language(cls, languages):
-        accept = get_context().request.accept_language
+        request = get_request()
+        accept = request.get_header('accept-language', default='')
+        accept = AcceptLanguage(accept)
         return accept.select_language(languages)
 
     select_language = classmethod(select_language)

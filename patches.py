@@ -25,11 +25,7 @@ import logging
 import os
 import pprint
 from StringIO import StringIO as originalStringIO
-
-# Import from itools
-from itools import web
-from itools.web import zope2
-from itools.web import get_context
+from thread import allocate_lock, get_ident
 
 # Import from Zope
 import Globals
@@ -59,28 +55,49 @@ logger = logging.getLogger('Localizer')
 # but also other things, like the user's session, as it is required by
 # the ikaaro CMS.
 #
-# The context objects are stored in a dictionary in the Publish module,
+# The request objects are stored in a dictionary in the Publish module,
 # whose keys are the thread id.
 #
 # Also, we keep the get_request method in the Globals module for backwards
 # compatibility (with TranslationService for example).
 
-def new_publish(zope_request, module_name, after_list, debug=0):
-    # Build the Context instance, a wrapper around the Zope request
-    zope2.init(zope_request)
+_requests = {}
+_requests_lock = allocate_lock()
 
+
+def get_request():
+    """Get a request object"""
+    return _requests.get(get_ident(), None)
+
+
+def new_publish(request, module_name, after_list, debug=0):
+    # Get the process id
+    ident = get_ident()
+
+    # Add the request object to the global dictionnary
+    _requests_lock.acquire()
+    try:
+        _requests[ident] = request
+    finally:
+        _requests_lock.release()
+
+    # Call the old publish
     try:
         # Publish
-        x = Publish.zope_publish(zope_request, module_name, after_list, debug)
+        x = Publish.zope_publish(request, module_name, after_list, debug)
     finally:
-        # Remove the context object.
+        # Remove the request object.
         # When conflicts occur the "publish" method is called again,
-        # recursively. In this situation the context dictionary would
+        # recursively. In this situation the "_requests dictionary would
         # be cleaned in the innermost call, hence outer calls find the
-        # context does not exists anymore. For this reason we check first
-        # wether the context is there or not.
-        if web.context.has_context():
-            web.context.del_context()
+        # request does not exist anymore. For this reason we check first
+        # wether the request is there or not.
+        if ident in _requests:
+            _requests_lock.acquire()
+            try:
+                del _requests[ident]
+            finally:
+                _requests_lock.release()
 
     return x
 
@@ -96,12 +113,7 @@ if patch is False:
     # We need to apply the patches.
     patch = True
 
-    # Add get_request for backwards compatibility
-    def get_request():
-        context = get_context()
-        if context is None:
-            return None
-        return context.request.zope_request
+    # Add to Globals for backwards compatibility
     Globals.get_request = get_request
 
 
