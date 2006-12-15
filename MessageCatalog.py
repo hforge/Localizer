@@ -52,14 +52,7 @@ from DocumentTemplate.DT_Util import ustr
 from Globals import  MessageDialog, PersistentMapping, InitializeClass
 from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
-from zope.i18n import _interp_regex
-try:
-    # Zope 2.9
-    from TAL.TALInterpreter import _get_var_regex
-except ImportError:
-    # Zope 2.10 (XXX)
-    NAME_RE = r"[a-zA-Z][a-zA-Z0-9_]*"
-    _get_var_regex = re.compile(r'%(n)s' %({'n': NAME_RE}))
+from TAL.TALInterpreter import interpolate
 
 # Import from Localizer
 from LanguageManager import LanguageManager
@@ -237,19 +230,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         This method is required to get the i18n namespace from ZPT working.
         """
         msgstr = self.gettext(msgid)
-
         mapping = kw.get('mapping')
-        if not mapping:
-            return msgstr
-
-        # Interpolate
-        for string in _interp_regex.findall(msgstr):
-            var = _get_var_regex.findall(string)[0]
-            if var in mapping:
-                subst = ustr(mapping[var])
-                msgstr = msgstr.replace(string, subst)
-
-        return msgstr
+        return interpolate(msgstr, mapping)
 
 
     #######################################################################
