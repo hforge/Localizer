@@ -261,7 +261,7 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
             RESPONSE.redirect(url)
 
 
-    security.declareProtected('Manage properties', 'isObsolete')
+    security.declareProtected('Manage properties', 'is_obsolete')
     def is_obsolete(self, prop, lang):
         default_language = self.get_default_language()
 
