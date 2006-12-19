@@ -70,7 +70,8 @@ def get_request():
     return _requests.get(get_ident(), None)
 
 
-def new_publish(request, module_name, after_list, debug=0):
+def new_publish(request, module_name, after_list, debug=0,
+                zope_publish=Publish.publish):
     # Get the process id
     ident = get_ident()
 
@@ -84,7 +85,7 @@ def new_publish(request, module_name, after_list, debug=0):
     # Call the old publish
     try:
         # Publish
-        x = Publish.zope_publish(request, module_name, after_list, debug)
+        x = zope_publish(request, module_name, after_list, debug)
     finally:
         # Remove the request object.
         # When conflicts occur the "publish" method is called again,
@@ -106,7 +107,6 @@ if patch is False:
     logger.info('Make the request object available globaly.')
 
     # Apply the patch
-    Publish.zope_publish = Publish.publish
     Publish.publish = new_publish
 
     # First import (it's not a refresh operation).
