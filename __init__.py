@@ -22,6 +22,9 @@ except ImportError:
     raise ImportError, ('itools is not installed, download from'
                         ' http://www.ikaaro.org/itools')
 
+# Import from the Standard Library
+import os.path
+
 # Import from Zope
 from App.ImageFile import ImageFile
 from DocumentTemplate.DT_String import String
@@ -100,6 +103,15 @@ except ImportError:
 
 
 def initialize(context):
+    # Check Localizer is not installed with a name different than Localizer
+    # (this is a common mistake).
+    filename = os.path.split(os.path.split(__file__)[0])[1]
+    if filename != 'Localizer':
+        message = (
+            "The Localizer product must be installed within the 'Products'"
+            " folder with the name 'Localizer' (not '%s').") % filename
+        raise RuntimeError, message
+
     # XXX This code has been written by Cornel Nitu, it may be a solution to
     # upgrade instances.
 ##    root = context._ProductContext__app
