@@ -7,13 +7,11 @@ both user interfaces and content.
 
 Requirements
 
-  - Python 2.3.5 or later
+  - Python 2.4 or later
 
-  - Zope 2.7.6 or later
+  - Zope 2.9 or later
 
-  - itools 0.9.5 or later (download from http://www.ikaaro.org/itools)
-
-  - iHotfix 0.6.1 or later (download from http://www.ikaaro.org/localizer)
+  - itools 0.13.10 or later (download from http://www.ikaaro.org/itools)
 
 
 Installation
@@ -21,12 +19,12 @@ Installation
   Download Localizer. Unpack the tarball and install it in the "Products"
   directory::
 
-    $ tar xzf Localizer-1.1.3.tar.gz
-    $ cp -r Localizer-1.1.3 <Zope instance>/Products/Localizer
+    $ tar xzf Localizer-1.2.0.tar.gz
+    $ cp -r Localizer-1.2.0 <Zope instance>/Products/Localizer
 
   Another option, case you are running Unix, is to use symbolic links::
 
-    $ ln -s Localizer-1.1.3 <Zope instance>/Products/Localizer
+    $ ln -s Localizer-1.2.0 <Zope instance>/Products/Localizer
 
 
 Resources
