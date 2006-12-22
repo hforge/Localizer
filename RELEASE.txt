@@ -9,7 +9,7 @@ to management of multilingual content.
 
 The release 1.2.0 is a version update: it requires Python 2.4 and
 itools 0.13.10, and the product iHotfix is not required anymore (it
-has been merged back to Localizer).
+has been merged back into Localizer).
 
 This grid show the possible software combinations:
 
@@ -18,7 +18,7 @@ This grid show the possible software combinations:
   1.1 (+iHotfix)  2.3        2.7, 2.8        0.9
   1.0             2.1        2.6             ---
 
-Of course it is recommended to use Localier 1.2 with Zope 2.9 or later.
+Of course it is recommended to use Localizer 1.2 with Zope 2.9 or later.
 
 
 Resources
