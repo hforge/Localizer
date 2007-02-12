@@ -26,11 +26,15 @@ import os
 from StringIO import StringIO as originalStringIO
 from thread import allocate_lock, get_ident
 
+# Import from itools
+from itools.i18n.accept import AcceptCharset, AcceptLanguage
+
 # Import from Zope
 import Globals
 from Products.PageTemplates.PageTemplate import PageTemplate
 from TAL.TALInterpreter import TALInterpreter
 from ZPublisher import Publish
+from ZPublisher.HTTPRequest import HTTPRequest
 
 
 # Flag
@@ -146,4 +150,45 @@ if not os.environ.get('LOCALIZER_USE_ZOPE_UNICODE'):
     # Patch the StringIO method of TALInterpreter and PageTemplate
     TALInterpreter.StringIO = patchedStringIO
     PageTemplate.StringIO = patchedStringIO
+
+
+
+# PATCH 3: Accept
+#
+# Adds the variables AcceptLanguage and AcceptCharset to the REQUEST.
+# They provide a higher level interface than HTTP_ACCEPT_LANGUAGE and
+# HTTP_ACCEPT_CHARSET.
+
+# Apply the patch
+def new_processInputs(self):
+    HTTPRequest.old_processInputs(self)
+
+    request = self
+
+    # Set the AcceptCharset variable
+##    accept = request['HTTP_ACCEPT_CHARSET']
+##    self.other['AcceptCharset'] = AcceptCharset(accept)
+
+    # Set the AcceptLanguage variable
+    # Initialize with the browser configuration
+    accept_language = request['HTTP_ACCEPT_LANGUAGE']
+    # Patches for user agents that don't support correctly the protocol
+    user_agent = request['HTTP_USER_AGENT']
+    if user_agent.startswith('Mozilla/4') and user_agent.find('MSIE') == -1:
+        # Netscape 4.x
+        q = 1.0
+        langs = []
+        for lang in [ x.strip() for x in accept_language.split(',') ]:
+            langs.append('%s;q=%f' % (lang, q))
+            q = q/2
+        accept_language = ','.join(langs)
+
+    accept_language = AcceptLanguage(accept_language)
+
+    self.other['AcceptLanguage'] = accept_language
+
+
+if patch:
+    HTTPRequest.old_processInputs = HTTPRequest.processInputs
+    HTTPRequest.processInputs = new_processInputs
 

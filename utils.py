@@ -47,9 +47,12 @@ def lang_negotiator(available_languages):
     if request is None:
         return None
 
-    accept = request.get_header('accept-language', default='')
-    accept = AcceptLanguage(accept)
-    lang = accept.select_language(available_languages)
+    try:
+        accept = request['AcceptLanguage']
+    except KeyError:
+        return None
+    else:
+        lang = accept.select_language(available_languages)
 
     # XXX Here we should set the Vary header, but, which value should it have??
 ##    response = request.RESPONSE
