@@ -17,8 +17,8 @@
 
 # Import from itools
 from itools import get_abspath
-from itools.i18n.accept import AcceptLanguage
-from itools.gettext import domains
+from itools.i18n import AcceptLanguageType
+from itools.gettext import register_domain, DomainAware as BaseDomainAware
 
 # Import from Zope
 from Globals import package_home
@@ -65,12 +65,12 @@ def lang_negotiator(available_languages):
 # Provide an API to access translations stored as MO files in the 'locale'
 # directory. This code has been moved from Localizer.
 
-class DomainAware(domains.DomainAware):
+class DomainAware(BaseDomainAware):
 
     def select_language(cls, languages):
         request = get_request()
         accept = request.get_header('accept-language', default='')
-        accept = AcceptLanguage(accept)
+        accept = AcceptLanguageType.decode(accept)
         return accept.select_language(languages)
 
     select_language = classmethod(select_language)
@@ -81,7 +81,7 @@ class translation(DomainAware):
     def __init__(self, namespace):
         domain = get_abspath(namespace, 'locale')
         self.class_domain = domain
-        domains.register_domain(domain, domain)
+        register_domain(domain, domain)
 
 
     def __call__(self, message, language=None):

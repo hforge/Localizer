@@ -30,7 +30,7 @@ import os
 
 # Import from itools
 from itools import get_abspath
-from itools.gettext import domains
+from itools.gettext import register_domain
 
 # Import Zope modules
 from Globals import DTMLFile
@@ -47,7 +47,7 @@ class LocalDTMLFile(DTMLFile):
 
         domain = get_abspath(_prefix, 'locale')
         self.class_domain = domain
-        domains.register_domain(domain, domain)
+        register_domain(domain, domain)
 
 
     def _exec(self, bound_data, args, kw):
@@ -80,7 +80,7 @@ else:
 
             domain = get_abspath(_prefix, 'locale')
             self.class_domain = domain
-            domains.register_domain(domain, domain)
+            register_domain(domain, domain)
 
 
         def _exec(self, bound_data, args, kw):

@@ -15,12 +15,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-# First check wether itools is installed
+# Check whether itools is installed
+msg = ('itools 0.16 or later is needed, download from '
+       'http://www.ikaaro.org/itools')
 try:
     import itools
 except ImportError:
-    raise ImportError, ('itools is not installed, download from'
-                        ' http://www.ikaaro.org/itools')
+    raise ImportError, msg
+# Check itools is version 0.16 or later
+if itools.__version__ < '0.16':
+    raise ImportError, msg
 
 # Import from the Standard Library
 import os.path

@@ -11,7 +11,7 @@ Requirements
 
   - Zope 2.9 or later
 
-  - itools 0.13.10 or later (download from http://www.ikaaro.org/itools)
+  - itools 0.16.10 or later (download from http://www.ikaaro.org/itools)
 
 
 Installation
@@ -55,7 +55,7 @@ Examples of sites powered by Localizer
 
 Author and License
 
-  Copyright 2001-2006  J. David Ibáñez (jdavid@itaapy.com)
+  Copyright 2001-2007  J. David Ibáñez (jdavid@itaapy.com)
             2001 Universitat Jaume I
 
   This program is free software; you can redistribute it and/or

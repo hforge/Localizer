@@ -42,7 +42,7 @@ import time
 
 # Import from itools
 from itools.handlers import get_handler
-from itools.gettext.PO import PO
+from itools.gettext import PO
 
 
 

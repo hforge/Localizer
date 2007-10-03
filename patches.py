@@ -27,7 +27,7 @@ from StringIO import StringIO as originalStringIO
 from thread import allocate_lock, get_ident
 
 # Import from itools
-from itools.i18n.accept import AcceptCharset, AcceptLanguage
+from itools.i18n import AcceptLanguageType
 
 # Import from Zope
 import Globals
@@ -155,19 +155,14 @@ if not os.environ.get('LOCALIZER_USE_ZOPE_UNICODE'):
 
 # PATCH 3: Accept
 #
-# Adds the variables AcceptLanguage and AcceptCharset to the REQUEST.
-# They provide a higher level interface than HTTP_ACCEPT_LANGUAGE and
-# HTTP_ACCEPT_CHARSET.
+# Adds the variable AcceptLanguage to the REQUEST.  It provides a higher
+# level interface than HTTP_ACCEPT_LANGUAGE.
 
 # Apply the patch
 def new_processInputs(self):
     HTTPRequest.old_processInputs(self)
 
     request = self
-
-    # Set the AcceptCharset variable
-##    accept = request['HTTP_ACCEPT_CHARSET']
-##    self.other['AcceptCharset'] = AcceptCharset(accept)
 
     # Set the AcceptLanguage variable
     # Initialize with the browser configuration
@@ -183,8 +178,7 @@ def new_processInputs(self):
             q = q/2
         accept_language = ','.join(langs)
 
-    accept_language = AcceptLanguage(accept_language)
-
+    accept_language = AcceptLanguageType.decode(accept_language)
     self.other['AcceptLanguage'] = accept_language
 
 

@@ -19,8 +19,8 @@
 # Import from the Standard Library
 from urlparse import urlparse
 
-# Import itools modules
-from itools import i18n
+# Import from itools
+from itools.i18n import Multilingual, get_language_name, get_languages
 
 # Import from Zope
 from Globals import InitializeClass
@@ -31,7 +31,7 @@ from LocalFiles import LocalDTMLFile
 from utils import lang_negotiator
 
 
-class LanguageManager(i18n.Multilingual):
+class LanguageManager(Multilingual):
     """ """
 
     security = ClassSecurityInfo()
@@ -61,7 +61,7 @@ class LanguageManager(i18n.Multilingual):
         """
         if id is None:
             id = self.get_default_language()
-        return i18n.get_language_name(id)
+        return get_language_name(id)
 
 
     security.declarePublic('get_available_languages')
@@ -96,7 +96,7 @@ class LanguageManager(i18n.Multilingual):
         """
         Returns all ISO languages, used by 'manage_languages'.
         """
-        return i18n.get_languages()
+        return get_languages()
 
 
     security.declareProtected('Manage languages', 'manage_addLanguage')

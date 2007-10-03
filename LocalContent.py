@@ -34,10 +34,9 @@ from LocalPropertyManager import LocalPropertyManager, LocalProperty
 from utils import _
 
 # Import from itools
-from itools.tmx.TMX import TMX, Sentence, Message
-from itools.xliff.XLIFF import XLIFF, Translation, File as xliff_File
-from itools.datatypes.languages import LanguageTag
-from itools.resources.memory import File as mFile
+from itools.datatypes import LanguageTag
+from itools.tmx import TMX, Sentence, Message
+from itools.xliff import XLIFF, Translation, File as xliff_File
 
 # Import from Python
 import md5
@@ -199,8 +198,8 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
         """ Imports a TMX level 1 file.
         """
         try:
-            f = mFile(file.read())
-            tmx = TMX(f)
+            data = file.read()
+            tmx = TMX(string=data)
         except:
             return MessageDialog(title = 'Parse error',
                                message = _('impossible to parse the file') ,
@@ -294,8 +293,8 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
             It is specified by www.oasis-open.org
         """
         try:
-            f = mFile(file.read())
-            xliff = XLIFF(f)
+            data = file.read()
+            xliff = XLIFF(string=data)
         except:
             return MessageDialog(title = 'Parse error',
                                  message = _('impossible to parse the file') ,

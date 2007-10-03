@@ -19,7 +19,7 @@
 from urllib import unquote
 
 # Import from itools
-from itools import i18n
+from itools.i18n import get_language_name
 
 # Import from Zope
 from AccessControl import ClassSecurityInfo
@@ -219,7 +219,7 @@ class Localizer(LanguageManager, Folder):
 
         langs = []
         for x in ob_languages:
-            langs.append({'id': x, 'title': i18n.get_language_name(x),
+            langs.append({'id': x, 'title': get_language_name(x),
                           'selected': x == ob_language})
 
         return langs

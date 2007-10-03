@@ -93,8 +93,6 @@ User Interface (ZMI)
 Standards Support
 -----------------
 
- - Move TMX and XLIFF code to itools.
-
  - Support fuzzy in "itools.handlers.PO".
 
  - Use the library libgettextpo introduced in gettext 0.12 to parse the

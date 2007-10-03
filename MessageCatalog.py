@@ -17,14 +17,12 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
-
 """
 This module provides the MessageCatalog base class, which
 provides message catalogs for the web.
 """
 
-
-# Import from Python
+# Import from the Standard Library
 import base64, md5
 import codecs
 import re
@@ -37,13 +35,11 @@ from cStringIO import StringIO
 from cgi import escape
 
 # Import from itools
-from itools.resources import memory, get_resource
+from itools.datatypes import LanguageTag
 from itools.gettext import PO
-from itools.tmx.TMX import TMX, Sentence, Message, Note
-from itools.xliff.XLIFF import XLIFF, Translation
-from itools.xliff.XLIFF import Note as xliff_Note, File as xliff_File
-from itools.resources.memory import File as mFile
-from itools.datatypes.languages import LanguageTag
+from itools.tmx import TMX, Sentence, Message, Note
+from itools.xliff import XLIFF, Translation, Note as xliff_Note, \
+    File as xliff_File
 
 # Import from Zope
 from AccessControl import ClassSecurityInfo
@@ -560,10 +556,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         """ """
         messages = self._messages
 
-        resource = memory.File(data)
-        po = PO.PO(resource)
-
         # Load the data
+        po = PO(string=data)
         for msgid in po.get_msgids():
             if msgid:
                 msgstr = po.get_msgstr(msgid) or ''
@@ -672,8 +666,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         """ Imports a TMX level 1 file.
         """
         try:
-            f = mFile(file.read())
-            tmx = TMX(f)
+            data = file.read()
+            tmx = TMX(string=data)
         except:
             return MessageDialog(title = 'Parse error',
                                  message = _('impossible to parse the file') ,
@@ -794,8 +788,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
             It is specified by www.oasis-open.org
         """
         try:
-            f = mFile(file.read())
-            xliff = XLIFF(f)
+            data = file.read()
+            xliff = XLIFF(string=data)
         except:
             return MessageDialog(title = 'Parse error',
                                  message = _('impossible to parse the file') ,
