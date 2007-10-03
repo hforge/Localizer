@@ -1,5 +1,5 @@
-# -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2003  Juan David Ib·Òez Palomar <jdavid@itaapy.com>
+# -*- coding: UTF-8 -*-
+# Copyright (C) 2000-2003  Juan David Ib√°√±ez Palomar <jdavid@itaapy.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,7 +28,6 @@ from patches import get_request
 
 # Package home
 ph = package_home(globals())
-
 
 # Initializes a list with the charsets
 charsets = [ x.strip() for x in open(ph + '/charsets.txt').readlines() ]

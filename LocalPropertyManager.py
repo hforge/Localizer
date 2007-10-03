@@ -1,5 +1,5 @@
-# -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2004  Juan David Ib·Òez Palomar <jdavid@itaapy.com>
+# -*- coding: UTF-8 -*-
+# Copyright (C) 2000-2004  Juan David Ib√°√±ez Palomar <jdavid@itaapy.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
     _local_properties_metadata = ()
 
     # Local properties are stored here
-    # Example: {'title': {'en': ('Title', timestamp), 'es': ('TÌtul', timestamp)}}
+    # Example: {'title': {'en': ('Title', timestamp), 'es': ('T√≠tul', timestamp)}}
     _local_properties = {}
 
     # Useful to find or index all LPM instances

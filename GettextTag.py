@@ -1,6 +1,5 @@
-# -*- coding: ISO-8859-1 -*-
-# Localizer, Zope product that provides internationalization services
-# Copyright (C) 2000-2002  Juan David Ib·Òez Palomar <jdavid@itaapy.com>
+# -*- coding: UTF-8 -*-
+# Copyright (C) 2000-2002  Juan David Ib√°√±ez Palomar <jdavid@itaapy.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,9 +24,10 @@ Adds a new DTML tag:
 </dtml-gettext>
 """
 
-
+# Import from the Standard Library
 from types import StringType
 
+# Import from Zope
 from DocumentTemplate.DT_Util import Eval, ParseError, parse_params, \
      InstanceDict, namespace, render_blocks
 

@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-# -*- coding: ISO-8859-1 -*-
-# Localizer, Zope product that provides internationalization services
-# Copyright (C) 2001 AndrÈs Marzal Varo
-#               2001-2002 J. David Ib·Òez <jdavid@itaapy.com>
+# -*- coding: UTF-8 -*-
+# Copyright (C) 2001 Andr√©s Marzal Varo
+# Copyright (C) 2001-2002 J. David Ib√°√±ez <jdavid@itaapy.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +30,6 @@ Future (XXX):
 Anyway, the trend is to levereage the gettext tools as much as posible.
 """
 
-
 # Import from the Standard Library
 import os
 import re
@@ -46,7 +44,8 @@ from itools.gettext import PO
 
 
 # Exceptions
-class UnknownStatus(Exception): pass
+class UnknownStatus(Exception):
+    pass
 
 
 

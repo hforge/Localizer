@@ -1,5 +1,5 @@
-# Localizer, Zope product that provides internationalization services
-# Copyright (C) 2001, 2002 J. David Ib·Òez <j-david@noos.fr>
+# -*- coding: UTF-8 -*-
+# Copyright (C) 2001, 2002 J. David Ib√°√±ez <j-david@noos.fr>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,18 +18,15 @@
 Test suite for the zgettext.py script.
 """
 
-__version__ = "$Revision: 1.8 $"
-
-
-# Add the Localizer product directory to the path
-import os, sys
-sys.path.append(os.path.join(sys.path[0], '../'))
-
-import zgettext
-
-
+# Import from the Standard Library
+import os
+import sys
 import unittest
 from unittest import TestCase, TestSuite, TextTestRunner
+
+# Import from Localizer
+sys.path.append(os.path.join(sys.path[0], '../'))
+import zgettext
 
 
 class GettextTagTestCase(TestCase):

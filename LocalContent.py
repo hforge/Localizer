@@ -1,5 +1,5 @@
-# -*- coding: ISO-8859-1 -*-
-# Copyright (C) 2000-2005  Juan David Ib·Òez Palomar <jdavid@itaapy.com>
+# -*- coding: UTF-8 -*-
+# Copyright (C) 2000-2005  Juan David Ib√°√±ez Palomar <jdavid@itaapy.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,15 @@
 
 # Import from the Standard Library
 from cgi import escape
+from cStringIO import StringIO
+import md5
 from types import StringType, UnicodeType
 from xml.sax import make_parser, handler, InputSource
-from cStringIO import StringIO
+
+# Import from itools
+from itools.datatypes import LanguageTag
+from itools.tmx import TMX, Sentence, Message
+from itools.xliff import XLIFF, Translation, File as xliff_File
 
 # Import from Zope
 from OFS.SimpleItem import SimpleItem
@@ -31,15 +37,6 @@ from Globals import InitializeClass, MessageDialog
 from LocalFiles import LocalDTMLFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty
 from utils import _
-
-# Import from itools
-from itools.datatypes import LanguageTag
-from itools.tmx import TMX, Sentence, Message
-from itools.xliff import XLIFF, Translation, File as xliff_File
-
-# Import from Python
-import md5
-
 
 
 def md5text(str):
