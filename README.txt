@@ -11,7 +11,8 @@ Requirements
 
   - Zope 2.9 or later
 
-  - itools 0.16.10 or later (download from http://www.ikaaro.org/itools)
+  - itools 0.16.10 or later (download from
+    "http://www.ikaaro.org/itools":http://www.ikaaro.org/itools)
 
 
 Installation
@@ -19,12 +20,12 @@ Installation
   Download Localizer. Unpack the tarball and install it in the "Products"
   directory::
 
-    $ tar xzf Localizer-1.2.0.tar.gz
-    $ cp -r Localizer-1.2.0 <Zope instance>/Products/Localizer
+    $ tar xzf Localizer-1.2.2.tar.gz
+    $ cp -r Localizer-1.2.2 <Zope instance>/Products/Localizer
 
   Another option, case you are running Unix, is to use symbolic links::
 
-    $ ln -s Localizer-1.2.0 <Zope instance>/Products/Localizer
+    $ ln -s Localizer-1.2.2 <Zope instance>/Products/Localizer
 
 
 Resources
@@ -69,5 +70,6 @@ Author and License
   GNU General Public License for more details.
 
   You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  along with this program.  If not, see
+  "http://www.gnu.org/licenses/":http://www.gnu.org/licenses/
 
