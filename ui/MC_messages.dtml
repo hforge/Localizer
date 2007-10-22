@@ -9,6 +9,7 @@
           lang="REQUEST.get('lang', None) or languages[0]['code']"
           msg="REQUEST.get('msg', _.None)"
           aux="filter(msg, lang, empty, regex, batch_start)"
+          translations="aux['translations']"
           entries="aux['messages']"
           nentries="aux['n_messages']"
           batch_start="aux['batch_start']"
@@ -18,8 +19,7 @@
     <tr>
       <td valign="top">
         <dtml-if nentries>
-          <dtml-let translations="get_translations(msg)"
-                    translation="translations.get(lang, '')"
+          <dtml-let translation="translations.get(lang, '')"
                     note="translations.get('note', '')">
 	    <form action="<dtml-var URL1>" method="post">
 	      <input type="hidden" name="batch_start:int"
@@ -100,7 +100,7 @@
 	    <dtml-in entries mapping>
 	      <tr>
 		<td<dtml-if current> bgcolor="yellow"<dtml-elif sequence-odd> bgcolor="#DDDDDD"</dtml-if>>
-		  <small><a href="<dtml-var "get_url(URL, batch_start, batch_size, regex, lang, empty, msg=message_encode(message))">"><dtml-var message size="40" html_quote></a></small>
+		  <small><a href="<dtml-var "get_url(URL, batch_start, batch_size, regex, lang, empty, msg=message_encoded)">"><dtml-var message size="40" html_quote></a></small>
 		</td>
 	      </tr>
 	    </dtml-in>

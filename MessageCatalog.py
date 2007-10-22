@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-# Copyright (C) 2000-2005  Juan David Ibáñez Palomar <jdavid@itaapy.com>
+# Copyright (C) 2000-2007  Juan David Ibáñez Palomar <jdavid@itaapy.com>
 # Copyright (C) 2003  Roberto Quero, Eduardo Corrales
 # Copyright (C) 2004  Søren Roug
 #
@@ -48,6 +48,7 @@ from Globals import  MessageDialog, PersistentMapping, InitializeClass
 from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
 from TAL.TALInterpreter import interpolate
+from ZPublisher import HTTPRequest
 
 # Import from Localizer
 from LanguageManager import LanguageManager
@@ -56,6 +57,9 @@ from utils import charsets, lang_negotiator, _
 
 
 
+###########################################################################
+# Utility functions and constants
+###########################################################################
 def md5text(str):
     """
     Create an MD5 sum (or hash) of a text. It is guaranteed to be 32 bytes
@@ -64,6 +68,52 @@ def md5text(str):
     return md5.new(str.encode('utf-8')).hexdigest()
 
 
+def to_unicode(x):
+    """In Zope the ISO-8859-1 encoding has an special status, normal strings
+    are considered to be in this encoding by default.
+    """
+    if isinstance(x, unicode):
+        return x
+    encoding = HTTPRequest.default_encoding
+    return unicode(x, encoding)
+
+
+def message_encode(message):
+    """Encodes a message to an ASCII string.
+
+    To be used in the user interface, to avoid problems with the
+    encodings, HTML entities, etc..
+    """
+    if isinstance(message, unicode):
+        message = message.encode('utf8')
+
+    return base64.encodestring(message)
+
+
+def message_decode(message):
+    """Decodes a message from an ASCII string.
+
+    To be used in the user interface, to avoid problems with the
+    encodings, HTML entities, etc..
+    """
+    message = base64.decodestring(message)
+    return unicode(message, 'utf8')
+
+
+def filter_sort(x, y):
+    return cmp(to_unicode(x), to_unicode(y))
+
+
+# Empty header information for PO files (UTF-8 is the default encoding)
+empty_po_header = {'last_translator_name': '',
+                   'last_translator_email': '',
+                   'language_team': '',
+                   'charset': 'UTF-8'}
+
+
+###########################################################################
+# The Message Catalog class, and ZMI constructor
+###########################################################################
 manage_addMessageCatalogForm = LocalDTMLFile('ui/MC_add', globals())
 def manage_addMessageCatalog(self, id, title, languages, sourcelang=None,
                              REQUEST=None):
@@ -75,16 +125,6 @@ def manage_addMessageCatalog(self, id, title, languages, sourcelang=None,
 
     if REQUEST is not None:
         return self.manage_main(self, REQUEST)
-
-
-# Empty header information for PO files, the default
-# UTF-8 is the encoding by default
-empty_po_header = {'last_translator_name': '',
-                   'last_translator_email': '',
-                   'language_team': '',
-                   'charset': 'UTF-8'}
-
-_marker = []
 
 
 class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
@@ -116,38 +156,28 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
 
     #######################################################################
+    # Private API
+    #######################################################################
+    def get_message_key(self, message):
+        if message in self._messages:
+            return message
+        # A message may be stored as unicode or byte string
+        if isinstance(message, unicode):
+            message = message.encode('utf-8')
+        else:
+            message = unicode(message, 'utf-8')
+        if message in self._messages:
+            return message
+
+
+    def get_translations(self, message):
+        message = self.get_message_key(message)
+        return self._messages[message]
+
+
+    #######################################################################
     # Public API
     #######################################################################
-    security.declarePublic('message_encode')
-    def message_encode(self, message):
-        """
-        Encodes a message to an ASCII string.
-        To be used in the user interface, to avoid problems with the
-        encodings, HTML entities, etc..
-        """
-        if type(message) is UnicodeType:
-            msg = 'u' + message.encode('utf8')
-        else:
-            msg = 'n' + message
-
-        return base64.encodestring(msg)
-
-
-    security.declarePublic('message_decode')
-    def message_decode(self, message):
-        """
-        Decodes a message from an ASCII string.
-        To be used in the user interface, to avoid problems with the
-        encodings, HTML entities, etc..
-        """
-        message = base64.decodestring(message)
-        type = message[0]
-        message = message[1:]
-        if type == 'u':
-            return unicode(message, 'utf8')
-        return message
-
-
     security.declarePublic('message_exists')
     def message_exists(self, message):
         """ """
@@ -168,20 +198,19 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
 
     security.declarePublic('gettext')
-    def gettext(self, message, lang=None, add=1, default=_marker):
+    def gettext(self, message, lang=None, add=1, default=None):
         """Returns the message translation from the database if available.
 
         If add=1, add any unknown message to the database.
         If a default is provided, use it instead of the message id
         as a translation for unknown messages.
         """
-
-        if type(message) not in (StringType, UnicodeType):
+        if not isinstance(message, (str, unicode)):
             raise TypeError, 'only strings can be translated.'
 
         message = message.strip()
 
-        if default is _marker:
+        if default is None:
             default = message
 
         # Add it if it's not in the dictionary
@@ -261,12 +290,6 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     manage_messages = LocalDTMLFile('ui/MC_messages', globals())
 
 
-    security.declareProtected('Manage messages', 'get_translations')
-    def get_translations(self, message):
-        """ """
-        return self._messages[message]
-
-
     security.declarePublic('get_url')
     def get_url(self, url, batch_start, batch_size, regex, lang, empty, **kw):
         """ """
@@ -284,21 +307,6 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
             params.append('lang=%s' % lang)
 
         return url + '?' + '&amp;'.join(params)
-
-    def to_unicode(self, x):
-        """
-        In Zope the ISO-8859-1 encoding has an special status, normal strings
-        are considered to be in this encoding by default.
-        """
-        if type(x) is StringType:
-            x = unicode(x, 'iso-8859-1')
-        return x
-
-
-    def filter_sort(self, x, y):
-        x = self.to_unicode(x)
-        y = self.to_unicode(y)
-        return cmp(x, y)
 
 
     security.declarePublic('filter')
@@ -318,7 +326,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         for m, t in self._messages.items():
             if regex.search(m) and (not empty or not t.get(lang, '').strip()):
                 messages.append(m)
-        messages.sort(self.filter_sort)
+        messages.sort(filter_sort)
 
         # How many messages
         n = len(messages)
@@ -336,26 +344,34 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
         # Get the message
         message_encoded = None
+        translations = {}
         if message is None:
             if messages:
                 message = messages[0]
-                message_encoded = self.message_encode(message)
+                translations = self.get_translations(message)
+                message = to_unicode(message)
+                message_encoded = message_encode(message)
         else:
             message_encoded = message
-            message = self.message_decode(message)
+            message = message_decode(message_encoded)
+            translations = self.get_translations(message)
+            message = to_unicode(message)
 
         # Calculate the current message
         aux = []
         for x in messages:
-            current = type(x) is type(message) \
-                      and self.to_unicode(x) == self.to_unicode(message)
-            aux.append({'message': x, 'current': current})
+            x = to_unicode(x)
+            aux.append({
+                'message': x,
+                'message_encoded': message_encode(x),
+                'current': x == message})
 
         return {'messages': aux,
                 'n_messages': n,
                 'batch_start': batch_start,
                 'message': message,
-                'message_encoded': message_encoded}
+                'message_encoded': message_encoded,
+                'translations': translations}
 
 
     security.declareProtected('Manage messages', 'manage_editMessage')
@@ -363,8 +379,9 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                            REQUEST, RESPONSE):
         """Modifies a message."""
         message_encoded = message
-        message = self.message_decode(message_encoded)
-        self.message_edit(message, language, translation, note)
+        message = message_decode(message_encoded)
+        message_key = self.get_message_key(message)
+        self.message_edit(message_key, language, translation, note)
 
         url = self.get_url(REQUEST.URL1 + '/manage_messages',
                            REQUEST['batch_start'], REQUEST['batch_size'],
@@ -378,8 +395,9 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     security.declareProtected('Manage messages', 'manage_delMessage')
     def manage_delMessage(self, message, REQUEST, RESPONSE):
         """ """
-        message = self.message_decode(message)
-        self.message_del(message)
+        message = message_decode(message)
+        message_key = self.get_message_key(message)
+        self.message_del(message_key)
 
         url = self.get_url(REQUEST.URL1 + '/manage_messages',
                            REQUEST['batch_start'], REQUEST['batch_size'],
