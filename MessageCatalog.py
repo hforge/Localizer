@@ -41,13 +41,13 @@ from Acquisition import aq_base
 from Globals import MessageDialog, PersistentMapping, InitializeClass
 from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
-from TAL.TALInterpreter import interpolate
 from ZPublisher import HTTPRequest
 
 # Import from Localizer
 from LanguageManager import LanguageManager
 from LocalFiles import LocalDTMLFile
 from utils import charsets, lang_negotiator, _
+from zopewrapper import interpolate
 
 
 
