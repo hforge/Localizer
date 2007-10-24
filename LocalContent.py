@@ -28,7 +28,7 @@ from itools.xliff import XLIFF, Translation, File as xliff_File
 
 # Import from Zope
 from OFS.SimpleItem import SimpleItem
-from OFS.PropertyManager import PropertyManager    
+from OFS.PropertyManager import PropertyManager
 from Products.ZCatalog.CatalogPathAwareness import CatalogAware
 from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass, MessageDialog
@@ -153,7 +153,7 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
         xml_header['standalone'] = -1
         xml_header['xml_version'] = u'1.0'
         xml_header['document_type'] = (u'tmx',
-                                       u'http://www.lisa.org/tmx/tmx14.dtd')     
+                                       u'http://www.lisa.org/tmx/tmx14.dtd')
         # build data structure for the tmx header
         version = u'1.4'
         tmx_header = {}
@@ -185,7 +185,7 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
             RESPONSE.setHeader('Content-Disposition',
                                'attachment; filename="%s"' % filename)
 
-        return tmx.to_str() 
+        return tmx.to_str()
 
 
 
@@ -199,7 +199,7 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
         except:
             return MessageDialog(title = 'Parse error',
                                message = _('impossible to parse the file') ,
-                               action = 'manage_import',) 
+                               action = 'manage_import',)
 
         for (id, msg) in tmx.state.messages.items():
             for (prop, d) in self._local_properties.items():
@@ -226,7 +226,7 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
 
 
     security.declareProtected('Manage messages', 'xliff_export')
-    def xliff_export(self, targetlang, export_all=1, REQUEST=None, 
+    def xliff_export(self, targetlang, export_all=1, REQUEST=None,
                      RESPONSE=None):
         """ Exports the content of the message catalog to an XLIFF file
         """
@@ -237,14 +237,14 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
         # Generate the XLIFF file header
         RESPONSE.setHeader('Content-Type', 'text/xml; charset=UTF-8')
         RESPONSE.setHeader('Content-Disposition',
-           'attachment; filename="%s_%s_%s.xlf"' % ( self.id, orglang, 
+           'attachment; filename="%s_%s_%s.xlf"' % ( self.id, orglang,
                                                      targetlang ))
 
         # build data structure for the xml header
         xml_header = {}
         xml_header['standalone'] = -1
         xml_header['xml_version'] = u'1.0'
-        xml_header['document_type'] = (u'xliff', 
+        xml_header['document_type'] = (u'xliff',
               u'http://www.oasis-open.org/committees/xliff/documents/xliff.dtd')
 
         version = u'1.0'

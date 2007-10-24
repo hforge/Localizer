@@ -22,16 +22,11 @@ provides message catalogs for the web.
 """
 
 # Import from the Standard Library
-import base64, md5
-import codecs
+from base64 import encodestring, decodestring
+import md5
 import re
-import sys
-import time
-from types import StringType, UnicodeType
+from time import gmtime, strftime, time
 from urllib import quote
-from xml.sax import make_parser, handler, InputSource
-from cStringIO import StringIO
-from cgi import escape
 
 # Import from itools
 from itools.datatypes import LanguageTag
@@ -43,8 +38,7 @@ from itools.xliff import XLIFF, Translation, Note as xliff_Note, \
 # Import from Zope
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
-from DocumentTemplate.DT_Util import ustr
-from Globals import  MessageDialog, PersistentMapping, InitializeClass
+from Globals import MessageDialog, PersistentMapping, InitializeClass
 from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
 from TAL.TALInterpreter import interpolate
@@ -87,7 +81,7 @@ def message_encode(message):
     if isinstance(message, unicode):
         message = message.encode('utf8')
 
-    return base64.encodestring(message)
+    return encodestring(message)
 
 
 def message_decode(message):
@@ -96,7 +90,7 @@ def message_decode(message):
     To be used in the user interface, to avoid problems with the
     encodings, HTML entities, etc..
     """
-    message = base64.decodestring(message)
+    message = decodestring(message)
     return unicode(message, 'utf8')
 
 
@@ -496,8 +490,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         charset = header['charset']
 
         # PO file header, empty message.
-        po_revision_date = time.strftime('%Y-%m-%d %H:%m+%Z',
-                                         time.gmtime(time.time()))
+        po_revision_date = strftime('%Y-%m-%d %H:%m+%Z', gmtime(time()))
         pot_creation_date = po_revision_date
         last_translator = '%s <%s>' % (last_translator_name,
                                        last_translator_email)
@@ -560,7 +553,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
         r2 = []
         for x in r:
-            if type(x) is UnicodeType:
+            if isinstance(x, unicode):
                 r2.append(x.encode(charset))
             else:
                 r2.append(x)
@@ -623,16 +616,16 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         Exports the content of the message catalog to a TMX file
         """
         orglang = self._default_language
-        
+
         # Get the header info
         header = self.get_po_header(orglang)
         charset = header['charset']
-        
+
         # build data structure for the xml header
         xml_header = {}
         xml_header['standalone'] = -1
         xml_header['xml_version'] = u'1.0'
-        xml_header['document_type'] = (u'tmx', 
+        xml_header['document_type'] = (u'tmx',
                                        u'http://www.lisa.org/tmx/tmx14.dtd')
         # build data structure for the tmx header
         version = u'1.4'
@@ -654,13 +647,13 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                 if lang != 'note':
                     s = Sentence(transunit[lang], {'lang':'%s'%lang})
                     sentences[lang] = s
-                    
+
             if orglang not in transunit.keys():
                 s = Sentence(msgkey, {'lang':'%s' % orglang})
                 sentences[orglang] = s
-            
+
             if transunit.has_key('note'):
-                d[msgkey] = Message(sentences, {}, 
+                d[msgkey] = Message(sentences, {},
                                     [Note(transunit.get('note'))])
             else:
                 d[msgkey] = Message(sentences)
@@ -668,13 +661,12 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         tmx = TMX()
         tmx.build(xml_header, version, tmx_header, d)
 
-                
         if RESPONSE is not None:
             RESPONSE.setHeader('Content-type','application/data')
             RESPONSE.setHeader('Content-Disposition',
                                'attachment; filename="%s"' % filename)
 
-        return tmx.to_str()        
+        return tmx.to_str()
 
 
 
@@ -688,11 +680,11 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         except:
             return MessageDialog(title = 'Parse error',
                                  message = _('impossible to parse the file') ,
-                                 action = 'manage_Import_form',) 
-            
+                                 action = 'manage_Import_form',)
+
         num_notes = 0
         num_trans = 0
-        
+
         if howmuch == 'clear':
             # Clear the message catalogue prior to import
             self._messages = {}
@@ -712,7 +704,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                     lang = LanguageTag.encode((core, local))
                     if lang not in self._languages:
                         self._languages += (lang,)
-                    if msg.msgstr[lang].text:    
+                    if msg.msgstr[lang].text:
                         self._messages[id][lang] = msg.msgstr[lang].text
                         if core != lang and core != self._default_language:
                             if core not in self._languages:
@@ -724,14 +716,14 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                     self._messages[id]['note'] = u' '.join(ns)
                     num_notes += 1
                 num_trans += 1
-                
+
         if REQUEST is not None:
             return MessageDialog(
                 title = _(u'Messages imported'),
                 message = _(u'Imported %d messages and %d notes')
                           % (num_trans, num_notes),
                 action = 'manage_messages')
-                    
+
 
 
     #######################################################################
@@ -748,7 +740,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         orglang = self._default_language
         export_all = int(export_all)
         from DateTime import DateTime
-        
+
         # Generate the XLIFF file header
         RESPONSE.setHeader('Content-Type', 'text/xml; charset=UTF-8')
         RESPONSE.setHeader('Content-Disposition',
@@ -759,11 +751,11 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         xml_header = {}
         xml_header['standalone'] = -1
         xml_header['xml_version'] = u'1.0'
-        xml_header['document_type'] = (u'xliff', 
+        xml_header['document_type'] = (u'xliff',
               u'http://www.oasis-open.org/committees/xliff/documents/xliff.dtd')
 
         version = u'1.0'
-        
+
         # build the data-stucture for the File tag
         attributes = {}
         attributes['original'] = u'/%s' % self.absolute_url(1)
@@ -826,7 +818,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         if len(sources) > 1 or sources[0] != self._default_language:
             return MessageDialog(title = 'Language error',
                                  message = _('incompatible language sources') ,
-                                 action = 'manage_Import_form',) 
+                                 action = 'manage_Import_form',)
         for lang in targets:
             if lang != self._default_language and lang not in self._languages:
                 self._languages += (lang,)
@@ -840,16 +832,16 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                 else:
                     if not self._messages.has_key(msg):
                         self._messages[msg] = {}
-                    
+
                     if cur_target and file.body[msg].target:
                         self._messages[msg][cur_target] = file.body[msg].target
                         num_trans += 1
                     if file.body[msg].notes:
-                        ns = [n.text for n in file.body[msg].notes] 
+                        ns = [n.text for n in file.body[msg].notes]
                         comment = ' '.join(ns)
                         self._messages[msg]['note'] = comment
                         num_notes += 1
-                        
+
         if REQUEST is not None:
             return MessageDialog(
                 title = _(u'Messages imported'),

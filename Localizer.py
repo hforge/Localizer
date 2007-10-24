@@ -237,7 +237,7 @@ class Localizer(LanguageManager, Folder):
         if expires is None:
             response.setCookie('LOCALIZER_LANGUAGE', lang, path=path)
         else:
-            response.setCookie('LOCALIZER_LANGUAGE', lang, path=path, 
+            response.setCookie('LOCALIZER_LANGUAGE', lang, path=path,
                                expires=unquote(expires))
         # Comes back
         if goto is None:

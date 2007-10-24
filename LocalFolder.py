@@ -73,7 +73,7 @@ class LocalFolder(LanguageManager, LocalAttributes, Folder):
 
         return r
 
-    
+
     # Manage attributes
     manage_attributes = LocalDTMLFile('ui/LocalFolder_attributes', globals())
 

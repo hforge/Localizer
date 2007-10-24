@@ -342,7 +342,7 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
     def need_upgrade(self):
         """ """
         return hasattr(self.aq_base, 'original_language')
-        
+
 
     manage_upgradeForm = LocalDTMLFile('ui/LPM_upgrade', globals())
     def manage_upgrade(self, REQUEST=None, RESPONSE=None):
@@ -382,7 +382,7 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
                                   % (self.__class__.__name__, name)
 
         return self.getLocalAttribute(id, lang)
- 
+
 
 
 Globals.InitializeClass(LocalPropertyManager)

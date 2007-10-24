@@ -80,7 +80,7 @@ class GettextTag:
 
 
     def __call__(self, md):
-        # In which language, if any? 
+        # In which language, if any?
         lang = get_value(self.lang, md)
 
         # Get the message!!
