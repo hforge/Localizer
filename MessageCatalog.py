@@ -376,6 +376,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         namespace['message'] = message
         namespace['message_encoded'] = message_encoded
         namespace['translations'] = translations
+        namespace['translation'] = translations.get(lang, '')
+        namespace['note'] = translations.get('note', '')
 
         # Calculate the current message
         namespace['messages'] = []
