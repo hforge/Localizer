@@ -98,6 +98,23 @@ def filter_sort(x, y):
     return cmp(to_unicode(x), to_unicode(y))
 
 
+def get_url(url, batch_start, batch_size, regex, lang, empty, **kw):
+    params = []
+    for key, value in kw.items():
+        if value is not None:
+            params.append('%s=%s' % (key, quote(value)))
+
+    params.extend(['batch_start:int=%d' % batch_start,
+                   'batch_size:int=%d' % batch_size,
+                   'regex=%s' % quote(regex),
+                   'empty=%s' % (empty and 'on' or '')])
+
+    if lang:
+        params.append('lang=%s' % lang)
+
+    return url + '?' + '&amp;'.join(params)
+
+
 # Empty header information for PO files (UTF-8 is the default encoding)
 empty_po_header = {'last_translator_name': '',
                    'last_translator_email': '',
@@ -284,57 +301,63 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     manage_messages = LocalDTMLFile('ui/MC_messages', globals())
 
 
-    security.declarePublic('get_url')
-    def get_url(self, url, batch_start, batch_size, regex, lang, empty, **kw):
-        """ """
-        params = []
-        for key, value in kw.items():
-            if value is not None:
-                params.append('%s=%s' % (key, quote(value)))
-
-        params.extend(['batch_start:int=%d' % batch_start,
-                       'batch_size:int=%d' % batch_size,
-                       'regex=%s' % quote(regex),
-                       'empty=%s' % (empty and 'on' or '')])
-
-        if lang:
-            params.append('lang=%s' % lang)
-
-        return url + '?' + '&amp;'.join(params)
-
-
-    security.declarePublic('filter')
-    def filter(self, message, lang, empty, regex, batch_start, batch_size=15):
+    security.declarePublic('get_namespace')
+    def get_namespace(self, REQUEST):
+        """For the management interface, allows to filter the messages to
+        show.
         """
-        For the management interface, allows to filter the messages to show.
-        """
+        # Check whether there are languages or not
+        languages = self.get_languages_mapping()
+        if not languages:
+            return {}
+
+        # Input
+        batch_start = REQUEST.get('batch_start', 0)
+        batch_size = REQUEST.get('batch_size', 15)
+        empty = REQUEST.get('empty', 0)
+        regex = REQUEST.get('regex', '')
+        message = REQUEST.get('msg', None)
+
+        # Build the namespace
+        namespace = {}
+        namespace['batch_size'] = batch_size
+        namespace['empty'] = empty
+        namespace['regex'] = regex
+
+        # The language
+        lang = REQUEST.get('lang', None) or languages[0]['code']
+        namespace['language'] = lang
+
         # Filter the messages
-        regex = regex.strip()
-
+        query = regex.strip()
         try:
-            regex = re.compile(regex)
+            query = re.compile(query)
         except:
-            regex = re.compile('')
+            query = re.compile('')
 
         messages = []
         for m, t in self._messages.items():
-            if regex.search(m) and (not empty or not t.get(lang, '').strip()):
+            if query.search(m) and (not empty or not t.get(lang, '').strip()):
                 messages.append(m)
         messages.sort(filter_sort)
-
         # How many messages
         n = len(messages)
+        namespace['n_messages'] = n
 
         # Calculate the start
         while batch_start >= n:
             batch_start = batch_start - batch_size
-
         if batch_start < 0:
             batch_start = 0
-
+        namespace['batch_start'] = batch_start
         # Select the batch to show
         batch_end = batch_start + batch_size
         messages = messages[batch_start:batch_end]
+        # Batch links
+        namespace['previous'] = get_url(REQUEST.URL, batch_start - batch_size,
+            batch_size, regex, lang, empty)
+        namespace['next'] = get_url(REQUEST.URL, batch_start + batch_size,
+            batch_size, regex, lang, empty)
 
         # Get the message
         message_encoded = None
@@ -350,22 +373,33 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
             message = message_decode(message_encoded)
             translations = self.get_translations(message)
             message = to_unicode(message)
+        namespace['message'] = message
+        namespace['message_encoded'] = message_encoded
+        namespace['translations'] = translations
 
         # Calculate the current message
-        aux = []
+        namespace['messages'] = []
         for x in messages:
             x = to_unicode(x)
-            aux.append({
+            x_encoded = message_encode(x)
+            url = get_url(
+                REQUEST.URL, batch_start, batch_size, regex, lang, empty,
+                msg=x_encoded)
+            namespace['messages'].append({
                 'message': x,
-                'message_encoded': message_encode(x),
-                'current': x == message})
+                'message_encoded': x_encoded,
+                'current': x == message,
+                'url': url})
 
-        return {'messages': aux,
-                'n_messages': n,
-                'batch_start': batch_start,
-                'message': message,
-                'message_encoded': message_encoded,
-                'translations': translations}
+        # The languages
+        for language in languages:
+            code = language['code']
+            language['name'] = _(language['name'], language=code)
+            language['url'] = get_url(REQUEST.URL, batch_start, batch_size,
+                regex, code, empty, msg=message_encoded)
+        namespace['languages'] = languages
+
+        return namespace
 
 
     security.declareProtected('Manage messages', 'manage_editMessage')
@@ -377,12 +411,12 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         message_key = self.get_message_key(message)
         self.message_edit(message_key, language, translation, note)
 
-        url = self.get_url(REQUEST.URL1 + '/manage_messages',
-                           REQUEST['batch_start'], REQUEST['batch_size'],
-                           REQUEST['regex'], REQUEST.get('lang', ''),
-                           REQUEST.get('empty', 0),
-                           msg=message_encoded,
-                           manage_tabs_message=_(u'Saved changes.'))
+        url = get_url(REQUEST.URL1 + '/manage_messages',
+                      REQUEST['batch_start'], REQUEST['batch_size'],
+                      REQUEST['regex'], REQUEST.get('lang', ''),
+                      REQUEST.get('empty', 0),
+                      msg=message_encoded,
+                      manage_tabs_message=_(u'Saved changes.'))
         RESPONSE.redirect(url)
 
 
@@ -393,11 +427,11 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         message_key = self.get_message_key(message)
         self.message_del(message_key)
 
-        url = self.get_url(REQUEST.URL1 + '/manage_messages',
-                           REQUEST['batch_start'], REQUEST['batch_size'],
-                           REQUEST['regex'], REQUEST.get('lang', ''),
-                           REQUEST.get('empty', 0),
-                           manage_tabs_message=_(u'Saved changes.'))
+        url = get_url(REQUEST.URL1 + '/manage_messages',
+                      REQUEST['batch_start'], REQUEST['batch_size'],
+                      REQUEST['regex'], REQUEST.get('lang', ''),
+                      REQUEST.get('empty', 0),
+                      manage_tabs_message=_(u'Saved changes.'))
         RESPONSE.redirect(url)
 
 

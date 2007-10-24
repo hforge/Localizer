@@ -97,52 +97,6 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
     manage_transPropertiesForm = LocalDTMLFile('ui/LPM_translations', globals())
 
 
-    security.declarePublic('get_batch_size')
-    def get_batch_size(self):
-        """
-        Returns the size of the batch for the web interface.
-        For now it's a constant value.
-        """
-        return 5
-
-
-    security.declarePublic('get_batch_size')
-    def get_batch_start(self, start, index):
-        """
-        Returns the right batch_start, used in the web interfaces.
-        """
-        # Get the size of the batch
-        size = self.get_batch_size()
-
-        start2 = index - size + 1
-        if start2 < 0:
-            start2 = 0
-
-        if start < start2:
-            return start2
-
-        return start
-
-
-    security.declarePublic('get_url')
-    def get_url(self, url, batch_start, batch_index, lang_hide, **kw):
-        """
-        Used in the 'localPropertiesForm' to generate the urls.
-        """
-        params = []
-        for key, value in kw.items():
-            params.append('%s=%s' % (key, quote(value)))
-
-        params.extend(['batch_start:int=%d' % batch_start,
-                       'batch_index:int=%d' % batch_index])
-
-        for lang in lang_hide:
-            params.append('lang_hide:tuple=%s' % lang)
-
-
-        return url + '?' + '&amp;'.join(params)
-
-
     security.declareProtected('Manage properties', 'set_localpropvalue')
     def set_localpropvalue(self, id, lang, value):
         # Get previous value

@@ -1,124 +1,126 @@
 <dtml-var manage_page_header>
 <dtml-var manage_tabs>
-<dtml-if "get_languages_mapping() != []">
-<dtml-let batch_start="REQUEST.get('batch_start', 0)"
-          batch_size="REQUEST.get('batch_size', 15)"
-          empty="REQUEST.get('empty', 0)"
-          regex="REQUEST.get('regex', '')"
-          languages="get_languages_mapping()"
-          lang="REQUEST.get('lang', None) or languages[0]['code']"
-          msg="REQUEST.get('msg', _.None)"
-          aux="filter(msg, lang, empty, regex, batch_start)"
-          translations="aux['translations']"
-          entries="aux['messages']"
-          nentries="aux['n_messages']"
-          batch_start="aux['batch_start']"
-          msg="aux['message']"
-          msg_encoded="aux['message_encoded']">
-  <table width="100%">
-    <tr>
-      <td valign="top">
-        <dtml-if nentries>
-          <dtml-let translation="translations.get(lang, '')"
-                    note="translations.get('note', '')">
-	    <form action="<dtml-var URL1>" method="post">
-	      <input type="hidden" name="batch_start:int"
-	             value="<dtml-var batch_start>">
-	      <input type="hidden" name="batch_size:int"
-		     value="<dtml-var batch_size>">
-	      <input type="hidden" name="regex" value="<dtml-var regex>">
-	      <input type="hidden" name="lang" value="<dtml-var lang>">
-	      <input type="hidden" name="empty" value="<dtml-var empty>">
-	      <input type="hidden" name="message:utf8:ustring"
-		     value="<dtml-var msg_encoded html_quote>">
-              <fieldset>
-                <legend><dtml-var "gettext('Message to translate')"></legend>
-                <div style="font-family: monospace"><dtml-var msg html_quote></div>
-              </fieldset>
-              <fieldset>
-                <legend><dtml-var "gettext('Note')"></legend>
-                <input name="note:utf8:ustring" type="text" value="&dtml-note;" size="55">
-              </fieldset>
-              <fieldset>
-                <legend><dtml-var "gettext('Translation')"></legend>
-              Target Language:
-              <dtml-in languages mapping sort=name>
-                <dtml-let name="gettext(name)"
-                          url="get_url(URL, batch_start, batch_size, regex, code, empty, msg=msg_encoded)">
-                  <a href="<dtml-var url>"><dtml-if "code == lang"><span style="font-weight: bold"><dtml-var name></span><dtml-else><dtml-var name></dtml-if></a>
-                </dtml-let>
-              </dtml-in>
-	      <input type="hidden" name="language" value="<dtml-var lang>">
-              <br>
-              <textarea name="translation:utf8:ustring" cols="65" rows="10" wrap="off"><dtml-var translation html_quote></textarea>
-              </fieldset>
-              <br>
-              <input type="submit" name="manage_editMessage:method"
-                     value=" <dtml-var "gettext('Save')"> ">
-              <input type="submit" name="manage_delMessage:method"
-                     value=" <dtml-var "gettext('Delete')"> ">
-	    </form>
-          </dtml-let>
-        <dtml-else>
-	  <dtml-gettext>There are no messages.</dtml-gettext>
-          <br>
-          <dtml-in languages mapping>
-            <dtml-let name="gettext(name)">
-              <a href="<dtml-var "get_url(URL, batch_start, batch_size, regex, code, empty, msg=msg_encoded)">"><dtml-if "code == lang"><span style="font-weight: bold"><dtml-var name></span><dtml-else><dtml-var name></dtml-if></a>
-            </dtml-let>
-          </dtml-in>
-        </dtml-if>
-      </td>
-      <td valign="top" width="300">
-        <fieldset>
-          <legend><dtml-var "gettext('Browse the messages')"></legend>
-        <form action="manage_messages" action="get">
-	  <input type="hidden" name="batch_start:int"
-	         value="<dtml-var batch_start>">
-          <input type="hidden" name="batch_size:int"
-		 value="<dtml-var batch_size>">
-	  <input type="hidden" name="lang" value="<dtml-var lang>">
-	  <input type="hidden" name="empty" value="">
-	  <input type="checkbox" name="empty" <dtml-if empty>checked</dtml-if>>
-          <dtml-var "gettext('Only untranslated messages')">
-	  <br>
-          <input type="text" name="regex" value="<dtml-var regex>">
-	  <input type="submit" value=" <dtml-var "gettext('Filter')"> ">
-	</form>
-	<dtml-if nentries>
-	  <br>
-	  <dtml-var "gettext('Results %d-%d of %d') % (batch_start+1, (batch_start+batch_size < nentries and batch_start+batch_size) or nentries, nentries)">
+<dtml-let namespace="get_namespace(REQUEST)">
 
-          <dtml-if "batch_start > 0">
-	    <a href="<dtml-var "get_url(URL, batch_start - batch_size, batch_size, regex, lang, empty)">"><<</a>
-	  </dtml-if>
-	  <dtml-if "batch_start + batch_size < nentries">
-	    <a href="<dtml-var "get_url(URL, batch_start + batch_size, batch_size, regex, lang, empty)">">>></a>
-	  </dtml-if>
-          <br>
-	  <table width="100%" cellspacing="0">
-	    <dtml-in entries mapping>
-	      <tr>
-		<td<dtml-if current> bgcolor="yellow"<dtml-elif sequence-odd> bgcolor="#DDDDDD"</dtml-if>>
-		  <small><a href="<dtml-var "get_url(URL, batch_start, batch_size, regex, lang, empty, msg=message_encoded)">"><dtml-var message size="40" html_quote></a></small>
-		</td>
-	      </tr>
-	    </dtml-in>
-	  </table>
-	<dtml-else>
-	  <dtml-gettext>There are no messages.</dtml-gettext>
-	</dtml-if>
-        </fieldset>
-      </td>
-    </tr>
-  </table>
-</dtml-let>
+<dtml-if namespace>
+  <dtml-let
+    languages="namespace['languages']"
+    lang="namespace['language']"
+    translations="namespace['translations']"
+    entries="namespace['messages']"
+    nentries="namespace['n_messages']"
+    batch_start="namespace['batch_start']"
+    batch_size="namespace['batch_size']"
+    empty="namespace['empty']"
+    regex="namespace['regex']"
+    msg="namespace['message']"
+    msg_encoded="namespace['message_encoded']">
+    <table width="100%">
+      <tr>
+        <td valign="top">
+          <dtml-if nentries>
+            <dtml-let translation="translations.get(lang, '')"
+              note="translations.get('note', '')">
+              <form action="<dtml-var URL1>" method="post">
+                <input type="hidden" name="batch_start:int"
+                  value="<dtml-var batch_start>">
+                <input type="hidden" name="batch_size:int"
+                  value="<dtml-var batch_size>">
+                <input type="hidden" name="regex" value="<dtml-var regex>">
+                <input type="hidden" name="lang" value="<dtml-var lang>">
+                <input type="hidden" name="empty" value="<dtml-var empty>">
+                <input type="hidden" name="message:utf8:ustring"
+                  value="<dtml-var msg_encoded html_quote>">
+                <fieldset>
+                  <legend><dtml-var "gettext('Message to translate')"></legend>
+                  <div style="font-family: monospace"><dtml-var msg html_quote
+                    ></div>
+                </fieldset>
+                <fieldset>
+                  <legend><dtml-var "gettext('Note')"></legend>
+                  <input name="note:utf8:ustring" type="text"
+                    value="&dtml-note;" size="55">
+                </fieldset>
+                <fieldset>
+                  <legend><dtml-var "gettext('Translations')"></legend>
+                  <dtml-in languages mapping sort=name>
+                    <a href="<dtml-var url>"><dtml-if "code == lang"><span style="font-weight: bold"><dtml-var name></span><dtml-else><dtml-var name></dtml-if></a>
+                    &nbsp;
+                  </dtml-in>
+                  <input type="hidden" name="language" value="<dtml-var lang>">
+                  <br>
+                  <textarea name="translation:utf8:ustring" cols="65"
+                    rows="10" wrap="off"><dtml-var translation html_quote
+                    ></textarea>
+                </fieldset>
+                <br>
+                <input type="submit" name="manage_editMessage:method"
+                  value=" <dtml-var "gettext('Save')"> ">
+                <input type="submit" name="manage_delMessage:method"
+                  value=" <dtml-var "gettext('Delete')"> ">
+              </form>
+            </dtml-let>
+          <dtml-else>
+            <dtml-gettext>There are no messages.</dtml-gettext>
+            <br>
+            <dtml-in languages mapping>
+              <a href="<dtml-var url>"><dtml-if "code == lang"><span style="font-weight: bold"><dtml-var name></span><dtml-else><dtml-var name></dtml-if></a>
+            </dtml-in>
+          </dtml-if>
+        </td>
+        <td valign="top" width="300">
+          <fieldset>
+            <legend><dtml-var "gettext('Browse the messages')"></legend>
+            <form action="manage_messages" action="get">
+              <input type="hidden" name="batch_start:int"
+                value="<dtml-var batch_start>">
+              <input type="hidden" name="batch_size:int"
+                value="<dtml-var batch_size>">
+              <input type="hidden" name="lang" value="<dtml-var lang>">
+              <input type="hidden" name="empty" value="">
+              <input type="checkbox" name="empty"
+                <dtml-if empty>checked</dtml-if>>
+              <dtml-var "gettext('Only untranslated messages')">
+              <br>
+              <input type="text" name="regex" value="<dtml-var regex>">
+              <input type="submit" value=" <dtml-var "gettext('Filter')"> ">
+            </form>
+            <dtml-if nentries>
+              <br>
+              <dtml-var "gettext('Results %d-%d of %d') % (batch_start+1, (batch_start+batch_size < nentries and batch_start+batch_size) or nentries, nentries)">
+              <dtml-if "batch_start > 0">
+                <a href="<dtml-var previous>"><<</a>
+              </dtml-if>
+              <dtml-if "batch_start + batch_size < nentries">
+                <a href="<dtml-var next>">>></a>
+              </dtml-if>
+              <br>
+              <table width="100%" cellspacing="0">
+                <dtml-in entries mapping>
+                  <tr>
+                    <td<dtml-if current> bgcolor="yellow"<dtml-elif sequence-odd> bgcolor="#DDDDDD"</dtml-if>>
+                      <small>
+                        <a href="<dtml-var url>"><dtml-var message size="40" html_quote></a>
+                      </small>
+                    </td>
+                  </tr>
+                </dtml-in>
+              </table>
+            <dtml-else>
+              <dtml-gettext>There are no messages.</dtml-gettext>
+            </dtml-if>
+          </fieldset>
+        </td>
+      </tr>
+    </table>
+  </dtml-let>
 
 <dtml-else>
-  <dtml-gettext>
-    <em>No languages available, please add them using the
-        <a href='manage_languages'>Languages</a> tab</em>
-  </dtml-gettext>
+  <p>
+  <dtml-gettext>No languages available, please add them using the
+    <a href='manage_languages'>Languages</a> tab</dtml-gettext>
+  </p>
 </dtml-if>
 
+</dtml-let>
 <dtml-var manage_page_footer>
