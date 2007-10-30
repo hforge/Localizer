@@ -79,7 +79,8 @@ def message_encode(message):
     encodings, HTML entities, etc..
     """
     if isinstance(message, unicode):
-        message = message.encode('utf8')
+        encoding = HTTPRequest.default_encoding
+        message = message.encode(encoding)
 
     return encodestring(message)
 
@@ -91,7 +92,8 @@ def message_decode(message):
     encodings, HTML entities, etc..
     """
     message = decodestring(message)
-    return unicode(message, 'utf8')
+    encoding = HTTPRequest.default_encoding
+    return unicode(message, encoding)
 
 
 def filter_sort(x, y):
@@ -173,10 +175,11 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         if message in self._messages:
             return message
         # A message may be stored as unicode or byte string
+        encoding = HTTPRequest.default_encoding
         if isinstance(message, unicode):
-            message = message.encode('utf-8')
+            message = message.encode(encoding)
         else:
-            message = unicode(message, 'utf-8')
+            message = unicode(message, encoding)
         if message in self._messages:
             return message
 
