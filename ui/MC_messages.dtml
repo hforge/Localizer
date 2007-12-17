@@ -16,7 +16,7 @@
           <input type="hidden" name="regex" value="<dtml-var regex>">
           <input type="hidden" name="lang" value="<dtml-var language>">
           <input type="hidden" name="empty" value="<dtml-var empty>">
-          <input type="hidden" name="message:utf8:ustring"
+          <input type="hidden" name="message"
             value="<dtml-var message_encoded html_quote>">
           <fieldset>
             <legend><dtml-var "gettext('Message to translate')"></legend>
