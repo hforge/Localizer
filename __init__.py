@@ -60,13 +60,13 @@ class GlobalTranslationService:
 
 
     def translate(self, domain, msgid, *args, **kw):
-        if domain == 'default':
-            domain = 'gettext'
-
         context = kw.get('context')
         if context is None:
             # Placeless!
             return msgid
+
+        if domain is None or domain == 'default':
+            domain = 'gettext'
 
         # Find it by acquisition
         translation_service = getattr(context, domain, None)
