@@ -24,13 +24,13 @@ provides message catalogs for the web.
 # Import from the Standard Library
 from base64 import encodestring, decodestring
 import md5
-import re
+from re import compile
 from time import gmtime, strftime, time
 from urllib import quote
 
 # Import from itools
 from itools.datatypes import LanguageTag
-from itools.gettext import PO
+from itools.gettext import POFile
 from itools.tmx import TMX, Sentence, Message, Note
 from itools.xliff import XLIFF, Translation, Note as xliff_Note, \
     File as xliff_File
@@ -55,8 +55,7 @@ from zopewrapper import interpolate
 # Utility functions and constants
 ###########################################################################
 def md5text(str):
-    """
-    Create an MD5 sum (or hash) of a text. It is guaranteed to be 32 bytes
+    """Create an MD5 sum (or hash) of a text. It is guaranteed to be 32 bytes
     long.
     """
     return md5.new(str.encode('utf-8')).hexdigest()
@@ -141,8 +140,7 @@ def manage_addMessageCatalog(self, id, title, languages, sourcelang=None,
 
 
 class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
-    """
-    Stores messages and their translations...
+    """Stores messages and their translations...
     """
 
     meta_type = 'MessageCatalog'
@@ -264,8 +262,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
 
     def translate(self, domain, msgid, *args, **kw):
-        """
-        This method is required to get the i18n namespace from ZPT working.
+        """This method is required to get the i18n namespace from ZPT working.
         """
         msgstr = self.gettext(msgid)
         mapping = kw.get('mapping')
@@ -334,9 +331,9 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         # Filter the messages
         query = regex.strip()
         try:
-            query = re.compile(query)
+            query = compile(query)
         except:
-            query = re.compile('')
+            query = compile('')
 
         messages = []
         for m, t in self._messages.items():
@@ -410,7 +407,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     security.declareProtected('Manage messages', 'manage_editMessage')
     def manage_editMessage(self, message, language, translation, note,
                            REQUEST, RESPONSE):
-        """Modifies a message."""
+        """Modifies a message.
+        """
         message_encoded = message
         message = message_decode(message_encoded)
         message_key = self.get_message_key(message)
@@ -453,7 +451,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
     security.declareProtected('View management screens', 'manage_properties')
     def manage_properties(self, title, REQUEST=None, RESPONSE=None):
-        """Change the Message Catalog properties."""
+        """Change the Message Catalog properties.
+        """
         self.title = title
 
         if RESPONSE is not None:
@@ -517,8 +516,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
     security.declarePublic('manage_export')
     def manage_export(self, x, REQUEST=None, RESPONSE=None):
-        """
-        Exports the content of the message catalog either to a template
+        """Exports the content of the message catalog either to a template
         file (locale.pot) or to an language specific PO file (<x>.po).
         """
         # Get the PO header info
@@ -567,7 +565,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
         # Generate the file
         def backslashescape(x):
-            quote_esc = re.compile(r'"')
+            quote_esc = compile(r'"')
             x = quote_esc.sub('\\"', x)
 
             trans = [('\n', '\\n'), ('\r', '\\r'), ('\t', '\\t')]
@@ -606,7 +604,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         messages = self._messages
 
         # Load the data
-        po = PO(string=data)
+        po = POFile(string=data)
         for msgid in po.get_msgids():
             if msgid:
                 msgstr = po.get_msgstr(msgid) or ''
@@ -651,8 +649,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
     security.declareProtected('Manage messages', 'tmx_export')
     def tmx_export(self, REQUEST, RESPONSE=None):
-        """
-        Exports the content of the message catalog to a TMX file
+        """Exports the content of the message catalog to a TMX file
         """
         orglang = self._default_language
 
@@ -711,7 +708,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
     security.declareProtected('Manage messages', 'tmx_import')
     def tmx_import(self, howmuch, file, REQUEST=None, RESPONSE=None):
-        """ Imports a TMX level 1 file.
+        """Imports a TMX level 1 file.
         """
         try:
             data = file.read()
@@ -774,7 +771,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
     security.declareProtected('Manage messages', 'xliff_export')
     def xliff_export(self, x, export_all=1, REQUEST=None, RESPONSE=None):
-        """ Exports the content of the message catalog to an XLIFF file
+        """Exports the content of the message catalog to an XLIFF file
         """
         orglang = self._default_language
         export_all = int(export_all)
@@ -831,9 +828,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
     security.declareProtected('Manage messages', 'xliff_import')
     def xliff_import(self, howmuch, file, REQUEST=None):
-        """ XLIFF is the XML Localization Interchange File Format
-            designed by a group of software providers.
-            It is specified by www.oasis-open.org
+        """XLIFF is the XML Localization Interchange File Format designed by a
+        group of software providers.  It is specified by www.oasis-open.org
         """
         try:
             data = file.read()
