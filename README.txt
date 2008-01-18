@@ -11,7 +11,7 @@ Requirements
 
   - Zope 2.9 or later
 
-  - itools 0.16.10 or later (download from
+  - itools 0.20.2 or later (download from
     "http://www.ikaaro.org/itools":http://www.ikaaro.org/itools)
 
 
