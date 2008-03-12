@@ -1,5 +1,7 @@
 <dtml-var manage_page_header>
-<dtml-var manage_tabs>
+<dtml-let manage_tabs_message="get_tabs_message(REQUEST)">
+  <dtml-var manage_tabs>
+</dtml-let>
 <dtml-with "get_namespace(REQUEST)" mapping>
 
 <dtml-if languages>

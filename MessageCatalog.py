@@ -102,8 +102,11 @@ def filter_sort(x, y):
 def get_url(url, batch_start, batch_size, regex, lang, empty, **kw):
     params = []
     for key, value in kw.items():
-        if value is not None:
-            params.append('%s=%s' % (key, quote(value)))
+        if value is None:
+            continue
+        if isinstance(value, unicode):
+            value = value.encode('utf-8')
+        params.append('%s=%s' % (key, quote(value)))
 
     params.extend(['batch_start:int=%d' % batch_start,
                    'batch_size:int=%d' % batch_size,
@@ -185,6 +188,13 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     def get_translations(self, message):
         message = self.get_message_key(message)
         return self._messages[message]
+
+
+    def get_tabs_message(self, REQUEST):
+        message = REQUEST.get('manage_tabs_message')
+        if message is None:
+            return None
+        return unicode(message, 'utf-8')
 
 
     #######################################################################
@@ -436,7 +446,6 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
                       REQUEST.get('empty', 0),
                       manage_tabs_message=_(u'Saved changes.'))
         RESPONSE.redirect(url)
-
 
 
     #######################################################################
