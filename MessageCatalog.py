@@ -30,7 +30,7 @@ from urllib import quote
 
 # Import from itools
 from itools.datatypes import LanguageTag
-from itools.gettext import POFile
+import itools.gettext
 from itools.tmx import TMX, Sentence, Message, Note
 from itools.xliff import XLIFF, Translation, Note as xliff_Note, \
     File as xliff_File
@@ -613,7 +613,7 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         messages = self._messages
 
         # Load the data
-        po = POFile(string=data)
+        po = itools.gettext.POFile(string=data)
         for msgid in po.get_msgids():
             if msgid:
                 msgstr = po.get_msgstr(msgid) or ''
