@@ -18,7 +18,7 @@
 from urlparse import urlparse
 
 # Import from itools
-from itools.i18n import Multilingual, get_language_name, get_languages
+from itools.i18n import get_language_name, get_languages
 
 # Import from Zope
 from Globals import InitializeClass
@@ -29,17 +29,84 @@ from LocalFiles import LocalDTMLFile
 from utils import lang_negotiator
 
 
-class LanguageManager(Multilingual):
+class LanguageManager(object):
     """ """
 
     security = ClassSecurityInfo()
 
-    manage_options = ({'label': u'Languages', 'action': 'manage_languages',
-                       'help': ('Localizer', 'LM_languages.stx')},)
+    # TODO For backwards compatibility with Python 2.1 the variable
+    # _languages is a tuple.  Change it to a frozenset.
+    _languages = ()
+    _default_language = None
 
 
     ########################################################################
     # API
+    ########################################################################
+    def get_languages(self):
+        """Returns all the object languages.
+        """
+        return self._languages
+
+
+    def set_languages(self, languages):
+        """Sets the object languages.
+        """
+        self._languages = tuple(languages)
+
+
+    def add_language(self, language):
+        """Adds a new language.
+        """
+        if language not in self._languages:
+            self._languages = tuple(self._languages) + (language,)
+
+
+    def del_language(self, language):
+        """Removes a language.
+        """
+        if language in self._languages:
+            languages = [ x for x in self._languages if x != language ]
+            self._languages = tuple(languages)
+
+
+    def get_languages_mapping(self):
+        """Returns a list of dictionary, one for each objects language. The
+        dictionary contains the language code, its name and a boolean value
+        that tells wether the language is the default one or not.
+        """
+        return [ {'code': x,
+                  'name': get_language_name(x),
+                  'default': x == self._default_language}
+                 for x in self._languages ]
+
+
+    def get_available_languages(self, **kw):
+        """Returns the langauges available. For example, a language could be
+        considered as available only if there is some data associated to it.
+
+        This method is used by the language negotiation code (see
+        'get_selected_language'), sometimes you will want to redefine it in
+        your classes.
+        """
+        return self._languages
+
+
+    def get_default_language(self):
+        """Returns the default language.
+
+        This method is used by the language negotiation code (see
+        'get_selected_language'), sometimes you will want to redefine it in
+        your classes.
+
+        For example, maybe you will want to define it to return always a
+        default language, even when internally it is None.
+        """
+        return self._default_language
+
+
+    ########################################################################
+    # Web API
     ########################################################################
 
     # Security settings
@@ -85,6 +152,12 @@ class LanguageManager(Multilingual):
     ########################################################################
     # ZMI
     ########################################################################
+    manage_options = (
+        {'label': u'Languages', 'action': 'manage_languages',
+         'help': ('Localizer', 'LM_languages.stx')},
+    )
+
+
     security.declareProtected('View management screens', 'manage_languages')
     manage_languages = LocalDTMLFile('ui/LM_languages', globals())
 

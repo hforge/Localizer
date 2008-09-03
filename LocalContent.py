@@ -24,7 +24,7 @@ from xml.sax import make_parser, handler, InputSource
 # Import from itools
 from itools.datatypes import LanguageTag
 from itools.tmx import TMX, Sentence, Message
-from itools.xliff import XLIFF, Translation, File as xliff_File
+from itools.xliff import XLFFile
 
 # Import from Zope
 from OFS.SimpleItem import SimpleItem
@@ -226,61 +226,51 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
 
 
     security.declareProtected('Manage messages', 'xliff_export')
-    def xliff_export(self, targetlang, export_all=1, REQUEST=None,
+    def xliff_export(self, dst_lang, export_all=1, REQUEST=None,
                      RESPONSE=None):
         """ Exports the content of the message catalog to an XLIFF file
         """
-        orglang = self._default_language
-        export_all = int(export_all)
         from DateTime import DateTime
 
-        # Generate the XLIFF file header
-        RESPONSE.setHeader('Content-Type', 'text/xml; charset=UTF-8')
-        RESPONSE.setHeader('Content-Disposition',
-           'attachment; filename="%s_%s_%s.xlf"' % ( self.id, orglang,
-                                                     targetlang ))
+        src_lang = self._default_language
+        export_all = int(export_all)
 
-        # build data structure for the xml header
-        xml_header = {}
-        xml_header['standalone'] = -1
-        xml_header['xml_version'] = u'1.0'
-        xml_header['document_type'] = (u'xliff',
-              u'http://www.oasis-open.org/committees/xliff/documents/xliff.dtd')
+        # Init the XLIFF handler
+        xliff = XLFFile()
+        # Add the translation units
+        original = '/%s' % self.absolute_url(1)
+        for prop in self._local_properties.keys():
+            target, fuzzy = self.get_localproperty(prop, dst_lang)
+            msgkey, fuzzy = self.get_localproperty(prop, src_lang)
+            # If 'export_all' is true export all messages, otherwise export
+            # only untranslated messages
+            if export_all or not target:
+                unit = xliff.add_unit(original, msgkey, None)
+                unit.attributes['id'] = md5text(msgkey)
+                if target:
+                    unit.target = target
 
-        version = u'1.0'
-
-        # build the data-stucture for the File tag
-        attributes = {}
-        attributes['original'] = u'/%s' % self.absolute_url(1)
+        # Set the file attributes
+        file = xliff.files[original]
+        attributes = file.attributes
+        attributes['original'] = original
         attributes['product-name'] = u'Localizer'
         attributes['product-version'] = u'1.1.x'
         attributes['data-type'] = u'plaintext'
-        attributes['source-language'] = orglang
-        attributes['target-language'] = targetlang
+        attributes['source-language'] = src_lang
+        attributes['target-language'] = dst_lang
         attributes['date'] = DateTime().HTML4()
 
-        # Get the messages, and perhaps its translations.
-        d = {}
+        # Serialize
+        xliff = xliff.to_str()
+        # Set response headers
+        RESPONSE.setHeader('Content-Type', 'text/xml; charset=UTF-8')
+        filename = '%s_%s_%s.xlf' % (self.id, src_lang, dst_lang)
+        RESPONSE.setHeader('Content-Disposition',
+           'attachment; filename="%s"' % filename)
+        # Ok
+        return xliff
 
-        for prop in self._local_properties.keys():
-            target, fuzzy = self.get_localproperty(prop, targetlang)
-            msgkey, fuzzy = self.get_localproperty(prop, self._default_language)
-            # if export_all=1 export all messages otherwise export
-            # only untranslated messages
-            if export_all or not target:
-                id = md5text(msgkey)
-                if target:
-                    t = Translation(msgkey, target, {'id':id})
-                else:
-                    t = Translation(msgkey, msgkey, {'id':id})
-                d[msgkey] = t
-
-        files = [xliff_File(d, attributes)]
-
-        xliff = XLIFF()
-        xliff.build(xml_header, version, files)
-
-        return xliff.to_str()
 
     security.declareProtected('Manage messages', 'xliff_import')
     def xliff_import(self, file, REQUEST=None):
@@ -290,7 +280,7 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
         """
         try:
             data = file.read()
-            xliff = XLIFF(string=data)
+            xliff = XLFFile(string=data)
         except:
             return MessageDialog(title = 'Parse error',
                                  message = _('impossible to parse the file') ,
