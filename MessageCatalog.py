@@ -788,10 +788,9 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
         # Generate the XLIFF file header
         RESPONSE.setHeader('Content-Type', 'text/xml; charset=UTF-8')
-        RESPONSE.setHeader('Content-Disposition',
-                           'attachment; filename="%s_%s_%s.xlf"' % (self.id,
-                                                                    orglang,
-                                                                    x))
+        RESPONSE.setHeader(
+            'Content-Disposition',
+            'attachment; filename="%s_%s_%s.xlf"' % (self.id, orglang, x))
         # build data structure for the xml header
         xml_header = {}
         xml_header['standalone'] = -1
