@@ -23,7 +23,7 @@ from xml.sax import make_parser, handler, InputSource
 
 # Import from itools
 from itools.datatypes import LanguageTag
-from itools.tmx import TMX, Sentence, Message
+from itools.tmx import TMXFile, Sentence, TMXUnit
 from itools.xliff import XLFFile
 
 # Import from Zope
@@ -40,8 +40,7 @@ from utils import _
 
 
 def md5text(str):
-    """
-    Create an MD5 sum (or hash) of a text. It is guaranteed to be 32 bytes
+    """Create an MD5 sum (or hash) of a text. It is guaranteed to be 32 bytes
     long.
     """
     return md5.new(str.encode('utf-8')).hexdigest()
@@ -142,67 +141,57 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
     manage_export = LocalDTMLFile('ui/LC_export_form', globals())
 
     security.declareProtected('Manage messages', 'tmx_export')
-    def tmx_export(self, REQUEST, RESPONSE=None):
+    def tmx_export(self, REQUEST, RESPONSE):
+        """Exports the content of the message catalog to a TMX file.
         """
-        Exports the content of the message catalog to a TMX file
-        """
-        langorg = self._default_language
 
-        # build data structure for the xml header
-        xml_header = {}
-        xml_header['standalone'] = -1
-        xml_header['xml_version'] = u'1.0'
-        xml_header['document_type'] = (u'tmx',
-                                       u'http://www.lisa.org/tmx/tmx14.dtd')
-        # build data structure for the tmx header
-        version = u'1.4'
-        tmx_header = {}
-        tmx_header['creationtool'] = u'Localizer'
-        tmx_header['creationtoolversion'] = u'1.x'
-        tmx_header['datatype'] = u'plaintext'
-        tmx_header['segtype'] = u'paragraph'
-        tmx_header['adminlang'] = u'%s' % langorg
-        tmx_header['srclang'] = u'%s' % langorg
-        tmx_header['o-encoding'] = u'utf-8'
+        src_lang = self._default_language
 
+        # Init the TMX handler
+        tmx = TMXFile()
+        tmx.header['creationtool'] = u'Localizer'
+        tmx.header['creationtoolversion'] = u'1.x'
+        tmx.header['datatype'] = u'plaintext'
+        tmx.header['segtype'] = u'paragraph'
+        tmx.header['adminlang'] = src_lang
+        tmx.header['srclang'] = src_lang
+        tmx.header['o-encoding'] = u'utf-8'
 
-        # Get the messages, and perhaps its translations.
-        d = {}
-        filename = '%s.tmx' % self.id
-
-        for k in self._local_properties.keys():
-            sentences = {}
+        # Add the translation units
+        for key in self._local_properties.keys():
+            unit = TMXUnit({})
             for lang in self._languages:
-                trans, fuzzy = self.get_localproperty(k, lang)
-                sentences[lang] = Sentence(trans, {'lang':lang})
-            d[self.get_localproperty(k, langorg)[0]] = Message(sentences)
+                sentence = Sentence({'lang': lang})
+                trans, fuzzy = self.get_localproperty(key, lang)
+                sentence.text = trans
+                unit.msgstr[lang] = sentence
+            tmx.messages[self.get_localproperty(key, src_lang)[0]] = unit
 
-        tmx = TMX()
-        tmx.build(xml_header, version, tmx_header, d)
-
-        if RESPONSE is not None:
-            RESPONSE.setHeader('Content-type','application/data')
-            RESPONSE.setHeader('Content-Disposition',
-                               'attachment; filename="%s"' % filename)
-
-        return tmx.to_str()
+        # Serialize
+        data = tmx.to_str()
+        # Set response headers
+        RESPONSE.setHeader('Content-type','application/data')
+        RESPONSE.setHeader('Content-Disposition',
+                           'attachment; filename="%s.tmx"' % self.id)
+        # Ok
+        return data
 
 
 
     security.declareProtected('Manage messages', 'tmx_import')
     def tmx_import(self, file, REQUEST=None, RESPONSE=None):
-        """ Imports a TMX level 1 file.
+        """Imports a TMX level 1 file.
         """
         try:
             data = file.read()
-            tmx = TMX(string=data)
+            tmx = TMXFile(string=data)
         except:
             return MessageDialog(title = 'Parse error',
                                message = _('impossible to parse the file') ,
                                action = 'manage_import',)
 
-        for (id, msg) in tmx.state.messages.items():
-            for (prop, d) in self._local_properties.items():
+        for id, msg in tmx.messages.items():
+            for prop, d in self._local_properties.items():
                 if d[self._default_language][0] == id:
                     msg.msgstr.pop(self._default_language)
                     for lang in msg.msgstr.keys():
@@ -226,8 +215,7 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
 
 
     security.declareProtected('Manage messages', 'xliff_export')
-    def xliff_export(self, dst_lang, export_all=1, REQUEST=None,
-                     RESPONSE=None):
+    def xliff_export(self, dst_lang, export_all=1, REQUEST, RESPONSE):
         """ Exports the content of the message catalog to an XLIFF file
         """
         from DateTime import DateTime
@@ -299,7 +287,7 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
                 self._languages += (lang,)
 
         # get messages
-        for file in xliff.state.files:
+        for file in xliff.files:
             cur_target = file.attributes.get('target-language', '')
             for msg in file.body.keys():
                 for (prop, val) in self._local_properties.items():
