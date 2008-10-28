@@ -29,7 +29,6 @@ from itools.i18n import AcceptLanguageType
 
 # Import from Zope
 import Globals
-from Products.PageTemplates.PageTemplate import PageTemplate
 from ZPublisher import Publish
 from ZPublisher.HTTPRequest import HTTPRequest
 
@@ -145,16 +144,13 @@ def patchedStringIO(self):
     return LocalizerStringIO()
 
 
-if not os.environ.get('LOCALIZER_USE_ZOPE_UNICODE'):
-    logger.info('Full Unicode-aware ZPT.')
+if zope_version == '2.9' and not os.environ.get('LOCALIZER_USE_ZOPE_UNICODE'):
     # Patch the StringIO method of TALInterpreter and PageTemplate
-    if zope_version == '2.9':
-        from TAL.TALInterpreter import TALInterpreter
-        TALInterpreter.StringIO = patchedStringIO
-    else:
-        from zope.pagetemplate import pagetemplate
-        pagetemplate.StringIO = patchedStringIO
+    logger.info('Full Unicode-aware ZPT.')
+    from Products.PageTemplates.PageTemplate import PageTemplate
+    from TAL.TALInterpreter import TALInterpreter
 
+    TALInterpreter.StringIO = patchedStringIO
     PageTemplate.StringIO = patchedStringIO
 
 
