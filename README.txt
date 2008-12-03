@@ -11,8 +11,8 @@ Requirements
 
   - Zope 2.9 or later
 
-  - itools 0.20.2 or later (download from
-    "http://www.ikaaro.org/itools":http://www.ikaaro.org/itools)
+  - itools 0.20.6 or later (download from
+    "http://www.hforge.org/itools":http://www.hforge.org/itools)
 
 
 Installation
@@ -20,21 +20,23 @@ Installation
   Download Localizer. Unpack the tarball and install it in the "Products"
   directory::
 
-    $ tar xzf Localizer-1.2.2.tar.gz
-    $ cp -r Localizer-1.2.2 <Zope instance>/Products/Localizer
+    $ tar xzf Localizer-1.2.3.tar.gz
+    $ cp -r Localizer-1.2.3 <Zope instance>/Products/Localizer
 
   Another option, case you are running Unix, is to use symbolic links::
 
-    $ ln -s Localizer-1.2.2 <Zope instance>/Products/Localizer
+    $ ln -s Localizer-1.2.3 <Zope instance>/Products/Localizer
 
 
 Resources
 
-  - "Home site":http://www.localizer.org
+  - "Home site":http://www.localizer.org/
 
-  - "Mailing list":http://mail.ikaaro.org/mailman/listinfo/localizer
+  - "Mailing list subscription":http://www.hforge.org/community
 
-  - "Bug Tracker":http://bugs.ikaaro.org/
+  - "Mailing list archives":http://archives.hforge.org/index.cgi?list=localizer
+
+  - "Bug Tracker":http://bugs.hforge.org/
 
 
 Examples of sites powered by Localizer
@@ -56,7 +58,7 @@ Examples of sites powered by Localizer
 
 Author and License
 
-  Copyright 2001-2007  J. David Ibáñez (jdavid@itaapy.com)
+  Copyright 2001-2008  J. David Ibáñez (jdavid@itaapy.com)
             2001 Universitat Jaume I
 
   This program is free software: you can redistribute it and/or modify
