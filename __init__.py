@@ -31,9 +31,6 @@ import os.path
 # Import from Zope
 from App.ImageFile import ImageFile
 from DocumentTemplate.DT_String import String
-import ZClasses
-from Products.PageTemplates.GlobalTranslationService import \
-     setGlobalTranslationService
 
 # Import from Localizer
 from patches import get_request
@@ -49,60 +46,6 @@ misc_ = {'arrow_left': ImageFile('img/arrow_left.gif', globals()),
          'eye_opened': ImageFile('img/eye_opened.gif', globals()),
          'eye_closed': ImageFile('img/eye_closed.gif', globals()),
          'obsolete': ImageFile('img/obsolete.gif', globals())}
-
-
-class GlobalTranslationService:
-    def __init__(self, service=None):
-        if service is not None:
-            self.pts_wrapper = PTSWrapper(service)
-        else:
-            self.pts_wrapper = None
-
-
-    def translate(self, domain, msgid, *args, **kw):
-        context = kw.get('context')
-        if context is None:
-            # Placeless!
-            return msgid
-
-        if domain is None or domain == 'default':
-            domain = 'gettext'
-
-        # Find it by acquisition
-        translation_service = getattr(context, domain, None)
-
-        # Try to get a catalog from a Localizer Object
-        if translation_service is None:
-            localizerObj = getattr(context, "Localizer", None)
-            if localizerObj is not None:
-                translation_service = getattr(localizerObj, domain, None)
-
-        if translation_service is not None:
-            from MessageCatalog import MessageCatalog
-            if isinstance(translation_service, MessageCatalog):
-                return translation_service.translate(domain, msgid, *args,
-                                                     **kw)
-        # Try PlacelessTranslationService
-        if self.pts_wrapper is not None:
-            return self.pts_wrapper.translate(domain, msgid, *args, **kw)
-
-        return msgid
-
-
-# Import from PlacelessTranslationService
-try:
-    from Products import PlacelessTranslationService
-except ImportError:
-    PTSWrapper = None
-else:
-    PTSWrapper = PlacelessTranslationService.PTSWrapper
-    PlacelessTranslationService.PTSWrapper = GlobalTranslationService
-
-# Try TranslationService
-try:
-    from Products import TranslationService
-except ImportError:
-    TranslationService = None
 
 
 def initialize(context):
@@ -149,17 +92,7 @@ def initialize(context):
                         LocalFolder.manage_addLocalFolder),
         icon='img/local_folder.gif')
 
-    # Register LocalPropertyManager as base class for ZClasses
-    ZClasses.createZClassForBase(LocalPropertyManager, globals(),
-                                 'LocalPropertyManager',
-                                 'LocalPropertyManager')
-
-
     context.registerHelp()
 
     # Register the dtml-gettext tag
     String.commands['gettext'] = GettextTag
-
-    # Register the global translation service for the i18n namespace (ZPT)
-    if PTSWrapper is None and TranslationService is None:
-        setGlobalTranslationService(GlobalTranslationService())

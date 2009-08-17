@@ -41,6 +41,9 @@ from Globals import MessageDialog, PersistentMapping, InitializeClass
 from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
 from ZPublisher import HTTPRequest
+from zope.i18n.interfaces import ITranslationDomain
+from zope.interface import implements
+from zope.component import getSiteManager
 
 # Import from Localizer
 from LanguageManager import LanguageManager
@@ -148,6 +151,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     meta_type = 'MessageCatalog'
 
     security = ClassSecurityInfo()
+
+    implements(ITranslationDomain)
 
 
     def __init__(self, id, title, sourcelang, languages):
@@ -270,12 +275,32 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     __call__ = gettext
 
 
-    def translate(self, domain, msgid, *args, **kw):
-        """This method is required to get the i18n namespace from ZPT working.
+    def translate(self, msgid, mapping=None, context=None,
+                  target_language=None, default=None):
+        """See zope.i18n.interfaces.ITranslationDomain.
         """
-        msgstr = self.gettext(msgid)
-        mapping = kw.get('mapping')
+        msgstr = self.gettext(msgid, lang=target_language, default=default)
         return interpolate(msgstr, mapping)
+
+
+    def getdomain(self):
+        return unicode(self.id)
+
+
+    domain = property(fget=getdomain,
+                      doc="See zope.i18n.interfaces.ITranslationDomain.")
+
+
+    def manage_afterAdd(self, item, container):
+        if item is self:
+            sm = getSiteManager(container)
+            sm.registerUtility(item, ITranslationDomain, item.domain)
+
+
+    def manage_beforeDelete(self, item, container):
+        if item is self:
+            sm = getSiteManager(container)
+            sm.unregisterUtility(item, ITranslationDomain, item.domain)
 
 
     #######################################################################
