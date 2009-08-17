@@ -7,11 +7,11 @@ both user interfaces and content.
 
 Requirements
 
-  - Python 2.4 or later
+  - Python 2.5.2 or later
 
-  - Zope 2.9 or later
+  - Zope 2.12 or later
 
-  - itools 0.20.6 or later (download from
+  - itools 0.50.6 or later (download from
     "http://www.hforge.org/itools":http://www.hforge.org/itools)
 
 
@@ -20,12 +20,12 @@ Installation
   Download Localizer. Unpack the tarball and install it in the "Products"
   directory::
 
-    $ tar xzf Localizer-1.2.3.tar.gz
-    $ cp -r Localizer-1.2.3 <Zope instance>/Products/Localizer
+    $ tar xzf Localizer-1.3.0.tar.gz
+    $ cp -r Localizer-1.3.0 <Zope instance>/Products/Localizer
 
   Another option, case you are running Unix, is to use symbolic links::
 
-    $ ln -s Localizer-1.2.3 <Zope instance>/Products/Localizer
+    $ ln -s Localizer-1.3.0 <Zope instance>/Products/Localizer
 
 
 Resources
@@ -58,7 +58,7 @@ Examples of sites powered by Localizer
 
 Author and License
 
-  Copyright 2001-2008  J. David Ibáñez (jdavid@itaapy.com)
+  Copyright 2001-2009  J. David Ibáñez (jdavid@itaapy.com)
             2001 Universitat Jaume I
 
   This program is free software: you can redistribute it and/or modify
