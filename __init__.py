@@ -15,14 +15,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Check whether itools is installed
-msg = ('itools 0.16 or later is needed, download from '
-       'http://www.ikaaro.org/itools')
+msg = ('itools 0.20 or later is needed, download from '
+       'http://www.hforge.org/itools')
 try:
     import itools
 except ImportError:
     raise ImportError, msg
-# Check itools is version 0.16 or later
-if itools.__version__ < '0.16':
+# Check itools is version 0.20 or later
+if itools.__version__ < '0.20':
     raise ImportError, msg
 
 # Import from the Standard Library
