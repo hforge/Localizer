@@ -16,8 +16,8 @@
 
 # Import from itools
 from itools import get_abspath
-from itools.i18n import AcceptLanguageType
-from itools.gettext import register_domain, DomainAware as BaseDomainAware
+from itools.i18n import AcceptLanguageType, init_language_selector
+from itools.gettext import get_domain, register_domain
 
 # Import from Zope
 from Globals import package_home
@@ -36,10 +36,9 @@ charsets = [ x.strip() for x in open(ph + '/charsets.txt').readlines() ]
 
 # Language negotiation
 def lang_negotiator(available_languages):
-    """
-    Receives two ordered lists, the list of user preferred languages
-    and the list of available languages. Returns the first user pref.
-    language that is available, if none is available returns None.
+    """Receives two ordered lists, the list of user preferred languages and
+    the list of available languages. Returns the first user pref.  language
+    that is available, if none is available returns None.
     """
     request = get_request()
     if request is None:
@@ -49,43 +48,32 @@ def lang_negotiator(available_languages):
         accept = request['AcceptLanguage']
     except KeyError:
         return None
-    else:
-        lang = accept.select_language(available_languages)
 
-    # XXX Here we should set the Vary header, but, which value should it have??
-##    response = request.RESPONSE
-##    response.setHeader('Vary', 'accept-language')
-##    response.setHeader('Vary', '*')
+    return accept.select_language(available_languages)
 
-    return lang
+
+init_language_selector(lang_negotiator)
 
 
 # Provide an API to access translations stored as MO files in the 'locale'
-# directory. This code has been moved from Localizer.
-
-class DomainAware(BaseDomainAware):
-
-    def select_language(cls, languages):
-        request = get_request()
-        accept = request.get_header('accept-language', default='')
-        accept = AcceptLanguageType.decode(accept)
-        return accept.select_language(languages)
-
-    select_language = classmethod(select_language)
-
-
-class translation(DomainAware):
+# directory.
+class DomainAware(object):
 
     def __init__(self, namespace):
-        domain = get_abspath(namespace, 'locale')
+        mname = namespace['__name__']
+        domain = get_abspath('locale', mname=mname)
         self.class_domain = domain
         register_domain(domain, domain)
 
 
-    def __call__(self, message, language=None):
-        return DomainAware.gettext(message, language, self.class_domain)
+    def gettext(self, message, language=None):
+        domain = get_domain(self.class_domain)
+        if language is None:
+            languages = domain.get_languages()
+            language = select_language(languages)
+        return domain.gettext(message, language)
 
-_ = translation(globals())
+_ = DomainAware(globals()).gettext
 
 
 # Defines strings that must be internationalized

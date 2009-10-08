@@ -26,10 +26,6 @@ PageTemplateFile.
 # Import from the Standard Library
 import os
 
-# Import from itools
-from itools import get_abspath
-from itools.gettext import register_domain
-
 # Import Zope modules
 from Globals import DTMLFile
 
@@ -37,15 +33,13 @@ from Globals import DTMLFile
 from utils import DomainAware
 
 
-class LocalDTMLFile(DTMLFile):
+
+class LocalDTMLFile(DomainAware, DTMLFile):
+    """ """
 
     def __init__(self, name, _prefix=None, **kw):
-        apply(LocalDTMLFile.inheritedAttribute('__init__'),
-              (self, name, _prefix), kw)
-
-        domain = get_abspath(_prefix, 'locale')
-        self.class_domain = domain
-        register_domain(domain, domain)
+        DTMLFile.__init__(self, name, _prefix, **kw)
+        DomainAware.__init__(self, _prefix)
 
 
     def _exec(self, bound_data, args, kw):
@@ -54,10 +48,6 @@ class LocalDTMLFile(DTMLFile):
         bound_data['ugettext'] = self.gettext  # XXX backwards compatibility
         return apply(LocalDTMLFile.inheritedAttribute('_exec'),
                      (self, bound_data, args, kw))
-
-
-    def gettext(self, message, language=None):
-        return DomainAware.gettext(message, language, self.class_domain)
 
 
 
@@ -70,15 +60,12 @@ except ImportError:
     class LocalPageTemplateFile:
         pass
 else:
-    class LocalPageTemplateFile(PageTemplateFile):
+    class LocalPageTemplateFile(DomainAware, PageTemplateFile):
+        """ """
 
         def __init__(self, name, _prefix=None, **kw):
-            apply(LocalPageTemplateFile.inheritedAttribute('__init__'),
-                  (self, name, _prefix), kw)
-
-            domain = get_abspath(_prefix, 'locale')
-            self.class_domain = domain
-            register_domain(domain, domain)
+            PageTemplateFile.__init__(self, name, _prefix, **kw)
+            DomainAware.__init__(self, _prefix)
 
 
         def _exec(self, bound_data, args, kw):
@@ -88,6 +75,3 @@ else:
             return apply(LocalPageTemplateFile.inheritedAttribute('_exec'),
                          (self, bound_data, args, kw))
 
-
-        def gettext(self, message, language=None):
-            return DomainAware.gettext(message, language, self.class_domain)

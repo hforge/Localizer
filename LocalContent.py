@@ -215,7 +215,8 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
 
 
     security.declareProtected('Manage messages', 'xliff_export')
-    def xliff_export(self, dst_lang, export_all=1, REQUEST, RESPONSE):
+    def xliff_export(self, dst_lang, export_all=1, REQUEST=None,
+                     RESPONSE=None):
         """ Exports the content of the message catalog to an XLIFF file
         """
         from DateTime import DateTime
