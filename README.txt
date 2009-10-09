@@ -9,7 +9,7 @@ Requirements
 
   - Python 2.5.2 or later
 
-  - Zope 2.12 or later
+  - Zope 2.12.0 or later
 
   - itools 0.50.6 or later (download from
     "http://www.hforge.org/itools":http://www.hforge.org/itools)

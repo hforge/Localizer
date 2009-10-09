@@ -56,7 +56,7 @@ def create_mo_files():
         system('msgfmt locale/%s.po -o locale/%s.mo' % (language, language))
 
 
-def parse_generic(text, commands=('gettext', 'ugettext')):
+def parse_generic(text, commands=('gettext',)):
     """Search for patterns like: gettext('message').
 
     XXX

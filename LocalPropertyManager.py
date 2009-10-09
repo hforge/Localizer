@@ -131,7 +131,7 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
         """Adds a new local property"""
         if not self.hasLocalProperty(id):
             self._local_properties_metadata += ({'id': id, 'type': type},)
-            setattr(self, id, LocalProperty(id))
+            setattr(self, id, LocalAttribute(id))
 
         if lang is not None:
             self.set_localpropvalue(id, lang, value)
@@ -154,13 +154,6 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
             delattr(self, id)
         except KeyError:
             pass
-
-
-    # XXX Backwards compatibility
-    _setLocalPropValue = set_localpropvalue
-    _setLocalProperty = set_localproperty
-    _delLocalProperty = del_localproperty
-
 
 
     security.declareProtected('Manage properties', 'manage_addLocalProperty')
@@ -256,9 +249,6 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
         if value is None:
             return ''
         return value
-
-    # XXX For backwards compatibility (<= 0.8.0)
-    getLocalProperty = getLocalAttribute
 
 
     # Languages logic

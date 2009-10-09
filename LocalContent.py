@@ -34,8 +34,9 @@ from AccessControl import ClassSecurityInfo
 from Globals import InitializeClass, MessageDialog
 
 # Import from Localizer
+from LocalAttributes import LocalAttribute
 from LocalFiles import LocalDTMLFile
-from LocalPropertyManager import LocalPropertyManager, LocalProperty
+from LocalPropertyManager import LocalPropertyManager
 from utils import _
 
 
@@ -70,8 +71,8 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
 
     _properties = ()
 
-    title = LocalProperty('title')   # Override title from SimpleItem
-    body = LocalProperty('body')
+    title = LocalAttribute('title')   # Override title from SimpleItem
+    body = LocalAttribute('body')
 
 
     def manage_options(self):

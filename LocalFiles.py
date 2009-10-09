@@ -45,7 +45,6 @@ class LocalDTMLFile(DomainAware, DTMLFile):
     def _exec(self, bound_data, args, kw):
         # Add our gettext first
         bound_data['gettext'] = self.gettext
-        bound_data['ugettext'] = self.gettext  # XXX backwards compatibility
         return apply(LocalDTMLFile.inheritedAttribute('_exec'),
                      (self, bound_data, args, kw))
 
@@ -71,7 +70,6 @@ else:
         def _exec(self, bound_data, args, kw):
             # Add our gettext first
             bound_data['gettext'] = self.gettext
-            bound_data['ugettext'] = self.gettext # XXX backwards compatibility
             return apply(LocalPageTemplateFile.inheritedAttribute('_exec'),
                          (self, bound_data, args, kw))
 
