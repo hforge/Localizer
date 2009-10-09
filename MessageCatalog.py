@@ -46,12 +46,12 @@ from ZPublisher import HTTPRequest
 from zope.i18n.interfaces import ITranslationDomain
 from zope.interface import implements
 from zope.component import getSiteManager
+from zope.i18n import interpolate
 
 # Import from Localizer
 from LanguageManager import LanguageManager
 from LocalFiles import LocalDTMLFile
 from utils import charsets, lang_negotiator, _
-from zopewrapper import interpolate
 
 
 
