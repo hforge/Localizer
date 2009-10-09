@@ -27,7 +27,7 @@ PageTemplateFile.
 import os
 
 # Import Zope modules
-from Globals import DTMLFile
+from App.special_dtml import DTMLFile
 
 # Import from Localizer
 from utils import DomainAware

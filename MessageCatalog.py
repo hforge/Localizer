@@ -23,7 +23,7 @@ provides message catalogs for the web.
 
 # Import from the Standard Library
 from base64 import encodestring, decodestring
-import md5
+from hashlib import md5
 from re import compile
 from time import gmtime, strftime, time
 from urllib import quote
@@ -37,9 +37,11 @@ from itools.xliff import XLFFile, XLFNote
 # Import from Zope
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
-from Globals import MessageDialog, PersistentMapping, InitializeClass
+from App.class_init import InitializeClass
+from App.Dialogs import MessageDialog
 from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
+from Persistence import PersistentMapping
 from ZPublisher import HTTPRequest
 from zope.i18n.interfaces import ITranslationDomain
 from zope.interface import implements
@@ -60,7 +62,7 @@ def md5text(str):
     """Create an MD5 sum (or hash) of a text. It is guaranteed to be 32 bytes
     long.
     """
-    return md5.new(str.encode('utf-8')).hexdigest()
+    return md5(str.encode('utf-8')).hexdigest()
 
 
 def to_unicode(x):

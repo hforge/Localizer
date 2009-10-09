@@ -20,7 +20,7 @@ from itools.i18n import AcceptLanguageType, init_language_selector
 from itools.gettext import get_domain, register_domain
 
 # Import from Zope
-from Globals import package_home
+from App.Common import package_home
 
 # Import from Localizer
 from patches import get_request

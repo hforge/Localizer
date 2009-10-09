@@ -17,7 +17,7 @@
 # Import from the Standard Library
 from cgi import escape
 from cStringIO import StringIO
-import md5
+from hashlib import md5
 from types import StringType, UnicodeType
 from xml.sax import make_parser, handler, InputSource
 
@@ -27,11 +27,12 @@ from itools.tmx import TMXFile, Sentence, TMXUnit
 from itools.xliff import XLFFile
 
 # Import from Zope
+from App.class_init import InitializeClass
+from App.Dialogs import MessageDialog
 from OFS.SimpleItem import SimpleItem
 from OFS.PropertyManager import PropertyManager
 from Products.ZCatalog.CatalogPathAwareness import CatalogAware
 from AccessControl import ClassSecurityInfo
-from Globals import InitializeClass, MessageDialog
 
 # Import from Localizer
 from LocalAttributes import LocalAttribute
@@ -44,7 +45,7 @@ def md5text(str):
     """Create an MD5 sum (or hash) of a text. It is guaranteed to be 32 bytes
     long.
     """
-    return md5.new(str.encode('utf-8')).hexdigest()
+    return md5(str.encode('utf-8')).hexdigest()
 
 
 manage_addLocalContentForm = LocalDTMLFile('ui/LocalContent_add', globals())

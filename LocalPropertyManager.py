@@ -20,7 +20,7 @@ from time import time
 
 # Import from Zope
 from AccessControl import ClassSecurityInfo
-import Globals
+from App.class_init import InitializeClass
 
 # Import from Localizer
 from LanguageManager import LanguageManager
@@ -329,4 +329,4 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
 
 
 
-Globals.InitializeClass(LocalPropertyManager)
+InitializeClass(LocalPropertyManager)

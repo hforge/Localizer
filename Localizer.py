@@ -22,7 +22,7 @@ from itools.i18n import get_language_name
 
 # Import from Zope
 from AccessControl import ClassSecurityInfo
-from Globals import DTMLFile, InitializeClass
+from App.class_init import InitializeClass
 from OFS.Folder import Folder
 from ZPublisher.BeforeTraverse import registerBeforeTraverse, \
      unregisterBeforeTraverse, queryBeforeTraverse, NameCaller

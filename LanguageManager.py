@@ -21,7 +21,7 @@ from urlparse import urlparse
 from itools.i18n import get_language_name, get_languages
 
 # Import from Zope
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from AccessControl import ClassSecurityInfo
 
 # Import from Localizer

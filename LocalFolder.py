@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Import from Zope
-from Globals import package_home
+from App.Common import package_home
 from OFS.Folder import Folder
 
 # Import from Localizer
