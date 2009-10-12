@@ -24,13 +24,13 @@ obsolete and they are marked with <img src="misc_/Localizer/obsolete" border="0"
         <dtml-let curr_lang="REQUEST.get('lang', None) or languages[0]['code']"
                   default_lang="get_default_language()"
                   curr_prop="REQUEST.get('prop', properties[0]['id'])"
-                  curr_value="getLocalProperty(curr_prop, curr_lang)">
+                  curr_value="getLocalAttribute(curr_prop, curr_lang)">
 
         <table border="0" cellspacing="3" cellpadding="3" width="90%">
             <tr>
                 <td rowspan="2" width="30%">
                     <textarea cols="65" rows="10" wrap="virtual"
-                        readonly="readonly"><dtml-var "getLocalProperty(curr_prop, default_lang)" html_quote></textarea>
+                        readonly="readonly"><dtml-var "getLocalAttribute(curr_prop, default_lang)" html_quote></textarea>
                     <br />
                     <dtml-in languages mapping sort=name>
                         <dtml-let name="gettext(name)">

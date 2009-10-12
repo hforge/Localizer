@@ -12,7 +12,7 @@ If you want to remove a property select it and click "Delete".
 <dtml-if properties>
     <dtml-let curr_prop="REQUEST.get('prop', properties[0]['id'])"
               default_lang="get_default_language()"
-              curr_value="getLocalProperty(curr_prop, default_lang)">
+              curr_value="getLocalAttribute(curr_prop, default_lang)">
 
     <form action="<dtml-var URL1>" method="post" name="frmProperties">
     <table cellspacing="0" cellpadding="2" border="0">
@@ -39,9 +39,9 @@ If you want to remove a property select it and click "Delete".
             </td>
             <td align="left" valign="top">
                 <dtml-if "type == 'string'">
-                    <input type="text" name="<dtml-var id>:utf8:ustring" size="65" value="<dtml-var "getLocalProperty(id, default_lang)">" />
+                    <input type="text" name="<dtml-var id>:utf8:ustring" size="65" value="<dtml-var "getLocalAttribute(id, default_lang)">" />
                 <dtml-elif "type == 'text'">
-                    <textarea name="<dtml-var id>:utf8:ustring" rows="10" cols="65"><dtml-var "getLocalProperty(id, default_lang)"></textarea>
+                    <textarea name="<dtml-var id>:utf8:ustring" rows="10" cols="65"><dtml-var "getLocalAttribute(id, default_lang)"></textarea>
                 </dtml-if>
             </td>
             <td align="left" valign="top">
