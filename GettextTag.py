@@ -24,9 +24,6 @@ Adds a new DTML tag:
 </dtml-gettext>
 """
 
-# Import from the Standard Library
-from types import StringType
-
 # Import from Zope
 from DocumentTemplate.DT_Util import Eval, ParseError, parse_params, \
      InstanceDict, namespace, render_blocks
@@ -46,12 +43,6 @@ def name_or_expr(mapping, name_attr, expr_attr, default):
         return name
     raise ParseError, ('%s and %s given' % (name_attr, expr_attr), 'calendar')
 
-
-def get_value(x, md):
-    if x is None or type(x) is StringType:
-        return x
-    else:
-        return x.eval(md)
 
 
 class GettextTag:
@@ -81,7 +72,9 @@ class GettextTag:
 
     def __call__(self, md):
         # In which language, if any?
-        lang = get_value(self.lang, md)
+        lang = self.lang
+        if lang is not None and type(lang) is not str:
+            lang = lang.eval(md)
 
         # Get the message!!
         ns = namespace(md)[0]

@@ -303,10 +303,9 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
         # The upgrade code below must be activated once the new upgrade
         # framework is deployed, something that should happen for the 1.2
         # release.
-##        from types import TupleType
 ##        for k, v in self._local_properties.items():
 ##            for i, j in v.items():
-##                if type(j) is not TupleType:
+##                if type(j) is not tuple:
 ##                    # XXX add the timestamp for every property
 ##                    self._local_properties[k][i] = (j, time())
 ##        self._p_changed = 1
