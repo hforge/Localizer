@@ -27,23 +27,12 @@ modules you need it, just type:
   from LocalizerSupport import LocalDTMLFile as DTMLFile
   from LocalizerSupport import LocalPageTemplateFile as PageTemplateFile
 
-Note that the 'as' keyword is new to Python 2.0, if to support older
-versions is a requirement you should type this instead:
-
-  from LocalizerSupport import _
-  from LocalizerSupport import LocalDTMLFile, LocalPageTemplateFile
-
-  DTMLFile = LocalDTMLFile
-  PageTemplateFile = LocalPageTemplateFile
-  del LocalDTMLFile
-  del LocalPageTemplateFile
-
 Another option is not to rename the classes, then you will have to
 change from 'DTMLFile' to 'LocalDTMLFile' and from 'PageTemplateFile'
 to 'LocalPageTemplateFile' wherever you need it.
 
-Note that Localizer requieres Python 2.1 or above, so the multilingual
-version of your product will also requiere Python 2.1 or above.
+Note that Localizer requieres Python 2.4 or above, so the multilingual
+version of your product will also requiere Python 2.4 or above.
 
 Of course, you don't need to import the features you don't need.
 """
@@ -51,16 +40,7 @@ Of course, you don't need to import the features you don't need.
 # The version information refers to the Localizer product version.
 # If you change this module, please update the version number to
 # show it.
-__version__ = '1.1.0'
-
-
-def N_(message, language=None):
-    """
-    Used to markup a string for translation but without translating it,
-    this is known as deferred translations.
-    """
-    return message
-
+__version__ = '1.2.0'
 
 
 try:
@@ -68,7 +48,12 @@ try:
     from Products.Localizer import _
 except ImportError:
     # For Python code
-    _ = N_
+    def _(message, language=None):
+        """
+        Used to markup a string for translation but without translating it,
+        this is known as deferred translations.
+        """
+        return message
 
 
     # For DTML and Page Templates
