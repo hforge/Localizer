@@ -28,8 +28,10 @@ from LocalAttributes import LocalAttribute, LocalAttributesBase
 from LocalFiles import LocalDTMLFile
 
 
-# XXX
+# FIXME
 # For backwards compatibility (<= 0.8.0): other classes import 'LocalProperty'
+# Since this may be stored as a persistent value, we cannot remove it, first
+# we must provide an upgrade facility
 LocalProperty = LocalAttribute
 
 

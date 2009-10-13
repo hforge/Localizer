@@ -35,6 +35,7 @@ from DocumentTemplate.DT_String import String
 # Import from Localizer
 from patches import get_request
 import Localizer, LocalContent, MessageCatalog, LocalFolder
+from LocalAttributes import LocalAttribute
 from LocalFiles import LocalDTMLFile, LocalPageTemplateFile
 from LocalPropertyManager import LocalPropertyManager, LocalProperty
 from GettextTag import GettextTag
