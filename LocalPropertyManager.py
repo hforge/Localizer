@@ -26,6 +26,7 @@ from App.class_init import InitializeClass
 from LanguageManager import LanguageManager
 from LocalAttributes import LocalAttribute, LocalAttributesBase
 from LocalFiles import LocalDTMLFile
+from utils import needs_upgrade
 
 
 # FIXME
@@ -61,24 +62,18 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
         """
         return self
 
-
-    def manage_options(self):
-        """ """
-        if self.need_upgrade():
-            # This instance needs to be upgraded
-            options = ({'label': u'Upgrade', 'action': 'manage_upgradeForm',
-                        'help': ('Localizer', 'LPM_upgrade.stx')},)
-        else:
-            options = ()
-
-        return options \
-               + ({'label': u'Local properties',
-                   'action': 'manage_localPropertiesForm',
-                   'help': ('Localizer', 'LPM_properties.stx')},
-                   {'label': u'Translate properties',
-                   'action': 'manage_transPropertiesForm',
-                   'help': ('Localizer', 'LPM_translate.stx')},) \
-               + LanguageManager.manage_options
+    manage_options = (
+        {'action': 'manage_upgradeForm',
+         'filter': needs_upgrade,
+         'label': u'Upgrade',
+         'help': ('Localizer', 'LPM_upgrade.stx')},
+        {'action': 'manage_localPropertiesForm',
+         'label': u'Local properties',
+         'help': ('Localizer', 'LPM_properties.stx')},
+        {'action': 'manage_transPropertiesForm',
+         'label': u'Translate properties',
+         'help': ('Localizer', 'LPM_translate.stx')}) \
+        + LanguageManager.manage_options
 
 
     security.declarePublic('hasLocalProperty')

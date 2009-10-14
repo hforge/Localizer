@@ -34,7 +34,9 @@ charsets = [ x.strip() for x in open(ph + '/charsets.txt').readlines() ]
 
 
 
+###########################################################################
 # Language negotiation
+###########################################################################
 def lang_negotiator(available_languages):
     """Receives two ordered lists, the list of user preferred languages and
     the list of available languages. Returns the first user pref.  language
@@ -55,8 +57,17 @@ def lang_negotiator(available_languages):
 init_language_selector(lang_negotiator)
 
 
+###########################################################################
+# Upgrade
+###########################################################################
+def needs_upgrade(obj):
+    return obj.need_upgrade()
+
+
+###########################################################################
 # Provide an API to access translations stored as MO files in the 'locale'
 # directory.
+###########################################################################
 class DomainAware(object):
 
     def __init__(self, namespace):
@@ -76,7 +87,10 @@ class DomainAware(object):
 _ = DomainAware(globals()).gettext
 
 
+###########################################################################
 # Defines strings that must be internationalized
+###########################################################################
+
 # Tabs of the management screens
 u'Contents'
 u'View'
@@ -85,7 +99,7 @@ u'Security'
 u'Undo'
 u'Ownership'
 u'Find'
-# Languages
+# Languages (FIXME This will be removed once we upgrade to itools 0.60)
 u'Abkhazian'
 u'Afar'
 u'Afrikaans'
