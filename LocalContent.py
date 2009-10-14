@@ -72,25 +72,15 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
     body = LocalAttribute('body')
 
 
-    def manage_options(self):
-        """ """
-        options = \
-            LocalPropertyManager.manage_options \
-            + PropertyManager.manage_options[:1] \
-            + ({'action': 'manage_import', 'label': u'Import',
-                'help': ('Localizer', 'MC_importExport.stx')},
-               {'action': 'manage_export', 'label': u'Export',
-                'help': ('Localizer', 'MC_importExport.stx')}) \
-            + PropertyManager.manage_options[1:] \
-            + SimpleItem.manage_options
-
-        r = []
-        for option in options:
-            option = option.copy()
-            option['label'] = _(option['label'])
-            r.append(option)
-
-        return r
+    manage_options = \
+        LocalPropertyManager.manage_options \
+        + PropertyManager.manage_options[:1] \
+        + ({'action': 'manage_import', 'label': u'Import',
+            'help': ('Localizer', 'MC_importExport.stx')},
+           {'action': 'manage_export', 'label': u'Export',
+            'help': ('Localizer', 'MC_importExport.stx')}) \
+        + PropertyManager.manage_options[1:] \
+        + SimpleItem.manage_options
 
 
     def __init__(self, id, sourcelang, languages):

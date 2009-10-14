@@ -57,21 +57,11 @@ class LocalFolder(LanguageManager, LocalAttributes, Folder):
         self._local_attributes = ()
 
 
-    def manage_options(self):
-        """ """
-        options = Folder.manage_options[:1] \
-                  + ({'label': u'Attributes',
-                    'action': 'manage_attributes'},) \
-                  + LanguageManager.manage_options \
-                  + Folder.manage_options[1:]
-
-        r = []
-        for option in options:
-            option = option.copy()
-            option['label'] = _(option['label'])
-            r.append(option)
-
-        return r
+    manage_options = \
+        Folder.manage_options[:1] \
+        + ({'action': 'manage_attributes', 'label': u'Attributes'},) \
+        + LanguageManager.manage_options \
+        + Folder.manage_options[1:]
 
 
     # Manage attributes

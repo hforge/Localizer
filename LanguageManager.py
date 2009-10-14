@@ -22,14 +22,15 @@ from itools.i18n import get_language_name, get_languages
 
 # Import from Zope
 from App.class_init import InitializeClass
+from App.Management import Tabs
 from AccessControl import ClassSecurityInfo
 
 # Import from Localizer
 from LocalFiles import LocalDTMLFile
-from utils import lang_negotiator
+from utils import lang_negotiator, _
 
 
-class LanguageManager(object):
+class LanguageManager(Tabs):
     """ """
 
     security = ClassSecurityInfo()
@@ -153,9 +154,19 @@ class LanguageManager(object):
     # ZMI
     ########################################################################
     manage_options = (
-        {'label': u'Languages', 'action': 'manage_languages',
-         'help': ('Localizer', 'LM_languages.stx')},
-    )
+        {'action': 'manage_languages', 'label': u'Languages',
+         'help': ('Localizer', 'LM_languages.stx')},)
+
+
+    def filtered_manage_options(self, REQUEST=None):
+        options = Tabs.filtered_manage_options(self, REQUEST=REQUEST)
+        r = []
+        for option in options:
+            option = option.copy()
+            option['label'] = _(option['label'])
+            r.append(option)
+
+        return r
 
 
     security.declareProtected('View management screens', 'manage_languages')

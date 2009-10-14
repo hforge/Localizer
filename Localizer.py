@@ -31,7 +31,7 @@ from zLOG import LOG, ERROR, INFO, PROBLEM
 # Import Localizer modules
 from LocalFiles import LocalDTMLFile
 from MessageCatalog import MessageCatalog
-from utils import lang_negotiator, needs_upgrade, _
+from utils import lang_negotiator, needs_upgrade
 from LanguageManager import LanguageManager
 
 
@@ -65,24 +65,14 @@ class Localizer(LanguageManager, Folder):
 
     security = ClassSecurityInfo()
 
-    def manage_options(self):
-        """The manage options are defined here so they can be translated"""
-        options = (
-            {'action': 'manage_upgradeForm',
-             'filter': needs_upgrade,
-             'label': u'Upgrade',
-             'help': ('Localizer', 'Localizer_upgrade.stx')},
-            Folder.manage_options[0]) \
-            + LanguageManager.manage_options \
-            + Folder.manage_options[1:]
-
-        r = []
-        for option in options:
-            option = option.copy()
-            option['label'] = _(option['label'])
-            r.append(option)
-
-        return r
+    manage_options = (
+        {'action': 'manage_upgradeForm',
+         'filter': needs_upgrade,
+         'label': u'Upgrade',
+         'help': ('Localizer', 'Localizer_upgrade.stx')},
+        Folder.manage_options[0]) \
+        + LanguageManager.manage_options \
+        + Folder.manage_options[1:]
 
 
     def __init__(self, title, languages):

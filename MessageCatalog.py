@@ -308,26 +308,16 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     #######################################################################
     # Management screens
     #######################################################################
-    def manage_options(self):
-        """ """
-        options = (
-            {'label': u'Messages', 'action': 'manage_messages',
-             'help': ('Localizer', 'MC_messages.stx')},
-            {'label': u'Properties', 'action': 'manage_propertiesForm'},
-            {'label': u'Import', 'action': 'manage_Import_form',
-             'help': ('Localizer', 'MC_importExport.stx')},
-            {'label': u'Export', 'action': 'manage_Export_form',
-             'help': ('Localizer', 'MC_importExport.stx')}) \
-            + LanguageManager.manage_options \
-            + SimpleItem.manage_options
-
-        r = []
-        for option in options:
-            option = option.copy()
-            option['label'] = _(option['label'])
-            r.append(option)
-
-        return r
+    manage_options = (
+        {'label': u'Messages', 'action': 'manage_messages',
+         'help': ('Localizer', 'MC_messages.stx')},
+        {'label': u'Properties', 'action': 'manage_propertiesForm'},
+        {'label': u'Import', 'action': 'manage_Import_form',
+         'help': ('Localizer', 'MC_importExport.stx')},
+        {'label': u'Export', 'action': 'manage_Export_form',
+         'help': ('Localizer', 'MC_importExport.stx')}) \
+        + LanguageManager.manage_options \
+        + SimpleItem.manage_options
 
 
     #######################################################################
