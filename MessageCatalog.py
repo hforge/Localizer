@@ -154,8 +154,6 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
     security = ClassSecurityInfo()
 
-    implements(ITranslationDomain)
-
 
     def __init__(self, id, title, sourcelang, languages):
         self.id = id
@@ -173,6 +171,37 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         self._po_headers = PersistentMapping()
         for lang in self._languages:
             self._po_headers[lang] = empty_po_header
+
+
+    #######################################################################
+    # ITranslationDomain interface
+    # zope.i18n.interfaces.ITranslationDomain
+    #######################################################################
+    implements(ITranslationDomain)
+
+    @property
+    def domain(self):
+        """ """
+        return unicode(self.id)
+
+
+    def translate(self, msgid, mapping=None, context=None,
+                  target_language=None, default=None):
+        """ """
+        msgstr = self.gettext(msgid, lang=target_language, default=default)
+        return interpolate(msgstr, mapping)
+
+
+    def manage_afterAdd(self, item, container):
+        if item is self:
+            sm = getSiteManager(container)
+            sm.registerUtility(self, ITranslationDomain, self.domain)
+
+
+    def manage_beforeDelete(self, item, container):
+        if item is self:
+            sm = getSiteManager(container)
+            sm.unregisterUtility(self, ITranslationDomain, self.domain)
 
 
     #######################################################################
@@ -275,34 +304,6 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
 
 
     __call__ = gettext
-
-
-    def translate(self, msgid, mapping=None, context=None,
-                  target_language=None, default=None):
-        """See zope.i18n.interfaces.ITranslationDomain.
-        """
-        msgstr = self.gettext(msgid, lang=target_language, default=default)
-        return interpolate(msgstr, mapping)
-
-
-    def getdomain(self):
-        return unicode(self.id)
-
-
-    domain = property(fget=getdomain,
-                      doc="See zope.i18n.interfaces.ITranslationDomain.")
-
-
-    def manage_afterAdd(self, item, container):
-        if item is self:
-            sm = getSiteManager(container)
-            sm.registerUtility(item, ITranslationDomain, item.domain)
-
-
-    def manage_beforeDelete(self, item, container):
-        if item is self:
-            sm = getSiteManager(container)
-            sm.unregisterUtility(item, ITranslationDomain, item.domain)
 
 
     #######################################################################
