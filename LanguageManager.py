@@ -160,12 +160,22 @@ class LanguageManager(Tabs):
 
     def filtered_manage_options(self, REQUEST=None):
         options = Tabs.filtered_manage_options(self, REQUEST=REQUEST)
+
+        # Insert the upgrade form if needed
+        if self._needs_upgrade():
+            options.insert(0,
+                {'action': 'manage_upgradeForm',
+                 'label': u'Upgrade',
+                 'help': ('Localizer', 'LM_upgrade.stx')})
+
+        # Translate the labels
         r = []
         for option in options:
             option = option.copy()
             option['label'] = _(option['label'])
             r.append(option)
 
+        # Ok
         return r
 
 
@@ -210,6 +220,33 @@ class LanguageManager(Tabs):
 
     # Unicode support, custom ZMI
     manage_page_header = LocalDTMLFile('ui/manage_page_header', globals())
+
+
+    ########################################################################
+    # Upgrade
+    def _needs_upgrade(self):
+        return False
+
+
+    def _upgrade(self):
+        pass
+
+
+    security.declarePublic('need_upgrade')
+    def need_upgrade(self):
+        """ """
+        return self._needs_upgrade()
+
+
+    security.declareProtected(
+        'Manage Access Rules', 'manage_upgradeForm', 'manage_upgrade')
+    manage_upgradeForm = LocalDTMLFile('ui/LM_upgrade', globals())
+    def manage_upgrade(self, REQUEST, RESPONSE):
+        """ """
+        self._upgrade()
+        RESPONSE.redirect('manage_main')
+
+
 
 
 InitializeClass(LanguageManager)

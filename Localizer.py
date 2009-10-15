@@ -31,7 +31,7 @@ from zLOG import LOG, ERROR, INFO, PROBLEM
 # Import Localizer modules
 from LocalFiles import LocalDTMLFile
 from MessageCatalog import MessageCatalog
-from utils import lang_negotiator, needs_upgrade
+from utils import lang_negotiator
 from LanguageManager import LanguageManager
 
 
@@ -65,12 +65,8 @@ class Localizer(LanguageManager, Folder):
 
     security = ClassSecurityInfo()
 
-    manage_options = (
-        {'action': 'manage_upgradeForm',
-         'filter': needs_upgrade,
-         'label': u'Upgrade',
-         'help': ('Localizer', 'Localizer_upgrade.stx')},
-        Folder.manage_options[0]) \
+    manage_options = \
+        (Folder.manage_options[0],) \
         + LanguageManager.manage_options \
         + Folder.manage_options[1:]
 
@@ -81,6 +77,10 @@ class Localizer(LanguageManager, Folder):
         self._languages = languages
         self._default_language = languages[0]
 
+
+    #######################################################################
+    # API / Private
+    #######################################################################
 
     # Hook/unhook the traversal machinery
     # Support for copy, cut and paste operations
@@ -100,6 +100,20 @@ class Localizer(LanguageManager, Folder):
     def _getCopy(self, container):
         return Localizer.inheritedAttribute('_getCopy')(self, container)
 
+
+    def _needs_upgrade(self):
+        return not self.hooked()
+
+
+    def _upgrade(self):
+        # Upgrade to 0.9
+        if not self.hooked():
+            self.manage_hook(1)
+
+
+    #######################################################################
+    # API / Public
+    #######################################################################
 
     # Get some data
     security.declarePublic('get_supported_languages')
@@ -231,25 +245,6 @@ class Localizer(LanguageManager, Folder):
             goto = request['HTTP_REFERER']
 
         response.redirect(goto)
-
-
-    # Upgrading..
-    security.declarePublic('need_upgrade')
-    def need_upgrade(self):
-        """ """
-        return not self.hooked()
-
-
-    security.declareProtected('Manage Access Rules',
-                              'manage_upgradeForm', 'manage_upgrade')
-    manage_upgradeForm = LocalDTMLFile('ui/Localizer_upgrade', globals())
-    def manage_upgrade(self, REQUEST, RESPONSE):
-        """ """
-        # Upgrade to 0.9
-        if not self.hooked():
-            self.manage_hook(1)
-
-        RESPONSE.redirect('manage_main')
 
 
 InitializeClass(Localizer)

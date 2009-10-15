@@ -26,7 +26,6 @@ from App.class_init import InitializeClass
 from LanguageManager import LanguageManager
 from LocalAttributes import LocalAttribute, LocalAttributesBase
 from LocalFiles import LocalDTMLFile
-from utils import needs_upgrade
 
 
 # FIXME
@@ -63,10 +62,6 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
         return self
 
     manage_options = (
-        {'action': 'manage_upgradeForm',
-         'filter': needs_upgrade,
-         'label': u'Upgrade',
-         'help': ('Localizer', 'LPM_upgrade.stx')},
         {'action': 'manage_localPropertiesForm',
          'label': u'Local properties',
          'help': ('Localizer', 'LPM_properties.stx')},
@@ -279,15 +274,11 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
 
 
     # Upgrading..
-    security.declarePublic('need_upgrade')
-    def need_upgrade(self):
-        """ """
+    def _needs_upgrade(self):
         return hasattr(self.aq_base, 'original_language')
 
 
-    manage_upgradeForm = LocalDTMLFile('ui/LPM_upgrade', globals())
-    def manage_upgrade(self, REQUEST=None, RESPONSE=None):
-        """ """
+    def _upgrade(self):
         # In version 0.7 the language management logic moved to the
         # mixin class LanguageManager, as a consequence the attribute
         # "original_language" changes its name to "_default_language".
@@ -306,9 +297,6 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
 ##                    # XXX add the timestamp for every property
 ##                    self._local_properties[k][i] = (j, time())
 ##        self._p_changed = 1
-
-        if REQUEST is not None:
-            return self.manage_main(self, REQUEST)
 
 
     # Define <id>_<lang> attributes, useful for example to catalog

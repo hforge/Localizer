@@ -5,7 +5,7 @@
 <dtml-if need_upgrade>
   <p class="form-help">
     <dtml-gettext>
-      This <tt>Localizer</tt> object needs to be upgraded.
+      This object must be upgraded.
     </dtml-gettext>
   </p>
 
@@ -18,7 +18,7 @@
 <dtml-else>
   <p class="form-help">
     <dtml-gettext>
-      This <tt>Localizer</tt> object doesn't need to be upgraded.
+      This object is up-to-date.
     </dtml-gettext>
   </p>
 </dtml-if>
