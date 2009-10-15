@@ -22,6 +22,7 @@ from itools.i18n import get_language_name
 
 # Import from Zope
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_parent
 from App.class_init import InitializeClass
 from OFS.Folder import Folder
 from ZPublisher.BeforeTraverse import registerBeforeTraverse, \
@@ -143,15 +144,15 @@ class Localizer(LanguageManager, Folder):
         if hook != self.hooked():
             if hook:
                 hook = NameCaller(self.id)
-                registerBeforeTraverse(self.aq_parent, hook, self.meta_type)
+                registerBeforeTraverse(aq_parent(self), hook, self.meta_type)
             else:
-                unregisterBeforeTraverse(self.aq_parent, self.meta_type)
+                unregisterBeforeTraverse(aq_parent(self), self.meta_type)
 
 
     security.declarePublic('hooked')
     def hooked(self):
         """ """
-        if queryBeforeTraverse(self.aq_parent, self.meta_type):
+        if queryBeforeTraverse(aq_parent(self), self.meta_type):
             return 1
         return 0
 
@@ -233,7 +234,7 @@ class Localizer(LanguageManager, Folder):
         response = request.RESPONSE
 
         # Changes the cookie (it could be something different)
-        parent = self.aq_parent
+        parent = aq_parent(self)
         path = parent.absolute_url()[len(request['SERVER_URL']):] or '/'
         if expires is None:
             response.setCookie('LOCALIZER_LANGUAGE', lang, path=path)

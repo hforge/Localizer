@@ -20,6 +20,7 @@ from time import time
 
 # Import from Zope
 from AccessControl import ClassSecurityInfo
+from Acquisition import aq_base
 from App.class_init import InitializeClass
 
 # Import from Localizer
@@ -275,14 +276,14 @@ class LocalPropertyManager(LanguageManager, LocalAttributesBase):
 
     # Upgrading..
     def _needs_upgrade(self):
-        return hasattr(self.aq_base, 'original_language')
+        return hasattr(aq_base(self), 'original_language')
 
 
     def _upgrade(self):
         # In version 0.7 the language management logic moved to the
         # mixin class LanguageManager, as a consequence the attribute
         # "original_language" changes its name to "_default_language".
-        if hasattr(self.aq_base, 'original_languge'):
+        if hasattr(aq_base(self), 'original_languge'):
             self._default_language = self.original_language
             del self.original_language
 

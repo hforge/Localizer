@@ -23,6 +23,7 @@ from itools.tmx import TMXFile, Sentence, TMXUnit
 from itools.xliff import XLFFile
 
 # Import from Zope
+from Acquisition import aq_base, aq_parent
 from App.class_init import InitializeClass
 from App.Dialogs import MessageDialog
 from OFS.SimpleItem import SimpleItem
@@ -98,11 +99,11 @@ class LocalContent(CatalogAware, LocalPropertyManager, PropertyManager,
 
         # Get the template to use
         template_id = 'default_template'
-        if hasattr(self.aq_base, 'default_template'):
+        if hasattr(aq_base(self), 'default_template'):
             template_id = self.default_template
 
         # Render the object
-        template = getattr(self.aq_parent, template_id)
+        template = getattr(aq_parent(self), template_id)
         template = template.__of__(self)
         return apply(template, ((client, self), REQUEST), kw)
 
