@@ -1,9 +1,12 @@
 
+PYTHON=python
+
+
 po:
-	./zgettext.py *.py ui/*.dtml -l ca de es eu fr hu it ja pt ru
+	${PYTHON} zgettext.py *.py ui/*.dtml -l ca de es eu fr hu it ja pt ru
 
 mo:
-	./zgettext.py -m
+	${PYTHON} zgettext.py -m
 
 clean:
 	rm -f *~ *.pyc
@@ -13,7 +16,7 @@ clean:
 	rm -f ui/*~
 
 test:
-	python tests/test_zgettext.py
+	${PYTHON} tests/test_zgettext.py
 
 
 binary: clean mo
