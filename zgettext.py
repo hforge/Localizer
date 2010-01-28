@@ -170,8 +170,8 @@ def do_all(filenames, languages):
         po = POFile()
         for filename in filenames2:
             handler = get_handler(filename)
-            for msgid, line_number in handler.get_messages():
-                po.set_message(msgid, references={filename: [line_number]})
+            for source, context, line in handler.get_units():
+                po.add_unit(filename, source, context, line)
         filename = mktemp('.po')
         filenames.append(filename)
         open(filename, 'w').write(po.to_str())
