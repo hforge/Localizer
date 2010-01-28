@@ -43,12 +43,13 @@ from OFS.ObjectManager import ObjectManager
 from OFS.SimpleItem import SimpleItem
 from Persistence import PersistentMapping
 from ZPublisher import HTTPRequest
-from zope.i18n.interfaces import ITranslationDomain
-from zope.interface import implements
 from zope.component import getSiteManager
 from zope.i18n import interpolate
+from zope.i18n.interfaces import ITranslationDomain
+from zope.interface import implements
 
 # Import from Localizer
+from interfaces import IMessageCatalog
 from LanguageManager import LanguageManager
 from LocalFiles import LocalDTMLFile
 from utils import charsets, lang_negotiator, _
@@ -146,11 +147,14 @@ def manage_addMessageCatalog(self, id, title, languages, sourcelang=None,
         return self.manage_main(self, REQUEST)
 
 
+
 class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     """Stores messages and their translations...
     """
 
     meta_type = 'MessageCatalog'
+    implements(IMessageCatalog)
+
 
     security = ClassSecurityInfo()
 
@@ -177,8 +181,6 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
     # ITranslationDomain interface
     # zope.i18n.interfaces.ITranslationDomain
     #######################################################################
-    implements(ITranslationDomain)
-
     @property
     def domain(self):
         """ """
@@ -190,18 +192,6 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         """ """
         msgstr = self.gettext(msgid, lang=target_language, default=default)
         return interpolate(msgstr, mapping)
-
-
-    def manage_afterAdd(self, item, container):
-        if item is self:
-            sm = getSiteManager(container)
-            sm.registerUtility(self, ITranslationDomain, self.domain)
-
-
-    def manage_beforeDelete(self, item, container):
-        if item is self:
-            sm = getSiteManager(container)
-            sm.unregisterUtility(self, ITranslationDomain, self.domain)
 
 
     #######################################################################
@@ -919,3 +909,19 @@ class POFile(SimpleItem):
 
 InitializeClass(MessageCatalog)
 InitializeClass(POFile)
+
+
+
+def MessageCatalog_moved(object, event):
+    # FIXME This does not work if what we move is the folder that contains
+    # the message catalog
+    container = event.oldParent
+    if container:
+        sm = getSiteManager(container)
+        sm.unregisterUtility(object, ITranslationDomain, event.oldName)
+
+    container = event.newParent
+    if container:
+        sm = getSiteManager(container)
+        sm.registerUtility(object, ITranslationDomain, event.newName)
+

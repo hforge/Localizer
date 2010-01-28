@@ -25,11 +25,13 @@ from AccessControl import ClassSecurityInfo
 from Acquisition import aq_parent
 from App.class_init import InitializeClass
 from OFS.Folder import Folder
+from zLOG import LOG, ERROR, INFO, PROBLEM
+from zope.interface import implements
 from ZPublisher.BeforeTraverse import registerBeforeTraverse, \
      unregisterBeforeTraverse, queryBeforeTraverse, NameCaller
-from zLOG import LOG, ERROR, INFO, PROBLEM
 
 # Import Localizer modules
+from interfaces import ILocalizer
 from LocalFiles import LocalDTMLFile
 from MessageCatalog import MessageCatalog
 from utils import lang_negotiator
@@ -56,6 +58,7 @@ class Localizer(LanguageManager, Folder):
     """
 
     meta_type = 'Localizer'
+    implements(ILocalizer)
 
     id = 'Localizer'
 
@@ -82,22 +85,6 @@ class Localizer(LanguageManager, Folder):
     #######################################################################
     # API / Private
     #######################################################################
-
-    # Hook/unhook the traversal machinery
-    # Support for copy, cut and paste operations
-    def manage_beforeDelete(self, item, container):
-        if item is self:
-            unregisterBeforeTraverse(container, self.meta_type)
-
-
-    def manage_afterAdd(self, item, container):
-        if item is self:
-            id = self.id
-            container = container.this()
-            hook = NameCaller(id)
-            registerBeforeTraverse(container, hook, self.meta_type)
-
-
     def _getCopy(self, container):
         return Localizer.inheritedAttribute('_getCopy')(self, container)
 
@@ -249,3 +236,19 @@ class Localizer(LanguageManager, Folder):
 
 
 InitializeClass(Localizer)
+
+
+# Hook/unhook the traversal machinery
+# Support for copy, cut and paste operations
+
+def Localizer_moved(object, event):
+    container = event.oldParent
+    if container:
+        unregisterBeforeTraverse(container, object.meta_type)
+
+    container = event.newParent
+    if container:
+        id = object.id
+        container = container.this()
+        hook = NameCaller(id)
+        registerBeforeTraverse(container, hook, object.meta_type)
