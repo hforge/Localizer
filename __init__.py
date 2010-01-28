@@ -16,7 +16,7 @@
 
 # Check whether itools is installed
 msg = ('itools 0.50 or later is needed, download from '
-       'http://www.hforge.org/itools')
+       'http://download.hforge.org/itools/0.50')
 try:
     import itools
 except ImportError:
