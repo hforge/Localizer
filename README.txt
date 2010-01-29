@@ -58,7 +58,7 @@ Examples of sites powered by Localizer
 
 Author and License
 
-  Copyright 2001-2009  J. David Ibáñez (jdavid@itaapy.com)
+  Copyright 2001-2010  J. David Ibáñez (jdavid@itaapy.com)
             2001 Universitat Jaume I
 
   This program is free software: you can redistribute it and/or modify
