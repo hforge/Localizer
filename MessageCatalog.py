@@ -622,6 +622,8 @@ class MessageCatalog(LanguageManager, ObjectManager, SimpleItem):
         # Load the data
         po = itools.gettext.POFile(string=data)
         for msgid in po.get_msgids():
+            # TODO Keep the context if any
+            _context, msgid = msgid
             if msgid:
                 msgstr = po.get_msgstr(msgid) or ''
                 if not messages.has_key(msgid):
