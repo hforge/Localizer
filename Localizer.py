@@ -243,11 +243,11 @@ InitializeClass(Localizer)
 
 def Localizer_moved(object, event):
     container = event.oldParent
-    if container:
+    if container is not None:
         unregisterBeforeTraverse(container, object.meta_type)
 
     container = event.newParent
-    if container:
+    if container is not None:
         id = object.id
         container = container.this()
         hook = NameCaller(id)

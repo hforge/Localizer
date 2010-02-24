@@ -918,12 +918,12 @@ def MessageCatalog_moved(object, event):
     # FIXME This does not work if what we move is the folder that contains
     # the message catalog
     container = event.oldParent
-    if container:
+    if container is not None:
         sm = getSiteManager(container)
         sm.unregisterUtility(object, ITranslationDomain, event.oldName)
 
     container = event.newParent
-    if container:
+    if container is not None:
         sm = getSiteManager(container)
         sm.registerUtility(object, ITranslationDomain, event.newName)
 
