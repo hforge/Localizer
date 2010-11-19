@@ -14,19 +14,19 @@ three multilingual properties, the title, the abstract and the body. The
 commented code would be::
 
     # Import the needed classes from Localizer
-    from Products.Localizer import LocalProperty, LocalPropertyManager
+    from Products.Localizer import LocalAttribute, LocalPropertyManager
 
     # The class must inherit from LocalPropertyManager
     class Article(LocalPropertyManager, SimpleItem):
         meta_type = 'Article'
 
         # The multilingual properties are instances of
-        # LocalProperty, they can be class variables.
+        # LocalAttribute, they can be class variables.
         # The constructor takes 1 argument, which must
         # be the name of the attribute.
-        title = LocalProperty('title')
-        abstract = LocalProperty('abstract')
-        body = LocalProperty('body')
+        title = LocalAttribute('title')
+        abstract = LocalAttribute('abstract')
+        body = LocalAttribute('body')
 
         # LocalPropertyManager needs some metadata,
         # this is similar to the PropertyManager mixin class.
